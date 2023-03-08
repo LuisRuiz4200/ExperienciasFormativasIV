@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyect_ExperienciasFormativas_4toCiclo", "Proyect_ExperienciasFormativas_4toCiclo\Proyect_ExperienciasFormativas_4toCiclo.csproj", "{E6CBBD03-90EC-4CAC-AD7B-576169ECF95A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. UserInterface", "1. UserInterface", "{9B49378A-CF31-4134-A4DF-9A1FF7879983}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E6CBBD03-90EC-4CAC-AD7B-576169ECF95A} = {9B49378A-CF31-4134-A4DF-9A1FF7879983}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01789453-990D-4AA4-9B38-7F7CA6C1DA30}
