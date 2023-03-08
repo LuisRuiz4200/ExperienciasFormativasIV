@@ -1,0 +1,6 @@
+C:\Users\lr270\OneDrive\Documentos\GitHub\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Entidad\bin\Debug\Dominio.Entidad.dll
+C:\Users\lr270\OneDrive\Documentos\GitHub\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Entidad\bin\Debug\Dominio.Entidad.pdb
+C:\Users\lr270\OneDrive\Documentos\GitHub\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Entidad\obj\Debug\Dominio.Entidad.csproj.AssemblyReference.cache
+C:\Users\lr270\OneDrive\Documentos\GitHub\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Entidad\obj\Debug\Dominio.Entidad.csproj.CoreCompileInputs.cache
+C:\Users\lr270\OneDrive\Documentos\GitHub\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Entidad\obj\Debug\Dominio.Entidad.dll
+C:\Users\lr270\OneDrive\Documentos\GitHub\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Entidad\obj\Debug\Dominio.Entidad.pdb
