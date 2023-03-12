@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Estructura.SQL
 {
-    public class ConexionSQL
+    public class Class1
     {
     }
 }
