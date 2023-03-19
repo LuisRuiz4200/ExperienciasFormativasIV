@@ -46,9 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Proyect_ExperienciasFormativas_4toCiclo\Proyect_ExperienciasFormativas_4toCiclo.csproj">
-      <Project>{e6cbbd03-90ec-4cac-ad7b-576169ecf95a}</Project>
-      <Name>Proyect_ExperienciasFormativas_4toCiclo</Name>
+    <ProjectReference Include="..\Dominio.Entidad\Dominio.Entidad.csproj">
+      <Project>{16c73135-2d57-47e1-b915-addfe1bff35e}</Project>
+      <Name>Dominio.Entidad</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
