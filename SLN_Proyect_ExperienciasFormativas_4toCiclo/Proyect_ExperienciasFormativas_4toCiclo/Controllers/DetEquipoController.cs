@@ -16,7 +16,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         }
         public ActionResult registrarDetEquipo(DetEquipoModel obj) 
         { 
-            return View(); 
+            
+            return View(obj); 
         
         }
         [HttpPost]
