@@ -12,5 +12,10 @@ namespace Dominio.Entidad
         public string nom_usuario { set; get; }
         public string ape_usuario { set; get; }
         public int tipo_usuario { set;get; }
+
+        public List<UsuarioModel> LISTAR_USUARIOS()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
