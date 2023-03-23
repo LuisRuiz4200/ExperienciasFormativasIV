@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Proyect_ExperienciasFormativas_4toCiclo\Proyect_ExperienciasFormativas_4toCiclo.csproj">
