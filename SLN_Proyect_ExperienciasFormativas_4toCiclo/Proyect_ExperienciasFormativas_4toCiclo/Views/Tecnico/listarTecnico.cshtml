@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Dominio.Entidad.TecnicoModel>
+
+@{
+    ViewBag.Title = "listarTecnico";
+}
+
+<h2>listarTecnico</h2>
+
+<p>
+    @Html.ActionLink("NUEVO TECINICO", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            TECNICO
+        </th>
+        <th>
+            NOMBRE
+        </th>
+        <th>
+           APELLIDO
+        </th>
+        <th>
+            ESTADO
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cod_tecnico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom_tecnico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ape_tecnico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado_tecnico)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

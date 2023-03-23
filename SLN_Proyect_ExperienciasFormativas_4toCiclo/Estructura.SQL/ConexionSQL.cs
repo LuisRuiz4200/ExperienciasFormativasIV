@@ -11,6 +11,6 @@ namespace Estructura.SQL
 {
     public class ConexionSQL
     {
-        public String CAD_CN = ConfigurationManager.ConnectionStrings["cn1"].ConnectionString;
+        public static String CAD_CN = ConfigurationManager.ConnectionStrings["cn1"].ConnectionString;
     }
 }
