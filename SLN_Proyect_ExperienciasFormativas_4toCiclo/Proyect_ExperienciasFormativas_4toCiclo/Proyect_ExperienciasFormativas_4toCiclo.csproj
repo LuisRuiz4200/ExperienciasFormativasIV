@@ -109,6 +109,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DetEquipo\registrarDetEquipo.cshtml" />
     <Content Include="Views\Tecnico\listarTecnico.cshtml" />
+    <Content Include="Views\Tecnico\registrarTecnico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

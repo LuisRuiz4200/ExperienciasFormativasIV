@@ -1,4 +1,5 @@
-﻿using Dominio.Negocio;
+﻿using Dominio.Entidad;
+using Dominio.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,35 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             var listado = tecBL.PA_LISTAR_TECNICO();
 
             return View(listado);
+        }
+
+        public ActionResult registrarTecnico()
+        { 
+            TecnicoModel model = new TecnicoModel();
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult registrarTecnico (TecnicoModel obj) 
+        {
+            string men = "";
+
+            try 
+            { 
+               men = tecBL.PA_INSERTAR_TECNICO(obj);
+            }
+            catch 
+            {
+                
+            }
+
+            ViewBag.MENSAJE = men;
+
+
+            return View(obj);
+            
         }
     }
 }
