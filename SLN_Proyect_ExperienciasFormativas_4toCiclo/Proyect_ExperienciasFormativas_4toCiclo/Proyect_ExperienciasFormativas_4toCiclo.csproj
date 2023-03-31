@@ -91,6 +91,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Index\HtmlPage1.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +111,8 @@
     <Content Include="Views\DetEquipo\registrarDetEquipo.cshtml" />
     <Content Include="Views\Tecnico\listarTecnico.cshtml" />
     <Content Include="Views\Tecnico\registrarTecnico.cshtml" />
+    <Content Include="Views\DetEquipo\listarDetEquipo.cshtml" />
+    <Content Include="Views\Index\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

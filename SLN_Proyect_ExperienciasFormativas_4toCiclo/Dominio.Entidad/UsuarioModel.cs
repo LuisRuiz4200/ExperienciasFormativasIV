@@ -11,6 +11,8 @@ namespace Dominio.Entidad
         public string cod_usuario { set; get; }
         public string nom_usuario { set; get; }
         public string ape_usuario { set; get; }
+
+        public string pass_usuario { set; get; }
         public int tipo_usuario { set;get; }
 
         public List<UsuarioModel> LISTAR_USUARIOS()
