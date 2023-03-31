@@ -20,5 +20,15 @@ namespace Dominio.Negocio
             return listado;
         
         }
+
+        public string PA_INSERTAR_TECNICO(TecnicoModel obj)
+        {
+            string mensaje = tecDao.PA_INSERTAR_TECNICO(obj);
+
+            return mensaje;
+
+        }
     }
+
+
 }

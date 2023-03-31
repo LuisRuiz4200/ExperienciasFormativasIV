@@ -19,16 +19,13 @@ namespace Estructura.SQL
 
             var listado = new List<TecnicoModel>();
 
-            SqlConnection con = new SqlConnection(ConexionSQL.CAD_CN);
-
-            con.Open();
-
             SqlDataReader dr = SqlHelper.ExecuteReader(CAD_CN, "PA_LISTAR_TECNICO");
 
-            TecnicoModel objTecnico = new TecnicoModel();
             
             while (dr.Read())
             {
+                TecnicoModel objTecnico = new TecnicoModel();
+
                 objTecnico.cod_tecnico = dr.GetString(0);
                 objTecnico.nom_tecnico = dr.GetString (1);
                 objTecnico.ape_tecnico = dr.GetString(2);
@@ -41,5 +38,34 @@ namespace Estructura.SQL
         
         }
 
+        public string PA_INSERTAR_TECNICO(TecnicoModel obj)
+        {
+
+            string mensaje;
+            int correlativo = 0;
+            string codigo = "";
+
+            var listado = PA_LISTAR_TECNICO();
+
+            foreach (var tec in listado) 
+            {
+                correlativo = int.Parse( tec.cod_tecnico.Substring(3));
+                correlativo = correlativo + 1;
+                codigo = "TEC" + correlativo.ToString("000");
+            }
+
+            int res= SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_TECNICO", codigo ,obj.nom_tecnico,obj.ape_tecnico,obj.estado_tecnico);
+
+            if (res != 0)
+            {
+                mensaje = $"Tecnino {correlativo} registrado";
+            }
+            else 
+            {
+                mensaje = "Error en la transacción";
+            }
+
+            return mensaje;
+        }
     }
 }
