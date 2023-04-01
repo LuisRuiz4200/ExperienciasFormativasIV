@@ -49,6 +49,7 @@
     <Compile Include="FichaReposicionModel.cs" />
     <Compile Include="MantenimientoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PruebaGit.cs" />
     <Compile Include="TecnicoModel.cs" />
     <Compile Include="UsuarioModel.cs" />
   </ItemGroup>
