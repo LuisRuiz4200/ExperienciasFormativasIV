@@ -2,6 +2,7 @@
 using Dominio.Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,6 +19,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             var listado = tecBL.PA_LISTAR_TECNICO();
 
+            ViewBag.USUARIO = "LUIS";
+
             return View(listado);
         }
 
@@ -32,14 +35,15 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         [HttpPost]
         public ActionResult registrarTecnico (TecnicoModel obj) 
         {
-            string men = "";
+            string men = "INGRESE DATOS EN LOS CUADROS";
 
             try 
             { 
                men = tecBL.PA_INSERTAR_TECNICO(obj);
             }
-            catch 
+            catch (SqlException ex)
             {
+                men = ex.Message;
                 
             }
 

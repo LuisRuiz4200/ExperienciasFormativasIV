@@ -58,7 +58,7 @@ namespace Estructura.SQL
 
             if (res != 0)
             {
-                mensaje = $"Tecnino {correlativo} registrado";
+                mensaje = $"Tecnico {correlativo} registrado";
             }
             else 
             {

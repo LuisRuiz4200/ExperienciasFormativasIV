@@ -12,28 +12,29 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-
+ 
 
 </head>
 <body class="d-flex m-0 p-0 min-vh-100">
     <div class="navbar-inverse  col-2 m-0 p-0">
         <div class="container-fluid">
             <div class="nav-header d-block">
+
+                <h2>
+
+                    @Html.ActionLink("HISTORY MEDIC", "Index", "Home", new { area = "" }, new { @class = "text-white text-decoration-none" })
+
+                </h2>
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h2>
-
-                    @Html.ActionLink("HISTORY MEDIC", "Index", "Home", new { area = "" }, new { @class = "text-white" })
-
-                </h2>
 
             </div>
 
-
-           <hr />
+            <hr />
 
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -52,6 +53,20 @@
 
         </div>
     </div>
+
+    @{ 
+        String user = ViewBag.USUARIO;
+    } 
+    
+
+    <div class="position-absolute end-0 mx-5">
+        <h3 class="">
+            @user
+            <span class="glyphicon-apple"></span>
+        </h3>
+    </div>
+
+
 
     <div class="container bg-secondar ">
         @RenderBody()

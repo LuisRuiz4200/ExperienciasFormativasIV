@@ -98,6 +98,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DetEquipoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -113,6 +114,7 @@
     <Content Include="Views\Tecnico\registrarTecnico.cshtml" />
     <Content Include="Views\DetEquipo\listarDetEquipo.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Usuario\login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
