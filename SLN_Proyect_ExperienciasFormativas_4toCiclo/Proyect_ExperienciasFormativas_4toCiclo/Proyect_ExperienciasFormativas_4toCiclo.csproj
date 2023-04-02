@@ -115,6 +115,7 @@
     <Content Include="Views\DetEquipo\listarDetEquipo.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Usuario\login.cshtml" />
+    <Content Include="Views\Usuario\ListarUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -125,7 +126,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio.Entidad\Dominio.Entidad.csproj">

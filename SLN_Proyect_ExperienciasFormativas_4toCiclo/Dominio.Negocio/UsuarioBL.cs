@@ -10,11 +10,13 @@ namespace Dominio.Negocio
 {
     public class UsuarioBL
     {
-        UsuarioModel dao = new UsuarioModel();
+        UsuarioDAO usuDao = new UsuarioDAO();
 
         public List<UsuarioModel> Listar_Usuario()
         { 
-          return dao.LISTAR_USUARIOS();
+            var listado = usuDao.LISTAR_USUARIOS();
+
+            return listado;
         }
     }
 }
