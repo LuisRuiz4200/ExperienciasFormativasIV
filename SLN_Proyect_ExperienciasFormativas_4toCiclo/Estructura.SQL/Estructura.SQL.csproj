@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="DetEquipoDAO.cs" />
+    <Compile Include="DropdownDAO.cs" />
     <Compile Include="MantenimientoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLHelper.cs" />

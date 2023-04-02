@@ -24,6 +24,13 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarMantenimiento()
         {
             MantenimientoModel model = new MantenimientoModel();
+
+            DropdownBL dropdownBL = new DropdownBL();
+
+            ViewBag.LISTA_TIPOMANTE = new SelectList( dropdownBL.listTipoMante(),"id_dropdown","des_dropdown");
+            ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(),"id_dropdown","des_dropdown");
+
+
             return View(model);
         }
 

@@ -45,6 +45,7 @@
     <Compile Include="AreaEquipoModel.cs" />
     <Compile Include="DetEquipoModel.cs" />
     <Compile Include="DetSolicitudRepuestoModel.cs" />
+    <Compile Include="DropdownModel.cs" />
     <Compile Include="EquipoModel.cs" />
     <Compile Include="FichaReposicionModel.cs" />
     <Compile Include="MantenimientoModel.cs" />
