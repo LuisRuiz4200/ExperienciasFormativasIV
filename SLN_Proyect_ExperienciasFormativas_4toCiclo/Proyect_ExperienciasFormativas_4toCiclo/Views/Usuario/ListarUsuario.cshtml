@@ -4,27 +4,27 @@
     ViewBag.Title = "ListarUsuario";
 }
 
-<h2>ListarUsuario</h2>
+<h2>LISTADO DE USUARIOS</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("NUEVO USUARIO", "registrarUsuario", null, new {@class = "btn btn-sucess" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.cod_usuario)
+            CODIGO
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nom_usuario)
+            NOMBRE
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ape_usuario)
+            APELLIDO
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pass_usuario)
+            CONTRASEÑA
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tipo_usuario)
+            TIPO DE USUARIO
         </th>
         <th></th>
     </tr>
