@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DetEquipoController.cs" />
+    <Compile Include="Controllers\MantenimientoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -116,6 +117,8 @@
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Usuario\login.cshtml" />
     <Content Include="Views\Usuario\ListarUsuario.cshtml" />
+    <Content Include="Views\Mantenimiento\listarMantenimientos.cshtml" />
+    <Content Include="Views\Mantenimiento\registrarMantenimiento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
