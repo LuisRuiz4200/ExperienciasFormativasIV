@@ -18,5 +18,12 @@ namespace Dominio.Negocio
 
             return listado;
         }
+        
+        public string PA_INSERTAR_USUARIO(UsuarioModel obj)
+        {
+            string mensaje = usuDao.PA_INSERTAR_USUARIO(obj);
+
+            return mensaje;
+        }
     }
 }

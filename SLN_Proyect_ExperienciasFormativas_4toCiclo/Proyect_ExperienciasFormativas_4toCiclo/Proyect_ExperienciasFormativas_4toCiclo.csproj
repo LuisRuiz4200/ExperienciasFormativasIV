@@ -116,6 +116,7 @@
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Usuario\login.cshtml" />
     <Content Include="Views\Usuario\ListarUsuario.cshtml" />
+    <Content Include="Views\Usuario\registrarUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

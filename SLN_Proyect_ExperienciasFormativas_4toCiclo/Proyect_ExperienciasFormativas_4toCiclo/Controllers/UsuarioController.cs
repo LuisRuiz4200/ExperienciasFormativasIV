@@ -18,16 +18,16 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult ListarUsuario()
         {
             var listado = usuBL.Listar_Usuario();
+            ViewBag.USUARIO = "JEAN";
 
             return View(listado);
         }
 
-        public ActionResult login()
+        public ActionResult registrarUsuario()
         {
+            UsuarioModel model = new UsuarioModel();
 
-            UsuarioModel obj = new UsuarioModel();
-
-            return View(obj);
+            return View(model);
         }
 
         [HttpPost]
