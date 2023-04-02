@@ -29,5 +29,31 @@ namespace Estructura.SQL
             dr.Close();
             return listado;
         }
+        public string PA_INSERTAR_USUARIO(UsuarioModel obj)
+        {
+            string mensaje;
+            int correlativo = 0;
+            string codigo = "";
+
+            var listado = LISTAR_USUARIOS();
+
+            foreach (var usu in listado)
+            {
+                correlativo = int.Parse(usu.cod_usuario.Substring(3));
+                correlativo = correlativo + 1;
+                codigo = "USU" + correlativo.ToString("000");
+            }
+            int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.tipo_usuario);
+
+            if (res != 0)
+            {
+                mensaje = $"Tecnico {correlativo} registrado";
+            }
+            else
+            {
+                mensaje = "Error en la transaccion";
+            }
+            return mensaje;
+        }
     }
 }

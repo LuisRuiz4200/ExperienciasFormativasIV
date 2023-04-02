@@ -119,6 +119,7 @@
     <Content Include="Views\Usuario\ListarUsuario.cshtml" />
     <Content Include="Views\Mantenimiento\listarMantenimientos.cshtml" />
     <Content Include="Views\Mantenimiento\registrarMantenimiento.cshtml" />
+    <Content Include="Views\Usuario\registrarUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
