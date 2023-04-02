@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DetEquipoBL.cs" />
+    <Compile Include="MantenimientoBL.cs" />
     <Compile Include="TecnicoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioBL.cs" />

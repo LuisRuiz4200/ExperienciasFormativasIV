@@ -1,11 +1,12 @@
 ﻿using Dominio.Entidad;
+using System.Data.SqlClient;
+using Estructura.SQL;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Estructura.SQL;
+
 
 namespace Estructura.SQL
 {
@@ -22,7 +23,7 @@ namespace Estructura.SQL
                     cod_usuario = dr.GetString(0),
                     nom_usuario = dr.GetString(1),
                     ape_usuario = dr.GetString(2),
-                    tipo_usuario = dr.GetInt32(2)
+                    tipo_usuario = dr.GetInt32(3)
                 };
                 listado.Add(objUsuario);
             }
@@ -47,7 +48,7 @@ namespace Estructura.SQL
 
             if (res != 0)
             {
-                mensaje = $"Tecnico {correlativo} registrado";
+                mensaje = $"Usuario {correlativo} registrado";
             }
             else
             {
