@@ -1,4 +1,5 @@
-﻿using Dominio.Negocio;
+﻿using Dominio.Entidad;
+using Dominio.Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,22 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
         // GET: Usuario
         public ActionResult ListarUsuario()
+        {
+            var listado = usuBL.Listar_Usuario();
+
+            return View(listado);
+        }
+
+        public ActionResult login()
+        {
+
+            UsuarioModel obj = new UsuarioModel();
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult login(UsuarioModel obj)
         {
             var listado = usuBL.Listar_Usuario();
 
