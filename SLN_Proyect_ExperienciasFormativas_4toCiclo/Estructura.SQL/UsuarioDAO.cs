@@ -22,7 +22,8 @@ namespace Estructura.SQL
                     cod_usuario = dr.GetString(0),
                     nom_usuario = dr.GetString(1),
                     ape_usuario = dr.GetString(2),
-                    tipo_usuario = dr.GetInt32(2)
+                    pass_usuario = dr.GetString(3),
+                    tipo_usuario = dr.GetInt32(4)
                 };
                 listado.Add(objUsuario);
             }
@@ -37,13 +38,22 @@ namespace Estructura.SQL
 
             var listado = LISTAR_USUARIOS();
 
-            foreach (var usu in listado)
+            if (listado.Count > 0)
             {
-                correlativo = int.Parse(usu.cod_usuario.Substring(3));
-                correlativo = correlativo + 1;
-                codigo = "USU" + correlativo.ToString("000");
+                foreach (var usu in listado)
+                {
+                    correlativo = int.Parse(usu.cod_usuario.Substring(4));
+                    correlativo = correlativo + 1;
+                    codigo = "USER" + correlativo.ToString("0000");
+                }
             }
-            int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.tipo_usuario);
+            else {
+
+                codigo = "USER0001";
+            }
+
+            
+            int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.pass_usuario,obj.tipo_usuario);
 
             if (res != 0)
             {

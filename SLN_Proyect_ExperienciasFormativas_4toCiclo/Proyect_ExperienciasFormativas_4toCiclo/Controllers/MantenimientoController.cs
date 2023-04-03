@@ -12,6 +12,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     public class MantenimientoController : Controller
     {
         MantenimientoBL mantBL = new MantenimientoBL();
+        DropdownBL dropdownBL = new DropdownBL();
 
         // GET: Mantenimiento
         public ActionResult listarMantenimientos()
@@ -25,12 +26,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             MantenimientoModel model = new MantenimientoModel();
 
-            DropdownBL dropdownBL = new DropdownBL();
-
             ViewBag.LISTA_TIPOMANTE = new SelectList( dropdownBL.listTipoMante(),"id_dropdown","des_dropdown");
             ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(),"id_dropdown","des_dropdown");
-
-
             return View(model);
         }
 
@@ -49,6 +46,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 men = ex.Message;
             }
 
+            ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");
             ViewBag.MENSAJE = men;
 
             return View(obj);

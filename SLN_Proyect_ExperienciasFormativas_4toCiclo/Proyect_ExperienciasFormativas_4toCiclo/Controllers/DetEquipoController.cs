@@ -12,6 +12,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     {
 
         DetEquipoBL detEquipoBL = new DetEquipoBL();
+        DropdownBL dropdownBL = new DropdownBL();   
 
         // GET: DetEquipo
         public ActionResult listarDetEquipo()
@@ -24,6 +25,9 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarDetEquipo()
         {
             DetEquipoModel obj = new DetEquipoModel();
+
+            ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
 
             return View(obj);
 
@@ -42,6 +46,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 mensaje = ex.Message;
             }
 
+            ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
             ViewBag.MENSAJE = mensaje;
 
             return View(obj);

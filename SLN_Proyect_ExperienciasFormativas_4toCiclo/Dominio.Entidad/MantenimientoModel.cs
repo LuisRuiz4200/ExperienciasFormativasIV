@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Web;
 
 namespace Dominio.Entidad
@@ -13,6 +15,8 @@ namespace Dominio.Entidad
         public int cod_tipoMante { set; get; }
         public string obs_tipoMante { set; get; }
         public string estado_equipo { set; get; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString ="{0:dd/mmmm/yyyy}")]
         public DateTime fecha_mante { set; get; }
         public string estado_mante { set; get; } 
         //fin del modelo

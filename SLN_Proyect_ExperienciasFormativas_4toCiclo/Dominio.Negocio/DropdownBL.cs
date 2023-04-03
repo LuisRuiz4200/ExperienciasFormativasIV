@@ -25,6 +25,27 @@ namespace Dominio.Negocio
             return lista;
         
         }
+        public List<DropdownModel> listEquipo()
+        {
+            var lista = objDao.listEquipo();
+            return lista;
+
+        }
+
+        public List<DropdownModel> listProveedor()
+        {
+            var lista = objDao.listProveedor();
+            return lista;
+
+        }
+
+
+        public List<DropdownModel> listTipoUsuario()
+        {
+            var lista = objDao.listTipoUsuario();
+            return lista;
+
+        }
 
 
 

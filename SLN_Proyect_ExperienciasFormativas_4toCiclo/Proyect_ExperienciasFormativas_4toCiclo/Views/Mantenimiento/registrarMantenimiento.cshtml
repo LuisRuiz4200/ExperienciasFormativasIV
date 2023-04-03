@@ -34,7 +34,7 @@
     <div class="form-group col-4">
         @Html.LabelFor(model => model.cod_tecnico, htmlAttributes: new { @class = "control-label col-md-3" })
         <div class="col-md-10">
-            @Html.DropDownList("cod_tecnico", (SelectList)ViewBag.LISTA_TECNICO, "SELECCIONE TECNICO", new { @class = "form-control" })
+            @Html.DropDownList("cod_tecnico", (SelectList)ViewBag.LISTA_TECNICO, "SELECCIONE TECNICO", new { @class = "form-control bg-secondary bg-opacity-25" })
             @Html.ValidationMessageFor(model => model.cod_tecnico, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -42,7 +42,7 @@
     <div class="form-group col-4">
         @Html.LabelFor(model => model.cod_tipoMante, htmlAttributes: new { @class = "control-label col-md-3" })
         <div class="col-md-10">
-            @Html.DropDownList("cod_tipoMante", (SelectList)ViewBag.LISTA_TIPOMANTE, "SELECCIONE TIPO", new { @class = "form-control" })
+            @Html.DropDownList("cod_tipoMante", (SelectList)ViewBag.LISTA_TIPOMANTE, "SELECCIONE TIPO", new { @class = "form-control bg-secondary bg-opacity-25" })
             @Html.ValidationMessageFor(model => model.cod_tipoMante, "", new { @class = "text-danger" })
         </div>
     </div>

@@ -116,10 +116,10 @@
     <Content Include="Views\DetEquipo\listarDetEquipo.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Usuario\login.cshtml" />
-    <Content Include="Views\Usuario\ListarUsuario.cshtml" />
     <Content Include="Views\Mantenimiento\listarMantenimientos.cshtml" />
     <Content Include="Views\Mantenimiento\registrarMantenimiento.cshtml" />
     <Content Include="Views\Usuario\registrarUsuario.cshtml" />
+    <Content Include="Views\Usuario\ListarUsuario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
