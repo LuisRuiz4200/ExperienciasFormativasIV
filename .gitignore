@@ -1,2 +1,6 @@
 SLN_Proyect_ExperienciasFormativas_4toCiclo/Dominio.Entidad/obj/
 SLN_Proyect_ExperienciasFormativas_4toCiclo/Dominio.Entidad/bin/
+*.dll
+*.cache
+*.exe
+*.pdb
