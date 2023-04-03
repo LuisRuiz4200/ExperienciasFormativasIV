@@ -91,7 +91,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Index\HtmlPage1.html" />
+    <Content Include="Views\Index\estilos.css" />
+    <Content Include="Views\Index\estilos.txt" />
+    <Content Include="Views\Index\imagen.jpg" />
+    <Content Include="Views\Index\loginvista.html" />
+    <Content Include="Views\Index\loginvits.txt" />
+    <Content Include="Views\Index\registrar.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

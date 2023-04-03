@@ -26,6 +26,17 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             MantenimientoModel model = new MantenimientoModel();
 
+            var lista = mantBL.PA_LISTAR_MANTENIMIENTO();
+
+            string codigo="";
+
+            foreach (var item in lista)
+            {
+                codigo = "MAN" + (int.Parse(item.id_mante.Substring(6)) + 1).ToString("000000");
+            }
+
+            ViewBag.CODIGO_MANTENIMIENTO = codigo;
+
             ViewBag.LISTA_TIPOMANTE = new SelectList( dropdownBL.listTipoMante(),"id_dropdown","des_dropdown");
             ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(),"id_dropdown","des_dropdown");
             return View(model);
@@ -34,7 +45,18 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         [HttpPost]
         public ActionResult registrarMantenimiento(MantenimientoModel obj)
         {
-            string men = "INGRESE DATOS EN LOS CUADROS";
+            string men;
+
+            var lista = mantBL.PA_LISTAR_MANTENIMIENTO();
+
+            string codigo = "";
+
+            foreach (var item in lista)
+            {
+                codigo = "MAN" + (int.Parse(item.id_mante.Substring(6)) + 1).ToString("000000");
+            }
+
+            ViewBag.CODIGO_MANTENIMIENTO = codigo;
 
             try
             {
@@ -45,6 +67,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
                 men = ex.Message;
             }
+
+
 
             ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");

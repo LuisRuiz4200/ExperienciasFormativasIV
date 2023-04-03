@@ -47,18 +47,30 @@ namespace Estructura.SQL
 
             var listado = PA_LISTAR_TECNICO();
 
-            foreach (var tec in listado) 
+
+            if (listado.Count == 0)
             {
-                correlativo = int.Parse( tec.cod_tecnico.Substring(3));
-                correlativo = correlativo + 1;
-                codigo = "TEC" + correlativo.ToString("000");
+
+                foreach (var tec in listado)
+                {
+                    correlativo = int.Parse(tec.cod_tecnico.Substring(3));
+                    correlativo = correlativo + 1;
+                    codigo = "TEC" + correlativo.ToString("000");
+                }
+
             }
+            else {
+
+                codigo = "TEC000";
+            
+            }
+            
 
             int res= SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_TECNICO", codigo ,obj.nom_tecnico,obj.ape_tecnico,obj.estado_tecnico);
 
             if (res != 0)
             {
-                mensaje = $"Tecnico {correlativo} registrado";
+                mensaje = $"Tecnico {codigo} registrado";
             }
             else 
             {

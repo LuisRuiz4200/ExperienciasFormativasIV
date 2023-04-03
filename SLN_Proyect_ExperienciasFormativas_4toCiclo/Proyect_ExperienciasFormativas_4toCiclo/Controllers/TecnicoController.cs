@@ -29,13 +29,43 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             TecnicoModel model = new TecnicoModel();
 
 
+            var lista = tecBL.PA_LISTAR_TECNICO();
+
+            string codigo=""; 
+
+            foreach (var item in lista)
+            {
+                codigo = item.cod_tecnico;
+
+                int correlativo = int.Parse(codigo.Substring(3)) + 1;
+                codigo = "TEC" + correlativo.ToString("000");
+
+            }
+
+            ViewBag.CODIGO_TECNICO = codigo;
+
             return View(model);
         }
 
         [HttpPost]
         public ActionResult registrarTecnico (TecnicoModel obj) 
         {
-            string men = "INGRESE DATOS EN LOS CUADROS";
+            string men;
+
+            var lista = tecBL.PA_LISTAR_TECNICO();
+
+            string codigo = "";
+
+            foreach (var item in lista)
+            {
+                codigo = item.cod_tecnico;
+
+                int correlativo = int.Parse(codigo.Substring(3)) + 1;
+                codigo = "TEC" + correlativo.ToString("000");
+
+            }
+
+            ViewBag.CODIGO_TECNICO = codigo;
 
             try 
             { 
@@ -46,6 +76,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 men = ex.Message;
                 
             }
+
 
             ViewBag.MENSAJE = men;
 

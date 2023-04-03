@@ -28,8 +28,8 @@ namespace Estructura.SQL
                 objMante.cod_tipoMante = dr.GetInt32(3);
                 objMante.obs_tipoMante = dr.GetString(4);
                 objMante.estado_equipo = dr.GetString(5);
-                objMante.fecha_mante = dr.GetDateTime(5);
-                objMante.estado_mante = dr.GetString(5);
+                objMante.fecha_mante = dr.GetDateTime(6);
+                objMante.estado_mante = dr.GetString(7);
 
 
                 listado.Add(objMante);
@@ -48,12 +48,23 @@ namespace Estructura.SQL
 
             var listado = PA_LISTAR_MANTENIMIENTO();
 
-            foreach (var mant in listado)
+
+            if (listado.Count > 0)
             {
-                correlativo = int.Parse(mant.id_mante.Substring(3));
-                correlativo = correlativo + 1;
-                codigo = "MAN" + correlativo.ToString("000");
+                foreach (var mant in listado)
+                {
+                    correlativo = int.Parse(mant.id_mante.Substring(6));
+                    correlativo = correlativo + 1;
+                    codigo = "MAN" + correlativo.ToString("000000");
+                }
+
             }
+            else
+            {
+                codigo = "MAN000001";
+            
+            }
+            
 
             int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_MANTENIMIENTO", codigo, obj.cod_patrimonial, obj.cod_tecnico, obj.cod_tipoMante, obj.obs_tipoMante, obj.estado_equipo, obj.fecha_mante, obj.estado_mante);
 

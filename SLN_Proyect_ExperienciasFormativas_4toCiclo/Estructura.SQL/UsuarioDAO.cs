@@ -52,17 +52,24 @@ namespace Estructura.SQL
                 codigo = "USER0001";
             }
 
-            
-            int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.pass_usuario,obj.tipo_usuario);
+            try
+            {
+                int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.pass_usuario, obj.tipo_usuario);
 
-            if (res != 0)
-            {
-                mensaje = $"Tecnico {correlativo} registrado";
+                if (res != 0)
+                {
+                    mensaje = $"Tecnico {correlativo} registrado";
+                }
+                else
+                {
+                    mensaje = "Error en la transaccion";
+                }
             }
-            else
+            catch (SqlException ex)
             {
-                mensaje = "Error en la transaccion";
+                mensaje = ex.Message;
             }
+
             return mensaje;
         }
     }

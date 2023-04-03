@@ -50,7 +50,6 @@
     <Compile Include="SQLHelper.cs" />
     <Compile Include="TecnicoDAO.cs" />
     <Compile Include="UsuarioDAO.cs" />
-    <Compile Include="TecnicoDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dominio.Entidad\Dominio.Entidad.csproj">
