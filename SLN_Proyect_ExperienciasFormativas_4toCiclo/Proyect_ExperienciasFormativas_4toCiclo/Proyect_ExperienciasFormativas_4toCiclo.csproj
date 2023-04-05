@@ -89,6 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\estilos.css" />
+    <Content Include="Content\imagen.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Views\Index\estilos.css" />
@@ -125,6 +127,7 @@
     <Content Include="Views\Mantenimiento\registrarMantenimiento.cshtml" />
     <Content Include="Views\Usuario\registrarUsuario.cshtml" />
     <Content Include="Views\Usuario\ListarUsuario.cshtml" />
+    <Content Include="Views\Usuario\acceder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

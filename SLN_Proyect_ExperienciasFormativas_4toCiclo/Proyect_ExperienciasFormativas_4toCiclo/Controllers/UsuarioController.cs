@@ -18,6 +18,17 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         DropdownBL dropdownBL = new DropdownBL();
 
         // GET: Usuario
+        public ActionResult acceder()
+        {
+            
+
+            return View();
+        }
+
+
+
+
+
         public ActionResult ListarUsuario()
         {
             var listado = usuBL.Listar_Usuario();
