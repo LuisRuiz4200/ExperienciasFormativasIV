@@ -12,6 +12,12 @@ namespace Dominio.Negocio
     {
         UsuarioDAO usuDao = new UsuarioDAO();
 
+        public UsuarioModel VALIDAR_ACCESO(UsuarioModel obj)
+        {
+            UsuarioModel PA_VALIDAR = usuDao.PA_VALIDAR_ACCESO(obj);
+
+            return PA_VALIDAR;
+        }
         public List<UsuarioModel> Listar_Usuario()
         { 
             var listado = usuDao.LISTAR_USUARIOS();

@@ -11,6 +11,26 @@ namespace Estructura.SQL
 {
     public class UsuarioDAO : ConexionSQL
     {
+        public UsuarioModel PA_VALIDAR_ACCESO(string cod_usuario, string pass_usuario)
+        {
+            SqlConnection conexion = new SqlConnection(CAD_CN);
+            conexion.Open();
+            SqlCommand cmd = new SqlCommand("Select * from tb_usuario where cod_usuario=@codigo and pass_usuario=@password", conexion);
+            cmd.Parameters.AddWithValue("@codigo", cod_usuario);
+            cmd.Parameters.AddWithValue("@password", pass_usuario);
+            SqlDataReader dr = cmd.ExecuteReader();
+            UsuarioModel usuarioModel = new UsuarioModel();
+            if (dr.Read() != null)
+            {
+                usuarioModel.cod_usuario = dr.GetString(0);
+                usuarioModel.nom_usuario= dr.GetString(1);
+                usuarioModel.ape_usuario= dr.GetString(2);
+                usuarioModel.pass_usuario = dr.GetString(3);
+                usuarioModel.tipo_usuario = dr.GetInt32(4);
+            }
+            return usuarioModel;
+
+        }
         public List<UsuarioModel> LISTAR_USUARIOS()
         {
             var listado = new List<UsuarioModel>();
