@@ -89,14 +89,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\estilos.css" />
+    <Content Include="Content\imagen.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="Views\Index\HtmlPage1.html" />
+    <Content Include="Views\Index\estilos.css" />
+    <Content Include="Views\Index\estilos.txt" />
+    <Content Include="Views\Index\imagen.jpg" />
+    <Content Include="Views\Index\loginvista.html" />
+    <Content Include="Views\Index\loginvits.txt" />
+    <Content Include="Views\Index\registrar.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DetEquipoController.cs" />
+    <Compile Include="Controllers\MantenimientoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -115,8 +123,11 @@
     <Content Include="Views\DetEquipo\listarDetEquipo.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Usuario\login.cshtml" />
-    <Content Include="Views\Usuario\ListarUsuario.cshtml" />
+    <Content Include="Views\Mantenimiento\listarMantenimientos.cshtml" />
+    <Content Include="Views\Mantenimiento\registrarMantenimiento.cshtml" />
     <Content Include="Views\Usuario\registrarUsuario.cshtml" />
+    <Content Include="Views\Usuario\ListarUsuario.cshtml" />
+    <Content Include="Views\Usuario\acceder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DropdownBL.cs" />
+    <Compile Include="MantenimientoBL.cs" />
     <Compile Include="DetEquipoBL.cs" />
     <Compile Include="MantenimientoBL.cs" />
     <Compile Include="TecnicoBL.cs" />

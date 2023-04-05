@@ -1,12 +1,11 @@
 ﻿using Dominio.Entidad;
-using System.Data.SqlClient;
-using Estructura.SQL;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Estructura.SQL;
 
 namespace Estructura.SQL
 {
@@ -23,7 +22,8 @@ namespace Estructura.SQL
                     cod_usuario = dr.GetString(0),
                     nom_usuario = dr.GetString(1),
                     ape_usuario = dr.GetString(2),
-                    tipo_usuario = dr.GetInt32(3)
+                    pass_usuario = dr.GetString(3),
+                    tipo_usuario = dr.GetInt32(4)
                 };
                 listado.Add(objUsuario);
             }
@@ -38,22 +38,38 @@ namespace Estructura.SQL
 
             var listado = LISTAR_USUARIOS();
 
-            foreach (var usu in listado)
+            if (listado.Count > 0)
             {
-                correlativo = int.Parse(usu.cod_usuario.Substring(3));
-                correlativo = correlativo + 1;
-                codigo = "USU" + correlativo.ToString("000");
+                foreach (var usu in listado)
+                {
+                    correlativo = int.Parse(usu.cod_usuario.Substring(4));
+                    correlativo = correlativo + 1;
+                    codigo = "USER" + correlativo.ToString("0000");
+                }
             }
-            int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.tipo_usuario);
+            else {
 
-            if (res != 0)
-            {
-                mensaje = $"Usuario {correlativo} registrado";
+                codigo = "USER0001";
             }
-            else
+
+            try
             {
-                mensaje = "Error en la transaccion";
+                int res = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_USUARIO", codigo, obj.nom_usuario, obj.ape_usuario, obj.pass_usuario, obj.tipo_usuario);
+
+                if (res != 0)
+                {
+                    mensaje = $"Tecnico {correlativo} registrado";
+                }
+                else
+                {
+                    mensaje = "Error en la transaccion";
+                }
             }
+            catch (SqlException ex)
+            {
+                mensaje = ex.Message;
+            }
+
             return mensaje;
         }
     }
