@@ -1,0 +1,23 @@
+﻿@model Dominio.Entidad.UsuarioModel
+
+@{
+    ViewBag.Title = "Principal";
+}
+
+<h2 class="m-2 p-2">BIENVENIDO</h2>
+
+
+
+@if (ViewBag.MENSAJE != null) 
+{
+    <div class="alert alert-warning">
+
+        @ViewBag.MENSAJE
+
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

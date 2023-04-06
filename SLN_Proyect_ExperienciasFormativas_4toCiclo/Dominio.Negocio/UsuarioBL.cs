@@ -12,9 +12,9 @@ namespace Dominio.Negocio
     {
         UsuarioDAO usuDao = new UsuarioDAO();
 
-        public UsuarioModel VALIDAR_ACCESO(UsuarioModel obj)
+        public UsuarioModel VALIDAR_ACCESO(string cod_usuario, string pass_usuario)
         {
-            UsuarioModel PA_VALIDAR = usuDao.PA_VALIDAR_ACCESO(obj);
+            UsuarioModel PA_VALIDAR = usuDao.PA_VALIDAR_ACCESO(cod_usuario, pass_usuario);
 
             return PA_VALIDAR;
         }

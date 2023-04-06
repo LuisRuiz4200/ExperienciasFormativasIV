@@ -15,13 +15,14 @@ namespace Estructura.SQL
         {
             SqlConnection conexion = new SqlConnection(CAD_CN);
             conexion.Open();
-            SqlCommand cmd = new SqlCommand("Select * from tb_usuario where cod_usuario=@codigo and pass_usuario=@password", conexion);
+            SqlCommand cmd = new SqlCommand("select * from tb_usuario where cod_usuario=@codigo and pass_usuario=@password", conexion);
             cmd.Parameters.AddWithValue("@codigo", cod_usuario);
             cmd.Parameters.AddWithValue("@password", pass_usuario);
             SqlDataReader dr = cmd.ExecuteReader();
-            UsuarioModel usuarioModel = new UsuarioModel();
-            if (dr.Read() != null)
+            UsuarioModel usuarioModel=null; 
+            if (dr.Read())
             {
+                usuarioModel = new UsuarioModel();
                 usuarioModel.cod_usuario = dr.GetString(0);
                 usuarioModel.nom_usuario= dr.GetString(1);
                 usuarioModel.ape_usuario= dr.GetString(2);
@@ -31,6 +32,9 @@ namespace Estructura.SQL
             return usuarioModel;
 
         }
+
+
+
         public List<UsuarioModel> LISTAR_USUARIOS()
         {
             var listado = new List<UsuarioModel>();

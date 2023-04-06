@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,15 +19,6 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         DropdownBL dropdownBL = new DropdownBL();
 
         // GET: Usuario
-        public ActionResult acceder()
-        {
-            
-
-            return View();
-        }
-
-
-
 
 
         public ActionResult ListarUsuario()
@@ -37,6 +29,45 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             return View(listado);
         }
+
+
+        public ActionResult login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult login(string cod_usuario, string pass_usuario)
+        {
+
+            string mensaje="";
+            UsuarioModel model=null; 
+
+            try 
+            { 
+                model = usuBL.VALIDAR_ACCESO(cod_usuario, pass_usuario);
+                ViewBag.USUARIO = model.nom_usuario;
+            }
+            catch (SqlException ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.MENSAJE = mensaje;
+
+            if (model==null)
+            {
+                return View();
+            }
+            else
+            {
+                return View("principal");
+            }
+
+            
+        }
+
+
 
         public ActionResult registrarUsuario()
         {
