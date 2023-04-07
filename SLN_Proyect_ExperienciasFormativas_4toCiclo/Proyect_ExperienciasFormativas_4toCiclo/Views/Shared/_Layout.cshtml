@@ -15,70 +15,105 @@
  
 
 </head>
-<body class="d-flex m-0 p-0 min-vh-100">
-    <div class="navbar-inverse  col-2 m-0 p-0">
-        <div class="container-fluid">
-            <div class="nav-header d-block">
+<body class="d-flex m-0 p-0">
+ 
+    <aside class="position-sticky top-0 vh-100 navbar-inverse col-md-2 p-0 d-flex flex-column ">
 
-                <h2>
+        <button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#lista">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
 
-                    @Html.ActionLink("HISTORY MEDIC", "Index", "Home", new { area = "" }, new { @class = "text-white text-decoration-none" })
+        <div class="navbar navbar-collapse collapse mb-auto p-0" id="lista">
+
+            <div class="navbar-header nav-justified">
+                <h2 class="px-4">
+
+                    @Html.ActionLink("HISTORY MEDIC", "", "", new { area = "" }, new { @class = "text-white text-decoration-none" })
 
                 </h2>
 
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+                <hr />
 
             </div>
 
-            <hr />
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="..\Usuario\registrarUsuario">REGISTRAR USUARIO</a>
+            
+
+            <div class="">
+
+                <ul class=" nav navbar-nav nav-justified">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="" href="#">USUARIO</a>
+                        <ul class="dropdown-menu bg-success">
+                            <li>
+                                <a class="dropdown-item" href="..\Usuario\registrarUsuario">REGISTRAR NUEVO USUARIO</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="..\Usuario\listarUsuario">LISTAR USUARIO</a>
+                            </li>
+                            <li>
+                                <a href="..\Usuario\login">SALIR DEL SISTEMA</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="..\Usuario\listarUsuario">LISTAR USUARIO</a>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="" href="#">TECNICO</a>
+                        <ul class="dropdown-menu bg-success">
+                            <li>
+                                <a class="dropdown-item" href="..\Tecnico\registrarTecnico">REGISTRAR TECNICO</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="..\Tecnico\listarTecnico">CONSULTAR TECNICO</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="..\Tecnico\registrarTecnico">REGISTRAR TECNICO</a>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="" href="#">EQUIPO</a>
+                        <ul class="dropdown-menu bg-success">
+                            <li>
+                                <a class="dropdown-item" href="..\DetEquipo\registrarDetEquipo">REGISTRAR DETALLE EQUIPO</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="..\DetEquipo\listarDetEquipo">CONSULTAR DETALLE EQUIPO</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="..\Tecnico\listarTecnico">CONSULTAR TECNICO</a>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-target="" href="#">MANTENIMIENTO</a>
+                        <ul class="dropdown-menu bg-success ">
+                            <li>
+                                <a href="..\Mantenimiento\registrarMantenimiento">REGISTRAR MANTENIMIENTO</a>
+                            </li>
+                            <li>
+                                <a href="..\Mantenimiento\listarMantenimientos">CONSULTAR MANTENIMIENTO</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="..\DetEquipo\registrarDetEquipo">REGISTRAR DETALLE EQUIPO</a>
-                    </li>
-                    <li>
-                        <a href="..\DetEquipo\listarDetEquipo">CONSULTAR DETALLE EQUIPO</a>
-                    </li>
-                    <li>
-                        <a href="..\Mantenimiento\registrarMantenimiento">REGISTRAR MANTENIMIENTO</a>
-                    </li>
-                    <li>
-                        <a href="..\Mantenimiento\listarMantenimientos">CONSULTAR MANTENIMIENTO</a>
-                    </li>
-                    <li>
-                        <<a href="..\Usuario\login">SALIR DEL SISTEM</a>
-                    </li>
+
                 </ul>
             </div>
 
-
+            <div class="text-white d-block position-absolute bottom-0 w-100">
+                <hr />
+                <h3 class="px-4">USUARIO</h3>
+            </div>
         </div>
-    </div>
 
-    @{ 
+        
+    </aside>
+
+    @{
         String user = ViewBag.USUARIO;
-    } 
-    
+    }
 
-    <div class="position-absolute end-0 mx-5">
-        <h3 class="">
+
+    <div class="position-fixed end-0 px-5 bg-secondary text-white table-bordered">
+        <h3 class="my-4">
             @user
             <span class="glyphicon-apple"></span>
         </h3>

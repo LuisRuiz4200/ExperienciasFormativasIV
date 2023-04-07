@@ -13,13 +13,16 @@ namespace Estructura.SQL
     {
         public UsuarioModel PA_VALIDAR_ACCESO(string cod_usuario, string pass_usuario)
         {
+
+            UsuarioModel usuarioModel = null;
+
             SqlConnection conexion = new SqlConnection(CAD_CN);
             conexion.Open();
+
             SqlCommand cmd = new SqlCommand("select * from tb_usuario where cod_usuario=@codigo and pass_usuario=@password", conexion);
             cmd.Parameters.AddWithValue("@codigo", cod_usuario);
             cmd.Parameters.AddWithValue("@password", pass_usuario);
             SqlDataReader dr = cmd.ExecuteReader();
-            UsuarioModel usuarioModel=null; 
             if (dr.Read())
             {
                 usuarioModel = new UsuarioModel();

@@ -37,32 +37,46 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         }
 
         [HttpPost]
-        public ActionResult login(string cod_usuario, string pass_usuario)
+        public ActionResult login(string cod_usuario=null, string pass_usuario=null)
         {
 
             string mensaje="";
+            string vista;
             UsuarioModel model=null; 
 
             try 
             { 
                 model = usuBL.VALIDAR_ACCESO(cod_usuario, pass_usuario);
-                ViewBag.USUARIO = model.nom_usuario;
+
+                if(model != null) {
+                    ViewBag.USUARIO = model.nom_usuario;
+                }
+                
             }
             catch (SqlException ex)
             {
                 mensaje = ex.Message;
             }
 
-            ViewBag.MENSAJE = mensaje;
 
             if (model==null)
             {
-                return View();
+                mensaje = "Credenciales incorrectas, POSIBLE HACKER";
+                vista = "login";
+
             }
             else
             {
-                return View("principal");
+                mensaje = $"BIENVENIDO {model.nom_usuario} AL SISTEMA HISTORY MEDIC";
+                vista = "principal";
             }
+
+
+            ViewBag.MENSAJE = mensaje;
+
+            return View(vista);
+
+
 
             
         }
