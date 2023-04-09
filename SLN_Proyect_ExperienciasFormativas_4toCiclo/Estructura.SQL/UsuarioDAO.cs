@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Estructura.SQL;
+using System.Net.NetworkInformation;
 
 namespace Estructura.SQL
 {
@@ -99,5 +100,94 @@ namespace Estructura.SQL
 
             return mensaje;
         }
+
+        public UsuarioModel PA_BUSCAR_USUARIO(string cod_usuario) 
+        {
+            string cad_sql = "select * from where cod_usuario=@cod_usuario";
+            UsuarioModel objUsuario= null;
+
+            try 
+            { 
+                SqlConnection con = new SqlConnection(CAD_CN);
+                con.Open();
+                SqlCommand cmd = new SqlCommand(cad_sql,con);
+                cmd.Parameters.AddWithValue("@cod_usuario", cod_usuario);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if(dr.Read()) 
+                { 
+                    objUsuario = new UsuarioModel();
+                    objUsuario.cod_usuario = dr.GetString(0);
+                    objUsuario.nom_usuario = dr.GetString (1);
+                    objUsuario.ape_usuario = dr.GetString(2);
+                    objUsuario.pass_usuario = dr.GetString(3);
+                    objUsuario.tipo_usuario = dr.GetInt32 (4);
+
+                }
+
+            }catch(SqlException ex) 
+            {
+                return null;
+            }
+            return objUsuario;
+        }
+
+        public string PA_EDITAR_USUARIO(UsuarioModel obj) 
+        {
+            String cad_sql = "update tb_usuario set" +
+                " nom_usuario=@nom_usuario, ape_usuario=@ape_usuario, pass_usuario=@pass_usuario, tipo_usuario=@tipo_usuario" +
+                " where cod_usuario = @cod_usuario";
+            String mensaje;
+            try
+            {
+                SqlConnection con = new SqlConnection(CAD_CN);
+                con.Open();
+                SqlCommand sql = new SqlCommand(cad_sql,con);
+
+                sql.Parameters.AddWithValue("@nom_usuario", obj.nom_usuario);
+                sql.Parameters.AddWithValue("@ape_usuario", obj.ape_usuario);
+                sql.Parameters.AddWithValue("@pass_usuario", obj.pass_usuario);
+                sql.Parameters.AddWithValue("@tipo_usuario", obj.tipo_usuario);
+                sql.Parameters.AddWithValue("@cod_usuario", obj.cod_usuario);
+
+                sql.ExecuteNonQuery();
+
+                mensaje = $"{obj.cod_usuario}  {obj.nom_usuario} actualizado correctamente";
+                
+            }
+            catch (SqlException ex)
+            { 
+                mensaje=ex.Message;
+            }
+            
+
+            return mensaje;
+        }
+
+        public string PA_ELIMINAR_USUARIO(string cod_usuario)
+        {
+            string cad_sql = "delete from tb_usuario where cod_usuario=@cod_usuario";
+            string mensaje;
+            try
+            {
+                SqlConnection con = new SqlConnection(CAD_CN);
+                con.Open();
+                SqlCommand sql = new SqlCommand(cad_sql, con);
+
+                sql.Parameters.AddWithValue("@cod_usuario", cod_usuario);
+
+                sql.ExecuteNonQuery();
+
+                mensaje = $"{cod_usuario} eliminado correctamente";
+
+            }
+            catch (SqlException ex)
+            {
+                mensaje = ex.Message;
+            }
+
+
+            return mensaje;
+        }
     }
+    
 }

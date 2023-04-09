@@ -32,5 +32,27 @@ namespace Dominio.Negocio
             return mensaje;
         }
 
+        public string PA_EDITAR_USUARIO(UsuarioModel obj)
+        {
+            string mensaje= usuDao.PA_EDITAR_USUARIO(obj);
+
+            return mensaje;
+        }
+
+        public UsuarioModel PA_BUSCAR_USUARIO(string cod_usuario)
+        {
+            UsuarioModel objUsuario = usuDao.PA_BUSCAR_USUARIO(cod_usuario);
+
+            return objUsuario;
+        
+        }
+
+        public string PA_ELIMINAR_USUARIO(string cod_usuario)
+        {
+            string mensaje = usuDao.PA_ELIMINAR_USUARIO(cod_usuario);
+
+            return mensaje;
+        }
+
     }
 }

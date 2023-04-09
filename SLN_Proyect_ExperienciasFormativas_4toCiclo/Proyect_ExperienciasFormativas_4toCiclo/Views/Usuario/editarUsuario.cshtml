@@ -1,13 +1,13 @@
 ﻿@model Dominio.Entidad.UsuarioModel
 
 @{
-    ViewBag.Title = "registrarUsuario";
+    ViewBag.Title = "editarUsuario";
 }
 
-<h2>registrarUsuario</h2>
+<h2>editarUsuario</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
@@ -17,15 +17,15 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.cod_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-2">
-                @Html.EditorFor(model => model.cod_usuario, new { htmlAttributes = new { @class = "form-control bg-secondary bg-opacity-25 ", placeholder=ViewBag.CODIGO_USUARIO,@readonly="readonly"} })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cod_usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.cod_usuario, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.nom_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-6">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.nom_usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.nom_usuario, "", new { @class = "text-danger" })
             </div>
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.ape_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-6">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.ape_usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ape_usuario, "", new { @class = "text-danger" })
             </div>
@@ -41,7 +41,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.pass_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
+            <div class="col-md-10">
                 @Html.EditorFor(model => model.pass_usuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.pass_usuario, "", new { @class = "text-danger" })
             </div>
@@ -49,33 +49,23 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.tipo_usuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.DropDownList("tipo_usuario",(SelectList)ViewBag.LISTA_TIPOUSUARIO,"SELECCIONE TIPO",new { @class="form-control bg-secondary bg-opacity-25"})
+            <div class="col-md-10">
+                @Html.DropDownList("tipo_usuario", (SelectList)ViewBag.LISTA_TIPOUSUARIO, "SELECCIONE TIPO", new { @class = "form-control bg-secondary bg-opacity-25" })
                 @Html.ValidationMessageFor(model => model.tipo_usuario, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group d-flex my-2">
-            <div class="col-md-offset-2 pe-4">
-                <input type="submit" value="REGISTRAR USUARIO" class="btn btn-success" />
-            </div>
-            <div class="">
-                @Html.ActionLink("IR A LA LISTA", "ListarUsuario","",new { @class="btn btn-warning"})
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-@if (ViewBag.MENSAJE != null) 
-{
-    <div class="alert alert-warning">
-
-        @ViewBag.MENSAJE
-
-    </div>
-}
-
-
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
