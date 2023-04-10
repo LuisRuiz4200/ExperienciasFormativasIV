@@ -6,27 +6,47 @@
 
 <h2>LISTADO DE TECNICOS</h2>
 
-<p>
-    @Html.ActionLink("NUEVO TECNICO", "registrarTecnico",null,new { @class="btn btn-success"})
+
+
+<form action="listarTecnico" method="post">
+    <div class="col-md-4  p-2 d-grid gap-2 border border-dark">
+        <label>ESTADO DE LOS TECNICOS</label>
+        @Html.DropDownList("estado_tecnico", new SelectList(new String[] { "TODOS", "ACTIVO", "INACTIVO" }), new { @class = "form-control bg-secondary bg-opacity-25" })
+        
+        <div>
+            <input type="submit" class="btn btn-primary col-lg-6" value="INICIAR CONSULTA" />
+            
+            @Html.ActionLink("NUEVO TECNICO", "registrarTecnico", null, new { @class = "btn btn-primary " })
+        </div>
+    </div>
+</form>
+
+<p class="text-danger">
+    @ViewBag.MENSAJE
 </p>
-<table class="table">
-    <tr>
+
+
+<table class="table table-bordered table-secondary d-block">
+    <tr class="text-center">
         <th>
             TECNICO
         </th>
-        <th>
+        <th class="col-md-4">
             NOMBRE
         </th>
-        <th>
+        <th class="col-md-4">
            APELLIDO
+        </th>
+        <th>
+            ACCIONES
         </th>
         <th>
             ESTADO
         </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.cod_tecnico)
@@ -37,13 +57,23 @@
         <td>
             @Html.DisplayFor(modelItem => item.ape_tecnico)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.estado_tecnico)
+            @Html.ActionLink("Editar", "editarTecnico", new { cod_tecnico = item.cod_tecnico }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Detalle", "detalleTecnico", new { cod_tecnico = item.cod_tecnico }, new { @class = "btn btn-warning" })
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @{
+                if (item.estado_tecnico.Equals("ACTIVO"))
+                {
+                    @Html.ActionLink(item.estado_tecnico, "gestionarEstadoTecnico", new { cod_tecnico = item.cod_tecnico }, new { @class = "btn btn-primary" })
+                }
+                else
+                {
+                    @Html.ActionLink(item.estado_tecnico, "gestionarEstadoTecnico", new { cod_tecnico = item.cod_tecnico }, new { @class = "btn btn-danger" })
+                }
+            }
+
         </td>
     </tr>
 }

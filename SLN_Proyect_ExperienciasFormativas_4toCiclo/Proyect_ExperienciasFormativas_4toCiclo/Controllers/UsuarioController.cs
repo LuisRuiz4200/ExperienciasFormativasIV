@@ -8,8 +8,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
-
+using System.Web.Security;
+using System.Web.SessionState;
 
 namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 {
@@ -50,6 +50,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
                 if(model != null) {
                     ViewBag.USUARIO = model.nom_usuario;
+                    FormsAuthentication.SetAuthCookie(model.nom_usuario, false);
                 }
                 
             }
@@ -190,6 +191,16 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult eliminarUsuario()
         {
             return View();
+        }
+
+        public ActionResult detalleUsuario(string cod_usuario) 
+        {
+            var listado = usuBL.Listar_Usuario();
+
+            UsuarioModel objUsuario = listado.Find(c => c.cod_usuario.Equals(cod_usuario));
+
+
+            return View(objUsuario);
         }
     }
 }

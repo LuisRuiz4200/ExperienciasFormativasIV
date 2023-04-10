@@ -53,7 +53,7 @@
         </td>
         <td>
             @Html.ActionLink("Editar", "editarUsuario", new { cod_usuario=item.cod_usuario }, new { @class="btn btn-success"}) |
-            @Html.ActionLink("Detalle", "#", new { cod_usuario = item.cod_usuario }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detalle", "detalleUsuario", new { cod_usuario = item.cod_usuario }, new { @class = "btn btn-warning" }) |
             @Html.ActionLink("Eliminar", "eliminarUsuario", new { cod_usuario = item.cod_usuario }, new { @class = "btn btn-danger" })
         </td>
     </tr>

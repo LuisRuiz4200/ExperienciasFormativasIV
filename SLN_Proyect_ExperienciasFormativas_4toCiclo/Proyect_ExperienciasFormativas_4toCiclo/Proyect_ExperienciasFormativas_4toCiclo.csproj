@@ -130,6 +130,8 @@
     <Content Include="Views\Usuario\login.cshtml" />
     <Content Include="Views\Usuario\principal.cshtml" />
     <Content Include="Views\Usuario\editarUsuario.cshtml" />
+    <Content Include="Views\Usuario\detalleUsuario.cshtml" />
+    <Content Include="Views\Tecnico\editarTecnico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

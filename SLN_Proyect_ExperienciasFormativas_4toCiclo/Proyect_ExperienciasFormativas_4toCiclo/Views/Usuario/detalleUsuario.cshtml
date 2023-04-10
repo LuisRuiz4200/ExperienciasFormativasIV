@@ -1,0 +1,58 @@
+﻿@model Dominio.Entidad.UsuarioModel
+
+@{
+    ViewBag.Title = "detalleUsuario";
+}
+
+<h2>detalleUsuario</h2>
+
+<div>
+    <h4>UsuarioModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ape_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ape_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pass_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pass_usuario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo_usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo_usuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

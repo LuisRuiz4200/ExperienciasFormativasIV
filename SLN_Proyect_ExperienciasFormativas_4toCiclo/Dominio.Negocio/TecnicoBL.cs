@@ -21,6 +21,14 @@ namespace Dominio.Negocio
         
         }
 
+        public List<TecnicoModel> PA_LISTAR_TECNICO_POR_ESTADO(string estado_tecnico)
+        {
+            var listado = tecDao.PA_LISTAR_TECNICO_POR_ESTADO(estado_tecnico);
+
+            return listado;
+
+        }
+
         public string PA_INSERTAR_TECNICO(TecnicoModel obj)
         {
             string mensaje = tecDao.PA_INSERTAR_TECNICO(obj);
@@ -28,6 +36,32 @@ namespace Dominio.Negocio
             return mensaje;
 
         }
+
+        public string PA_EDITAR_TECNICO(TecnicoModel obj)
+        {
+            string mensaje = tecDao.PA_EDITAR_TECNICO(obj);
+
+            return mensaje;
+
+        }
+
+        public string PA_ELIMINAR_TECNICO(string cod_tecnico)
+        {
+            string mensaje = tecDao.PA_ELIMINAR_TECNICO(cod_tecnico);
+
+            return mensaje;
+
+        }
+
+        public string PA_RESTAURAR_TECNICO(string cod_tecnico)
+        {
+            string mensaje = tecDao.PA_RESTAURAR_TECNICO(cod_tecnico);
+
+            return mensaje;
+
+        }
+
+
     }
 
 
