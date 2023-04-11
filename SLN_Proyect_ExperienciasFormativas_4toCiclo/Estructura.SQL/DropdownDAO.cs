@@ -15,14 +15,15 @@ namespace Estructura.SQL
         public List<DropdownModel> listTipoMante()
         {
             var list = new List<DropdownModel>();
-            try {
+            try
+            {
                 SqlConnection con = new SqlConnection(CAD_CN);
                 con.Open();
                 string sql2 = "select * from tb_tipoMante";
 
                 SqlCommand cmd = new SqlCommand(sql2, con);
 
-                SqlDataReader dr = cmd.ExecuteReader ();
+                SqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
                 {
@@ -35,13 +36,16 @@ namespace Estructura.SQL
 
                     list.Add(obj);
                 }
+                con.Close();
+                dr.Close();
 
             }
-            catch (SqlException sqlEx) 
+            catch (SqlException sqlEx)
             {
                 string mensaje = sqlEx.Message;
 
             }
+            
             return list;
         
         }
@@ -74,6 +78,8 @@ namespace Estructura.SQL
                     list.Add(obj);
 
                 }
+                con.Close();
+                dr.Close();
 
             }
             catch (SqlException sqlEx)
@@ -119,6 +125,8 @@ namespace Estructura.SQL
                     list.Add(obj);
 
                 }
+                con.Close();
+                dr.Close();
 
             }
             catch (SqlException sqlEx)
@@ -158,6 +166,8 @@ namespace Estructura.SQL
                     list.Add(obj);
 
                 }
+                con.Close();
+                dr.Close();
 
             }
             catch (SqlException sqlEx)
@@ -197,6 +207,8 @@ namespace Estructura.SQL
                     list.Add(obj);
 
                 }
+                con.Close();
+                dr.Close();
 
             }
             catch (SqlException sqlEx)

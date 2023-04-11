@@ -17,10 +17,10 @@ namespace Estructura.SQL
 
             UsuarioModel usuarioModel = null;
 
-            SqlConnection conexion = new SqlConnection(CAD_CN);
-            conexion.Open();
+            SqlConnection con = new SqlConnection(CAD_CN);
+            con.Open();
 
-            SqlCommand cmd = new SqlCommand("select * from tb_usuario where cod_usuario=@codigo and pass_usuario=@password", conexion);
+            SqlCommand cmd = new SqlCommand("select * from tb_usuario where cod_usuario=@codigo and pass_usuario=@password", con);
             cmd.Parameters.AddWithValue("@codigo", cod_usuario);
             cmd.Parameters.AddWithValue("@password", pass_usuario);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -33,6 +33,10 @@ namespace Estructura.SQL
                 usuarioModel.pass_usuario = dr.GetString(3);
                 usuarioModel.tipo_usuario = dr.GetInt32(4);
             }
+
+            con.Close();
+            dr.Close();
+
             return usuarioModel;
 
         }
@@ -123,8 +127,10 @@ namespace Estructura.SQL
                     objUsuario.tipo_usuario = dr.GetInt32 (4);
 
                 }
-
-            }catch(SqlException ex) 
+                con.Close();
+                dr.Close();
+            }
+            catch(SqlException ex) 
             {
                 return null;
             }
@@ -152,7 +158,8 @@ namespace Estructura.SQL
                 sql.ExecuteNonQuery();
 
                 mensaje = $"{obj.cod_usuario}  {obj.nom_usuario} actualizado correctamente";
-                
+
+                con.Close();
             }
             catch (SqlException ex)
             { 
@@ -179,6 +186,7 @@ namespace Estructura.SQL
 
                 mensaje = $"{cod_usuario} eliminado correctamente";
 
+                con.Close();
             }
             catch (SqlException ex)
             {

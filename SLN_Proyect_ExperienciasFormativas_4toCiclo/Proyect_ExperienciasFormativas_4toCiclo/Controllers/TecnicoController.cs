@@ -143,6 +143,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             string mensaje="";
 
             TecnicoModel objTecnico = tecBL.PA_LISTAR_TECNICO().Find(c=>c.cod_tecnico.Equals(cod_tecnico));
+            var listaTecnico = tecBL.PA_LISTAR_TECNICO();
 
             switch (objTecnico.estado_tecnico)
             {
@@ -150,6 +151,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                     try
                     {
                         mensaje = tecBL.PA_ELIMINAR_TECNICO(cod_tecnico);
+                        
                     }
                     catch (Exception ex)
                     {
@@ -172,10 +174,10 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             }
 
-            var listaTecnico = tecBL.PA_LISTAR_TECNICO();
+            listaTecnico = tecBL.PA_LISTAR_TECNICO();
             ViewBag.MENSAJE = mensaje;
 
-            return View("listarTecnico",listaTecnico);
+            return RedirectToAction("listarTecnico",listaTecnico);
         }
         [HttpPost]
         public ActionResult gestionarEstadoTecnico()

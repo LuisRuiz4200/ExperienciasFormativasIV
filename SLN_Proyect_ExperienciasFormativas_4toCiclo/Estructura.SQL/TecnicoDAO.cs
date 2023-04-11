@@ -34,6 +34,8 @@ namespace Estructura.SQL
                 listado.Add(objTecnico);
             }
 
+            dr.Close();
+
             return listado;
         
         }
@@ -63,11 +65,15 @@ namespace Estructura.SQL
 
                     listado.Add(objTecnico);
                 }
+                con.Close();
+                dr.Close();
             }
             catch (SqlException ex) 
             {
                 return null;
             }
+
+
 
             return listado;
 
@@ -132,6 +138,8 @@ namespace Estructura.SQL
                 cmd.ExecuteNonQuery();
 
                 mensaje = $"{obj.cod_tecnico} ACTUALIZADO CORRECTAMENTE";
+
+                con.Close();
             }
             catch (SqlException ex)
             { 
@@ -157,6 +165,8 @@ namespace Estructura.SQL
                 cmd.ExecuteNonQuery();
 
                 mensaje = $"{cod_Tecnico} DADO DE BAJA";
+
+                con.Close();
             }
             catch (SqlException ex)
             {
@@ -183,6 +193,8 @@ namespace Estructura.SQL
                 cmd.ExecuteNonQuery();
 
                 mensaje = $"{cod_Tecnico} RESTAURADO";
+
+                con.Close();
             }
             catch (SqlException ex)
             {

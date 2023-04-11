@@ -10,7 +10,7 @@ namespace Estructura.SQL
 {
     public class SolicitudRepuestoDAO:ConexionSQL
     {
-        public List<SolicitudRepuestoModel> PA_LISTAR_SOLCITUDREPUESTO()
+        public List<SolicitudRepuestoModel> PA_LISTAR_SOLICITUDREPUESTO()
         {
             var lista=new List<SolicitudRepuestoModel>();
             SolicitudRepuestoModel objFichaRepo;
@@ -34,7 +34,7 @@ namespace Estructura.SQL
         
         }
 
-        public string PA_INSERTAR_SOLCITUDREPUESTO(SolicitudRepuestoModel obj)
+        public string PA_INSERTAR_SOLICITUDREPUESTO(SolicitudRepuestoModel obj)
         {
             
             string mensaje;
@@ -53,7 +53,7 @@ namespace Estructura.SQL
 
         }
 
-        public string PA_EDITAR_SOLCITUDREPUESTO(SolicitudRepuestoModel obj)
+        public string PA_EDITAR_SOLICITUDREPUESTO(SolicitudRepuestoModel obj)
         {
 
             string mensaje;
@@ -73,7 +73,7 @@ namespace Estructura.SQL
 
         }
 
-        public string PA_ELIMINAR_SOLCITUDREPUESTO(SolicitudRepuestoModel obj)
+        public string PA_ELIMINAR_SOLICITUDREPUESTO(SolicitudRepuestoModel obj)
         {
 
             string mensaje;

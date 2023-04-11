@@ -35,6 +35,7 @@ namespace Estructura.SQL
                 listado.Add(objMante);
             }
 
+            dr.Close();
             return listado;
 
         }

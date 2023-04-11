@@ -106,6 +106,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DetEquipoController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
+    <Compile Include="Controllers\SolicitudRepuestoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -132,6 +133,8 @@
     <Content Include="Views\Usuario\editarUsuario.cshtml" />
     <Content Include="Views\Usuario\detalleUsuario.cshtml" />
     <Content Include="Views\Tecnico\editarTecnico.cshtml" />
+    <Content Include="Views\SolicitudRepuesto\listarSolicitudRepuesto.cshtml" />
+    <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

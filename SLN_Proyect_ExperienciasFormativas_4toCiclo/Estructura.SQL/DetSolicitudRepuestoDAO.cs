@@ -28,6 +28,7 @@ namespace Estructura.SQL
                 lista.Add(model);
             }
 
+            dr.Close();
 
             return lista;
         }
@@ -76,7 +77,7 @@ namespace Estructura.SQL
 
             string mensaje;
 
-            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_DETSOLREPUESTO", obj.id_solRep, obj.item_det_solRep);
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_DETSOLREPUESTO", obj.id_solRep, obj.it);
             if (valor == 0)
             {
 

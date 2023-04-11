@@ -31,6 +31,8 @@ namespace Estructura.SQL
 
             }
 
+            dr.Close();
+
             return listado;
         
         }
