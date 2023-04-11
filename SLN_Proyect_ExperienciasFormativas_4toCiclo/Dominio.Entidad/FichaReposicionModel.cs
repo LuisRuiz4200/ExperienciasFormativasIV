@@ -12,7 +12,6 @@ namespace Dominio.Entidad
         public string id_fechaRepo { set; get; }
         public string cod_patrimonial { set; get; }
         public string motivo_fichaRepo { set; get; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mmmm/yyyy}")]
         public DateTime fecha_fichaRepo { set; get; }

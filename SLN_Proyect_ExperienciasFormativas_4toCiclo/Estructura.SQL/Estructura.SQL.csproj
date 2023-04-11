@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ConexionSQL.cs" />
     <Compile Include="DetEquipoDAO.cs" />
+    <Compile Include="DetSolicitudRepuestoDAO.cs" />
     <Compile Include="DropdownDAO.cs" />
     <Compile Include="FichaReposicionDAO.cs" />
     <Compile Include="MantenimientoDAO.cs" />
