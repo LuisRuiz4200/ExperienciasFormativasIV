@@ -177,7 +177,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             listaTecnico = tecBL.PA_LISTAR_TECNICO();
             ViewBag.MENSAJE = mensaje;
 
-            return RedirectToAction("listarTecnico",listaTecnico);
+            //return RedirectToAction("listarTecnico",listaTecnico);
+            return View("listarTecnico", listaTecnico);
         }
         [HttpPost]
         public ActionResult gestionarEstadoTecnico()
