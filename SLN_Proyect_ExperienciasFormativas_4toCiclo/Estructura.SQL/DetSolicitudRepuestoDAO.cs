@@ -77,7 +77,7 @@ namespace Estructura.SQL
 
             string mensaje;
 
-            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_DETSOLREPUESTO", obj.id_solRep, obj.it);
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_DETSOLREPUESTO", obj.id_solRep, obj.item_det_solRep);
             if (valor == 0)
             {
 
