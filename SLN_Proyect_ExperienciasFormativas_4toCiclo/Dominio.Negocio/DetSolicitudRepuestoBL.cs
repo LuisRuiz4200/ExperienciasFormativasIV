@@ -25,7 +25,7 @@ namespace Dominio.Negocio
         public string PA_ELIMINAR_DETSOLREPUESTO(DetSolicitudRepuestoModel model)
         {
             return PA_ELIMINAR_DETSOLREPUESTO(model);
-        }
+        } 
 
     }
 }
