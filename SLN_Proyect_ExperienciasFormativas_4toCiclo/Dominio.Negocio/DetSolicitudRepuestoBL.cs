@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Negocio
 {
-    internal class DetSolicitudRepuestoBL
+    public class DetSolicitudRepuestoBL
     {
         public List<DetSolicitudRepuestoModel> PA_LISTAR_DETSOLREPUESTO()
         {

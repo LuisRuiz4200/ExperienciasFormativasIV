@@ -2,9 +2,11 @@
 using Dominio.Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 
 namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 {
@@ -30,6 +32,12 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarSolicitudRepuesto()
         {
 
+            DetEquipoBL detEquipoBL = new DetEquipoBL();
+
+            var listaEquipo = detEquipoBL.listarDetEquipo();
+
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo,"cod_patrimonial","cod_patrimonial");
+
             return View();
         }
 
@@ -37,17 +45,54 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         [HttpPost]
         public ActionResult registrarSolicitudRepuesto(SolicitudRepuestoModel obj)
         {
+            string mensaje;
+
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                mensaje =solRepBL.PA_INSERTAR_SOLICITUDREPUESTO(obj);
+                //return RedirectToAction("Index");
             }
-            catch
+            catch(SqlException ex)
             {
-                return View();
+                mensaje =ex.Message;
+                
             }
+
+            var listaEquipo = new DetEquipoBL().listarDetEquipo();
+
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
+            ViewBag.MENSAJE = mensaje;
+
+            DetSolicitudRepuestoModel detalle= new DetSolicitudRepuestoModel();
+            detalle.id_solRep = obj.id_solRep;
+
+            return RedirectToAction("registrarDetSolicitudRepuesto", "DetSolicitudRepuesto", detalle);
+            //return View();
+
         }
+
+       /* public ActionResult ingresarArticulo2(int item_det_solRep, string id_solRep, string artefacto_det_solRep,int cant_det_solRep, int cod_uniMed) { 
+        
+            DetSolicitudRepuestoModel detalle = new DetSolicitudRepuestoModel();
+            detalle.item_det_solRep = item_det_solRep;
+            detalle.id_solRep = id_solRep;
+            detalle.artefacto_det_solRep = artefacto_det_solRep;
+            detalle.cant_det_solRep = cant_det_solRep;
+            detalle.cod_uniMed = cod_uniMed;
+
+
+            var listaEquipo = new DetEquipoBL().listarDetEquipo();
+            List<DetSolicitudRepuestoModel> lista = new List<DetSolicitudRepuestoModel>();
+            lista.Add(detalle);
+
+            ViewBag.LISTA_ARTICULO = lista;
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
+
+            return View("registrarSolicitudRepuesto");
+        
+        }*/
+
+
 
         // GET: SolicitudRepuesto/Edit/5
         public ActionResult Edit(int id)

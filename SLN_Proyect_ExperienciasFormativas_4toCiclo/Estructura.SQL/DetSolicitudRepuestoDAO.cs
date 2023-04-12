@@ -38,7 +38,7 @@ namespace Estructura.SQL
 
             string mensaje;
 
-            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_DETSOLREPUESTO", obj.id_solRep, obj.artefacto_det_solRep, obj.cant_det_solRep, obj.cod_uniMed);
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_DETSOLREPUESTO", obj.id_solRep, obj.item_det_solRep,obj.artefacto_det_solRep, obj.cant_det_solRep, obj.cod_uniMed);
             if (valor == 0)
             {
 
