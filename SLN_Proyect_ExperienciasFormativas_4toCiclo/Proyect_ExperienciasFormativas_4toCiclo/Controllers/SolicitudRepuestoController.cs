@@ -42,8 +42,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             var listaEquipo = detEquipoBL.listarDetEquipo();
 
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo,"cod_patrimonial","cod_patrimonial");
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(),"id_dropdown","des_dropdown");
 
-            
 
             return View();
         }
@@ -53,6 +53,9 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarSolicitudRepuesto(SolicitudRepuestoModel obj)
         {
             string mensaje;
+
+
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown","des_dropdown");
 
             try
             {
@@ -91,6 +94,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             var listaEquipo = new DetEquipoBL().listarDetEquipo();
 
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
             ViewBag.ITEM_DET_SOLREP = 1;
 
             return View("registrarSolicitudRepuesto",obj);
@@ -133,7 +137,6 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             }
 
             //CORRELATIVO DEL ITEM
-            var listaEquipo = new DetEquipoBL().listarDetEquipo();
             int itemDetalle=1;
 
             foreach(var item in detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep) ) 
@@ -144,7 +147,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.ITEM_DET_SOLREP = itemDetalle;
 
             //VIEW BAG ALMACENADOS
-            ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
             ViewBag.MENSAJE_DETALLE = mensaje;
             ViewBag.ID_SOLREP = id_solRep;

@@ -14,16 +14,16 @@ namespace Dominio.Negocio
         DropdownDAO objDao = new DropdownDAO();
 
         public List<DropdownModel> listTipoMante()
-        { 
+        {
             var lista = objDao.listTipoMante();
             return lista;
         }
 
         public List<DropdownModel> listTecnico()
-        { 
+        {
             var lista = objDao.listTecnico();
             return lista;
-        
+
         }
         public List<DropdownModel> listEquipo()
         {
@@ -45,6 +45,13 @@ namespace Dominio.Negocio
             var lista = objDao.listTipoUsuario();
             return lista;
 
+        }
+
+        public List<DropdownModel> listUnidadMedida() 
+        {
+            var lista = objDao.listUnidadMedida();
+
+            return lista;
         }
 
 
