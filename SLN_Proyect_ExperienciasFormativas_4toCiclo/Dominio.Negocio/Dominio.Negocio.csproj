@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DetSolicitudRepuestoBL.cs" />
     <Compile Include="DropdownBL.cs" />
+    <Compile Include="FichaReposicionBL.cs" />
     <Compile Include="MantenimientoBL.cs" />
     <Compile Include="DetEquipoBL.cs" />
     <Compile Include="MantenimientoBL.cs" />
