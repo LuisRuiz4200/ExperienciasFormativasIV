@@ -101,12 +101,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\EquipoBiomedicoImg\equipoBiomedico.png" />
+    <Content Include="Content\EquipoBiomedicoImg\equipoBiomedico2.png" />
     <Content Include="Content\TecnicoImg\tecnico.png" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\estilos.css" />
     <Content Include="Content\HISTORYMEDIC.png" />
     <Content Include="Content\imagen.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\UsuarioImg\usuario.jpg" />
+    <Content Include="Content\UsuarioImg\usuario.png" />
     <Content Include="Global.asax" />
     <Content Include="Views\Index\estilos.css" />
     <Content Include="Views\Index\estilos.txt" />

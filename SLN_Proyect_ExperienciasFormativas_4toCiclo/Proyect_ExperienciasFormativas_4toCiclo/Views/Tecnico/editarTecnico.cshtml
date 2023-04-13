@@ -4,60 +4,79 @@
     ViewBag.Title = "editarTecnico";
 }
 
-<h2>editarTecnico</h2>
+<h2>ACTUALIZAR TECNICO</h2>
 
+<div class="row">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TecnicoModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.cod_tecnico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cod_tecnico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cod_tecnico, "", new { @class = "text-danger" })
+    <h4>Ingrese los datos a modificar</h4>
+    <hr />
+
+    <div class="col">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal row gap-2">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group col-xl-4">
+                    @Html.LabelFor(model => model.cod_tecnico, "COD. TECNICO", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.cod_tecnico, new { htmlAttributes = new { @class = "form-control bg-secondary bg-opacity-25", placeholder = ViewBag.CODIGO_TECNICO, @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.cod_tecnico, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nom_tecnico, "NOMBRE DEL TECNICO", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.nom_tecnico, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nom_tecnico, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ape_tecnico, "APELLIDO DEL TECNICO", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.ape_tecnico, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ape_tecnico, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <div class="d-flex gap-2">
+                        <input type="submit" value="ACTUALIZAR TECNICO" class="btn btn-success" />
+                        @Html.ActionLink("IR A LA LISTA", "listarTecnico", null, new { @class = "btn btn-warning" })
+
+                    </div>
+                </div>
+
+                @if (ViewBag.MENSAJE != null)
+                {
+                    <div class="alert alert-warning">
+                        @Html.ViewBag.MENSAJE
+                    </div>
+
+                }
             </div>
-        </div>
+        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nom_tecnico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nom_tecnico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nom_tecnico, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ape_tecnico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ape_tecnico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ape_tecnico, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.estado_tecnico, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.estado_tecnico, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.estado_tecnico, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="col">
+        <div class="text-center">
+            <img src="~/Content/TecnicoImg/tecnico.png" />
         </div>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+
+
+
+
+
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
