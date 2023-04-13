@@ -31,6 +31,10 @@ namespace Dominio.Negocio
 
             return solRepDao.PA_ELIMINAR_SOLICITUDREPUESTO(model);
         }
+        public SolicitudRepuestoModel PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(string id_solRep)
+        { 
+            return solRepDao.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
+        }
 
     }
 }

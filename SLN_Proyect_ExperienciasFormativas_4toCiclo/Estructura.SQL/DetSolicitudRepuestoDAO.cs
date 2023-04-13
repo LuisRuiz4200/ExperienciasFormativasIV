@@ -38,15 +38,29 @@ namespace Estructura.SQL
 
             string mensaje;
 
-            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_DETSOLREPUESTO", obj.id_solRep, obj.item_det_solRep,obj.artefacto_det_solRep, obj.cant_det_solRep, obj.cod_uniMed);
-            if (valor == 0)
+            try
             {
+                int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_DETSOLREPUESTO", obj.id_solRep, obj.item_det_solRep, obj.artefacto_det_solRep, obj.cant_det_solRep, obj.cod_uniMed);
 
-                mensaje = $"{obj.artefacto_det_solRep} AGREGADO CORRECTAMENTE EN LA SOLICITUD {obj.id_solRep}";
+                if (valor != 0)
+                {
+
+                    mensaje = $"{obj.artefacto_det_solRep} AGREGADO CORRECTAMENTE EN LA SOLICITUD {obj.id_solRep}";
+                }
+                else
+                {
+                    mensaje = "ERROR EN LA OPERACION SQL";
+                }
             }
-            else {
-                mensaje = "ERROR EN LA OPERACION SQL";
+            catch (SqlException ex) 
+            {
+                mensaje = ex.Message;
             }
+            catch(Exception ex) 
+            {
+                mensaje = ex.Message;
+            }
+            
 
 
             return mensaje;
@@ -91,5 +105,31 @@ namespace Estructura.SQL
 
             return mensaje;
         }
+
+        public List<DetSolicitudRepuestoModel> PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(string id_solRep) 
+        {
+            var lista = new List<DetSolicitudRepuestoModel>();
+
+            DetSolicitudRepuestoModel obj;
+
+            SqlDataReader dr = SqlHelper.ExecuteReader(CAD_CN, "PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP", id_solRep);
+
+            while (dr.Read()) 
+            {
+                obj = new DetSolicitudRepuestoModel();
+
+                obj.id_solRep=dr.GetString(0);
+                obj.item_det_solRep=dr.GetInt32(1);
+                obj.artefacto_det_solRep=dr.GetString(2);
+                obj.cant_det_solRep = dr.GetInt32(3);
+                obj.cod_uniMed = dr.GetInt32(4);
+
+                lista.Add(obj);
+            }
+
+            return lista;
+        }
+
+
     }
 }

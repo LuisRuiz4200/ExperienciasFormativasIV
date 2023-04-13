@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Dominio.Entidad.DetSolicitudRepuestoModel>
+
+@{
+    ViewBag.Title = "listarDetSolicitudRepuesto";
+}
+
+<h2>listarDetSolicitudRepuesto</h2>
+
+
+@using (Html.BeginForm())
+{   
+    <div>
+
+        @Html.TextBox("id_solRep", null, new { @class="form-control"})
+
+        <button type="submit">MANDAR </button>
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_solRep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.item_det_solRep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.artefacto_det_solRep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cant_det_solRep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cod_uniMed)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_solRep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.item_det_solRep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.artefacto_det_solRep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cant_det_solRep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cod_uniMed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

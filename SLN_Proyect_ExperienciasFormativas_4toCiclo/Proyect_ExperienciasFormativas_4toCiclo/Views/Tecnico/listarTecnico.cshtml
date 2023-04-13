@@ -6,8 +6,6 @@
 
 <h2>LISTADO DE TECNICOS</h2>
 
-
-
 <form action="listarTecnico" method="post">
     <div class="col-md-4  p-2 d-grid gap-2 border border-dark">
         <label>ESTADO DE LOS TECNICOS</label>
@@ -66,11 +64,11 @@
             @{
                 if (item.estado_tecnico.Equals("ACTIVO"))
                 {
-                    @Html.ActionLink(item.estado_tecnico, "gestionarEstadoTecnico", new { cod_tecnico = item.cod_tecnico }, new { @class = "btn btn-primary"})
+                    @Html.ActionLink(item.estado_tecnico, "gestionarEstadoTecnico", new { cod_tecnico = item.cod_tecnico, estado_tecnico= item.estado_tecnico }, new { @class = "btn btn-primary"})
                 }
                 else
                 {
-                    @Html.ActionLink(item.estado_tecnico, "gestionarEstadoTecnico", new { cod_tecnico = item.cod_tecnico }, new { @class = "btn btn-danger"})
+                    @Html.ActionLink(item.estado_tecnico, "gestionarEstadoTecnico", new { cod_tecnico = item.cod_tecnico, estado_tecnico=item.estado_tecnico }, new { @class = "btn btn-danger"})
                 }
             }
 

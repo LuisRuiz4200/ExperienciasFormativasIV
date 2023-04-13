@@ -12,6 +12,7 @@ namespace Dominio.Entidad
         public String id_solRep { get; set; }
         public String cod_patrimonial { get; set; }
         public String motivo_solRep { get; set; }
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime fecha_solRep { get; set; }

@@ -15,10 +15,11 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         TecnicoBL tecBL = new TecnicoBL();
         
         // GET: Tecnico
-        public ActionResult listarTecnico(string estado_tecnico)
+        public ActionResult listarTecnico(TecnicoModel obj)
         {
 
-            var listado = tecBL.PA_LISTAR_TECNICO();
+            var listado = new List<TecnicoModel>();
+            string estado_tecnico = obj.estado_tecnico;
 
             switch (estado_tecnico) 
             {
@@ -28,8 +29,11 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 case "INACTIVO":
                     listado = tecBL.PA_LISTAR_TECNICO_POR_ESTADO(estado_tecnico);
                     break;
-                default:
+                case "TODOS":
                     listado = tecBL.PA_LISTAR_TECNICO();
+                    break;
+                default:
+                    listado = tecBL.PA_LISTAR_TECNICO_POR_ESTADO("ACTIVO");
                     break;
             }
 
@@ -138,9 +142,10 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View("listarTecnico",listaTecnico);
         }
 
-        public ActionResult gestionarEstadoTecnico(string cod_tecnico)
+        public ActionResult gestionarEstadoTecnico(string cod_tecnico,string estado_tecnico,string mensaje)
         {
-            string mensaje="";
+            //string mensaje="";
+            //string estado_tecnico;
 
             TecnicoModel objTecnico = tecBL.PA_LISTAR_TECNICO().Find(c=>c.cod_tecnico.Equals(cod_tecnico));
             var listaTecnico = tecBL.PA_LISTAR_TECNICO();
@@ -151,7 +156,11 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                     try
                     {
                         mensaje = tecBL.PA_ELIMINAR_TECNICO(cod_tecnico);
-                        
+                        estado_tecnico = "ACTIVO";
+                        objTecnico= new TecnicoModel();
+                        objTecnico.estado_tecnico= estado_tecnico;
+                        return RedirectToAction("listarTecnico", "Tecnico",objTecnico);
+
                     }
                     catch (Exception ex)
                     {
@@ -164,6 +173,10 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                     try
                     {
                         mensaje = tecBL.PA_RESTAURAR_TECNICO(cod_tecnico);
+                        estado_tecnico = "INACTIVO";
+                        objTecnico = new TecnicoModel();
+                        objTecnico.estado_tecnico = estado_tecnico;
+                        return RedirectToAction("listarTecnico", "Tecnico",objTecnico);
                     }
                     catch (Exception ex)
                     {

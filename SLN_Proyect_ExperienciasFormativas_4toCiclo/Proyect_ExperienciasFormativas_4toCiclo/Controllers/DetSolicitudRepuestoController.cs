@@ -19,21 +19,22 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View();
         }
 
-        public ActionResult registrarDetSolicitudRepuesto(String id_solRep)
+        public ActionResult registrarDetSolicitudRepuesto(SolicitudRepuestoModel obj, String id_solRep)
         {
 
             DetSolicitudRepuestoModel model= new DetSolicitudRepuestoModel();
 
-            id_solRep = "S0001";
+            id_solRep = obj.id_solRep;
 
             ViewBag.ID_SOLREP=id_solRep;
 
-            return View();
+            return RedirectToAction("registrarSolicitudRepuesto","SolicitudRepuesto",obj);
         }
         [HttpPost]
         public ActionResult registrarDetSolicitudRepuesto(DetSolicitudRepuestoModel obj)
         {
             string mensaje;
+
             try 
             {
                 mensaje = detSolRepBL.PA_INSERTAR_DETSOLREPUESTO(obj);
@@ -42,6 +43,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             {
                 mensaje = ex.Message;
             }
+
+            ViewBag.MENSAJE = mensaje;
 
             return View();
         }

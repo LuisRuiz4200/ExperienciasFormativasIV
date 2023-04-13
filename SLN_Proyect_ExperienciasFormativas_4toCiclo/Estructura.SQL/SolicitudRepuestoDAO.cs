@@ -92,5 +92,25 @@ namespace Estructura.SQL
             return mensaje;
 
         }
+
+        public SolicitudRepuestoModel PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(string id_solRep) 
+        {
+            SolicitudRepuestoModel obj=null;
+
+            SqlDataReader dr = SqlHelper.ExecuteReader(CAD_CN, "PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP",id_solRep);
+
+            if (dr.Read())
+            { 
+                obj = new SolicitudRepuestoModel();
+
+                obj.id_solRep = dr.GetString(0);
+                obj.cod_patrimonial = dr.GetString(1);
+                obj.motivo_solRep = dr.GetString(2);
+                obj.fecha_solRep = dr.GetDateTime(3);
+                obj.estado_solRep = dr.GetString(4);
+            }
+
+            return obj;
+        }
     }
 }

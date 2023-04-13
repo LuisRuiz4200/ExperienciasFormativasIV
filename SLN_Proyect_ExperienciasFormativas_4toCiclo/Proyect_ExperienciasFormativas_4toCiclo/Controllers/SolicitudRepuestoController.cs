@@ -2,10 +2,14 @@
 using Dominio.Negocio;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Services.Description;
 
 namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
@@ -13,6 +17,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     public class SolicitudRepuestoController : Controller
     {
         SolicitudRepuestoBL solRepBL = new SolicitudRepuestoBL();
+        DetSolicitudRepuestoBL detSolRepBL = new DetSolicitudRepuestoBL();
 
         // GET: SolicitudRepuesto
         public ActionResult listarSolicitudRepuesto()
@@ -38,6 +43,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo,"cod_patrimonial","cod_patrimonial");
 
+            
+
             return View();
         }
 
@@ -50,12 +57,18 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             try
             {
                 mensaje =solRepBL.PA_INSERTAR_SOLICITUDREPUESTO(obj);
-                //return RedirectToAction("Index");
+
+                ViewBag.MENSAJE=mensaje;
+
+                return RedirectToAction("registrarDetSolicitudRepuesto", obj);
             }
             catch(SqlException ex)
             {
                 mensaje =ex.Message;
                 
+            }catch(Exception ex)
+            {
+                mensaje =ex.Message;
             }
 
             var listaEquipo = new DetEquipoBL().listarDetEquipo();
@@ -63,79 +76,87 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
             ViewBag.MENSAJE = mensaje;
 
-            DetSolicitudRepuestoModel detalle= new DetSolicitudRepuestoModel();
-            detalle.id_solRep = obj.id_solRep;
+            
 
-            return RedirectToAction("registrarDetSolicitudRepuesto", "DetSolicitudRepuesto", detalle);
-            //return View();
+            return View(obj);
 
         }
 
-       /* public ActionResult ingresarArticulo2(int item_det_solRep, string id_solRep, string artefacto_det_solRep,int cant_det_solRep, int cod_uniMed) { 
-        
-            DetSolicitudRepuestoModel detalle = new DetSolicitudRepuestoModel();
-            detalle.item_det_solRep = item_det_solRep;
-            detalle.id_solRep = id_solRep;
-            detalle.artefacto_det_solRep = artefacto_det_solRep;
-            detalle.cant_det_solRep = cant_det_solRep;
-            detalle.cod_uniMed = cod_uniMed;
 
+
+        public ActionResult registrarDetSolicitudRepuesto(SolicitudRepuestoModel obj)
+        {
+            ViewBag.ID_SOLREP = obj.id_solRep;
 
             var listaEquipo = new DetEquipoBL().listarDetEquipo();
-            List<DetSolicitudRepuestoModel> lista = new List<DetSolicitudRepuestoModel>();
-            lista.Add(detalle);
 
-            ViewBag.LISTA_ARTICULO = lista;
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
+            ViewBag.ITEM_DET_SOLREP = 1;
 
-            return View("registrarSolicitudRepuesto");
-        
-        }*/
+            return View("registrarSolicitudRepuesto",obj);
 
-
-
-        // GET: SolicitudRepuesto/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
         }
-
-        // POST: SolicitudRepuesto/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult registrarDetSolicitudRepuesto (string id_solRep)
         {
+            string mensaje;
+
+            DetSolicitudRepuestoBL detSolRepBL = new DetSolicitudRepuestoBL();
+
+
+            //DEVOLVER DATOS DE LA SOLICITUD
+
+            var objSolRep = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
+
+            //DATOS DEL FORMULARIO
+
+            var objDetalle = new DetSolicitudRepuestoModel();
+
             try
             {
-                // TODO: Add update logic here
+                objDetalle.id_solRep = Request.Form["id_solRep"];
+                objDetalle.item_det_solRep = int.Parse(Request.Form["item_det_solRep"]);
+                objDetalle.artefacto_det_solRep = Request.Form["artefacto_det_solRep"];
+                objDetalle.cant_det_solRep = int.Parse(Request.Form["cant_det_solRep"]);
+                objDetalle.cod_uniMed = int.Parse(Request.Form["cod_UniMed"]);
 
-                return RedirectToAction("Index");
+                mensaje = detSolRepBL.PA_INSERTAR_DETSOLREPUESTO(objDetalle);
+                ViewBag.MENSAJE_DETALLE = mensaje;
             }
-            catch
+            catch (SqlException ex)
             {
-                return View();
+                mensaje = ex.Message;
             }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            //CORRELATIVO DEL ITEM
+            var listaEquipo = new DetEquipoBL().listarDetEquipo();
+            int itemDetalle=1;
+
+            foreach(var item in detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep) ) 
+            {
+                itemDetalle = item.item_det_solRep + 1;
+            }
+
+            ViewBag.ITEM_DET_SOLREP = itemDetalle;
+
+            //VIEW BAG ALMACENADOS
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
+            ViewBag.MENSAJE_DETALLE = mensaje;
+            ViewBag.ID_SOLREP = id_solRep;
+
+
+            return View("registrarSolicitudRepuesto",objSolRep);
         }
 
-        // GET: SolicitudRepuesto/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
-        // POST: SolicitudRepuesto/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+
+
+
     }
 }
