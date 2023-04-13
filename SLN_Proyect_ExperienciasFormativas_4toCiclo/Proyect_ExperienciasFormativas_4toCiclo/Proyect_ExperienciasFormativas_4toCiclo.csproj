@@ -107,7 +107,6 @@
     <Compile Include="Controllers\DetEquipoController.cs" />
     <Compile Include="Controllers\DetSolicitudRepuestoController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
-    <Compile Include="Controllers\SolicitudRepuestoController1.cs" />
     <Compile Include="Controllers\SolicitudRepuestoController.cs" />
     <Compile Include="Controllers\TecnicoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -136,9 +135,7 @@
     <Content Include="Views\Usuario\detalleUsuario.cshtml" />
     <Content Include="Views\Tecnico\editarTecnico.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarSolicitudRepuesto.cshtml" />
-    <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto1.cshtml" />
     <Content Include="Views\Tecnico\listarTecnico2.cshtml" />
-    <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto3.cshtml" />
     <Content Include="Views\DetSolicitudRepuesto\registrarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarDetSolicitudRepuesto.cshtml" />
