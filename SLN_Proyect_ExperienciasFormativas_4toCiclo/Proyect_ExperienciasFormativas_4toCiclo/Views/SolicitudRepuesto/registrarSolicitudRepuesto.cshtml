@@ -81,13 +81,13 @@
 
             <hr />
 
-            <div class="row g-2">
+            <div class="row gap-2 form-horizontal">
 
                 <div class="text-danger">
                     @ViewBag.MENSAJE_DETALLE
                 </div>
 
-                <div class="row p-0">
+                <div class="row ">
                     <div class="col-md-2">
                         <label>ID SOL REP</label>
                         <input type="text" class="form-control bg-secondary bg-opacity-25" readonly="readonly" name="id_solRep" value="@ViewBag.ID_SOLREP" />
@@ -112,9 +112,9 @@
 
                 </div>
 
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <label>UM</label>
-                    <input type="text" class="form-control" name="cod_uniMed" />
+                    @Html.DropDownList("cod_uniMed",(SelectList)ViewBag.LISTA_UMD,"SELECCIONE",new { @class="form-control bg-secondary bg-opacity-25"})
 
                 </div>
 

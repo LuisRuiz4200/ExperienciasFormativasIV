@@ -219,6 +219,44 @@ namespace Estructura.SQL
             return list;
 
         }
+
+        public List<DropdownModel> listUnidadMedida()
+        {
+            var list = new List<DropdownModel>();
+            try
+            {
+                SqlConnection con = new SqlConnection(CAD_CN);
+                con.Open();
+                string sql2 = "select * from tb_unidadMedida";
+
+                SqlCommand cmd = new SqlCommand(sql2, con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    DropdownModel obj = new DropdownModel()
+                    {
+                        id_dropdown = dr.GetInt32(0).ToString(),
+                        des_dropdown = dr.GetString(1),
+
+                    };
+
+                    list.Add(obj);
+                }
+                con.Close();
+                dr.Close();
+
+            }
+            catch (SqlException sqlEx)
+            {
+                string mensaje = sqlEx.Message;
+
+            }
+
+            return list;
+
+        }
     }
 
 
