@@ -7,13 +7,13 @@
 <h2>LISTADO DE TECNICOS</h2>
 
 <form action="listarTecnico" method="post">
-    <div class="col-md-4  p-2 d-grid gap-2 border border-dark">
-        <label>ESTADO DE LOS TECNICOS</label>
-        @Html.DropDownList("estado_tecnico", new SelectList(new String[] { "TODOS", "ACTIVO", "INACTIVO" }), new { @class = "form-control bg-secondary bg-opacity-25" })
-        
-        <div>
-            <input type="submit" class="btn btn-primary col-lg-6" value="INICIAR CONSULTA" />
-            
+    <div class="row gap-2">
+        <div class="col-xl-4">
+            <label>ESTADO DE LOS TECNICOS</label>
+            @Html.DropDownList("estado_tecnico", new SelectList(new String[] { "TODOS", "ACTIVO", "INACTIVO" }), new { @class = "form-control bg-secondary bg-opacity-25" })
+        </div>
+        <div class="col d-flex mt-auto gap-2">
+            <input type="submit" class="btn btn-primary" value="INICIAR CONSULTA" />
             @Html.ActionLink("NUEVO TECNICO", "registrarTecnico", null, new { @class = "btn btn-primary " })
         </div>
     </div>

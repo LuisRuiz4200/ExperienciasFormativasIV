@@ -103,6 +103,7 @@
   <ItemGroup>
     <Content Include="Content\EquipoBiomedicoImg\equipoBiomedico.png" />
     <Content Include="Content\EquipoBiomedicoImg\equipoBiomedico2.png" />
+    <Content Include="Content\UsuarioImg\klismanUsuario.jpg" />
     <Content Include="Content\TecnicoImg\tecnico.png" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\estilos.css" />
@@ -157,7 +158,6 @@
     <Content Include="Views\DetSolicitudRepuesto\registrarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarDetSolicitudRepuesto.cshtml" />
-    
     <Content Include="Views\DetEquipo\detalleDetEquipo.cshtml" />
     <Content Include="Views\DetEquipo\editarDetEquipo.cshtml" />
     <Content Include="Views\Tecnico\detalleTecnico.cshtml" />
