@@ -52,6 +52,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 codigo = "PAT0001";
             }
             ViewBag.CODIGO_PATRIMONIAL = codigo;
+            obj.cod_patrimonial = codigo;
 
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
