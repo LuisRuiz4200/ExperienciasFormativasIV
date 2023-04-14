@@ -3,11 +3,15 @@
 @{
     ViewBag.Title = "listarFichaReposicion";
 }
+<hr />
+<h2>LISTA DE FICHAS DE REPOSICION</h2>
 
-<h2>listarFichaReposicion</h2>
-
+<p class="text-center">
+    <hr/>
+    @ViewBag.MENSAJE
+</p>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("NUEVA FICHA", "registrarFichaReposicion", null, new {@class = "btn btn-primary" })
 </p>
 <table class="table" align="center">
     <tr>
@@ -49,9 +53,9 @@
             @Html.DisplayFor(modelItem => item.estado_fichaRepo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Editar", "editarFichaRepo", new { id_fichaRepo=item.id_fichaRepo}, new { @class="btn btn-success"}) |
+            @Html.ActionLink("Detalle", "detalleFicha", new { id_fichaRepo=item.id_fichaRepo}, new { @class = "btn btn-warning"}) |
+            @Html.ActionLink("Eliminar", "eliminarFicha", new { id_fichaRepo=item.id_fichaRepo}, new { @class= "btn btn-danger"})
         </td>
     </tr>
 }
