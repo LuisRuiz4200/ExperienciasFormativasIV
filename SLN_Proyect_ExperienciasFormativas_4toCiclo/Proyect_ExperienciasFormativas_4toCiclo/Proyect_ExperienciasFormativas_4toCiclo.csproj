@@ -157,12 +157,15 @@
     <Content Include="Views\DetSolicitudRepuesto\registrarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarDetSolicitudRepuesto.cshtml" />
-    <Content Include="Views\FichaReposicion\listarFichaRepuesto.cshtml" />
+    
     <Content Include="Views\DetEquipo\detalleDetEquipo.cshtml" />
     <Content Include="Views\DetEquipo\editarDetEquipo.cshtml" />
     <Content Include="Views\Tecnico\detalleTecnico.cshtml" />
     <Content Include="Views\FichaReposicion\registrarFichaReposicion.cshtml" />
     <Content Include="Views\SolicitudRepuesto\editarSolicitudRepuesto.cshtml" />
+    <Content Include="Views\FichaReposicion\listarFichaReposicion.cshtml" />
+    <Content Include="Views\FichaReposicion\detalleFicha.cshtml" />
+    <Content Include="Views\FichaReposicion\editarFichaRepo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

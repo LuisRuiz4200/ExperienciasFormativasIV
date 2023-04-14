@@ -24,9 +24,9 @@ namespace Dominio.Negocio
         {
             return  fichRepDao.PA_EDITAR_FICHAREPOSICION(obj) ;
         }
-        public string PA_ELIMINAR_FICHAREPOSICION (FichaReposicionModel obj)
+        public string PA_ELIMINAR_FICHAREPOSICION (string id_fichaRepo)
         {
-            return fichRepDao.PA_ELIMINAR_FICHAREPOSICION(obj);
+            return fichRepDao.PA_ELIMINAR_FICHAREPOSICION(id_fichaRepo);
         }
         public FichaReposicionModel PA_BUSCAR_SOLICITUDREPOSICION_POR_IDFICHAREPO(string id_fichaRepo)
         {
