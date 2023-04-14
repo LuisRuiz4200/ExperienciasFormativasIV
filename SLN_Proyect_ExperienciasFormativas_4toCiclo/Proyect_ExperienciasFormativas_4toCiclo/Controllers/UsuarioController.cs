@@ -20,7 +20,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
         // GET: Usuario
 
-
+        //LISTA DE USUARIO
         public ActionResult ListarUsuario()
         {
             var listado = usuBL.Listar_Usuario();
@@ -30,7 +30,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View(listado);
         }
 
-
+        //LOGIN
         public ActionResult login()
         {
             return View();
@@ -77,9 +77,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View(vista);
             
         }
-
-
-
+        //REGITRAR USUARIO
         public ActionResult registrarUsuario()
         {
             UsuarioModel model = new UsuarioModel();
@@ -142,7 +140,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             return View(obj);
         }
-
+        //EDITAR USUARIO
         public ActionResult editarUsuario(string cod_usuario)
         {
             UsuarioModel objUsuario = usuBL.Listar_Usuario().Find(c => c.cod_usuario.Equals(cod_usuario));
@@ -170,7 +168,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.MENSAJE=mensaje;
             return View("ListarUsuario",listado);
         }
-
+        //ELIMINAR USUARIO
         public ActionResult eliminarUsuario(string cod_usuario)
         {
             string mensaje;
@@ -192,7 +190,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             return View();
         }
-
+        //DETALLE USUARIO
         public ActionResult detalleUsuario(string cod_usuario) 
         {
             var listado = usuBL.Listar_Usuario();

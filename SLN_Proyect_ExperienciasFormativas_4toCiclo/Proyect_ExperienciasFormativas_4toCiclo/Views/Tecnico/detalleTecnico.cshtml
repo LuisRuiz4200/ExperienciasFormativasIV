@@ -1,0 +1,50 @@
+﻿@model Dominio.Entidad.TecnicoModel
+
+@{
+    ViewBag.Title = "detalleTecnico";
+}
+
+<h2>DETALLE DEL TECNICO</h2>
+
+<div>
+    <h4>Tecnico</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_tecnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_tecnico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nom_tecnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nom_tecnico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ape_tecnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ape_tecnico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado_tecnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado_tecnico)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "editarTecnico", new { cod_tecnico = Model.cod_tecnico}, new { @class="btn btn-warning"}) |
+    @Html.ActionLink("RETORNAR A LA LISTA", "listarTecnico", null, new { @class="btn btn-primary"})
+</p>

@@ -1,0 +1,58 @@
+﻿@model Dominio.Entidad.DetEquipoModel
+
+@{
+    ViewBag.Title = "detalleDetEquipo";
+}
+
+<h2>detalleDetEquipo</h2>
+
+<div>
+    <h4>DetEquipoModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_patrimonial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_patrimonial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_equipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_equipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cod_proveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cod_proveedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha_ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado_equipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado_equipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("EDITAR", "editarDetEquipo", new { cod_patrimonial = Model.cod_patrimonial }, new { @class="btn btn-success"}) |
+    @Html.ActionLink("REGRESAR A LA LISTA", "listarDetEquipo", null, new { @class="btn btn-primary"})
+</p>
