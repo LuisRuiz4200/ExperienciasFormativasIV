@@ -74,6 +74,7 @@ namespace Estructura.SQL
             return mensaje;
         }
 
+        /*
         public string eliminarDetEquipo(string cod_patrimonial)
         { 
             string mensaje;
@@ -88,7 +89,7 @@ namespace Estructura.SQL
             }
             return mensaje;
                 
-        }
+        } */
 
         public string PA_CAMBIAR_ESTADO(string cod_patrimonial)
         {
@@ -100,7 +101,7 @@ namespace Estructura.SQL
                 SqlConnection con = new SqlConnection(CAD_CN);
                 con.Open();
                 SqlCommand cmd = new SqlCommand(cad_sql, con);
-                cmd.Parameters.AddWithValue("@estado_equipo", "INOPERATIVO");
+                cmd.Parameters.AddWithValue("@estado_equipo", "INACTIVO");
                 cmd.Parameters.AddWithValue("cod_patrimonial", cod_patrimonial);
                 cmd.ExecuteNonQuery();
 
@@ -123,11 +124,11 @@ namespace Estructura.SQL
                 SqlConnection con = new SqlConnection(CAD_CN);
                 con.Open();
                 SqlCommand cmd = new SqlCommand(cad_sql, con);
-                cmd.Parameters.AddWithValue("@estado_equipo", "OPERATIVO");
+                cmd.Parameters.AddWithValue("@estado_equipo", "ACTIVO");
                 cmd.Parameters.AddWithValue("cod_patrimonial", cod_patrimonial);
                 cmd.ExecuteNonQuery();
 
-                mensaje = $"{cod_patrimonial} DADO DE BAJA";
+                mensaje = $"{cod_patrimonial} RESTAURADO";
                 con.Close();
             }
             catch (Exception ex)

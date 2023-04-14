@@ -140,11 +140,11 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             var listadoDet = detEquipoBL.listarDetEquipo();
             switch (objDetEquipo.estado_equipo)
             {
-                case "COMPRA":
+                case "ACTIVO":
                     try
                     {
                         mensaje = detEquipoBL.PA_CAMBIAR_ESTADO(cod_patrimonial);
-                        estado_equipo = "COMPRA";
+                        estado_equipo = "ACTIVO";
                         objDetEquipo = new DetEquipoModel();
                         objDetEquipo.estado_equipo = estado_equipo;
                         //return RedirectToAction("listarDetEquipo", objDetEquipo);
@@ -154,11 +154,11 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                         mensaje = (ex.Message);
                     }
                     break;
-                case "DONADO":
+                case "INACTIVO":
                     try
                     {
                         mensaje = detEquipoBL.PA_RESTAURAR_ESTADO(cod_patrimonial);
-                        estado_equipo = "DONADO";
+                        estado_equipo = "INACTIVO";
                         objDetEquipo = new DetEquipoModel();
                         objDetEquipo.estado_equipo = estado_equipo;
                         //return RedirectToAction("listarDetEquipo", objDetEquipo);
