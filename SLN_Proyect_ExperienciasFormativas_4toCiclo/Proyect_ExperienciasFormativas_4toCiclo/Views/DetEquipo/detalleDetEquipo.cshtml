@@ -4,14 +4,14 @@
     ViewBag.Title = "detalleDetEquipo";
 }
 
-<h2>detalleDetEquipo</h2>
+<h2>DETALLE DEL EQUIPO</h2>
 
 <div>
-    <h4>DetEquipoModel</h4>
+    <h4>EQUIPO BIOMEDICO</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.cod_patrimonial)
+            COD PATRIMONIAL
         </dt>
 
         <dd>
@@ -19,23 +19,25 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cod_equipo)
+            EQUIPO
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.cod_equipo)
+            @{ var cod_equipo = new Estructura.SQL.DropdownDAO().listEquipo().Find(c => c.id_dropdown.Equals(Model.cod_equipo.ToString())).des_dropdown; }
+            @cod_equipo
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cod_proveedor)
+            PROVEEDOR
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.cod_proveedor)
+            @{ var cod_proveedor = new Estructura.SQL.DropdownDAO().listProveedor().Find(c => c.id_dropdown.Equals(Model.cod_proveedor.ToString())).des_dropdown; }
+            @cod_proveedor
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fecha_ingreso)
+            FECHA DE INGRESO
         </dt>
 
         <dd>
@@ -43,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.estado_equipo)
+            ESTADO DEL EQUIPO
         </dt>
 
         <dd>

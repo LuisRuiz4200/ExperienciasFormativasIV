@@ -1,10 +1,10 @@
 ﻿@model Dominio.Entidad.SolicitudRepuestoModel
 
 @{
-    ViewBag.Title = "registrarSolicitudRepuesto";
+    ViewBag.Title = "editarSolicitudRepuesto";
 }
 
-<h2>REGISTRAR SOLICITUD DE REPUESTO</h2>
+<h2>ACTUALIZAR SOLICITUD DE REPUESTO</h2>
 
 <div class="">
 
@@ -14,6 +14,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal row g-2 ">
+
             <h4>SOLICITUD DE REPUESTO</h4>
             <hr />
 
@@ -24,7 +25,7 @@
             <div class="form-group col-md-4">
                 @Html.LabelFor(model => model.id_solRep, "ID SOLICITUD", htmlAttributes: new { @class = "control-label" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.id_solRep, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.id_solRep, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                     @Html.ValidationMessageFor(model => model.id_solRep, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -65,19 +66,26 @@
 
             <div class="form-group d-flex gap-2 align-items-center my-4">
                 <div class="col-md-offset-2 ">
-                    <input type="submit" value="REGISTRAR SOLICITUD" class="btn btn-success" />
+                    <input type="submit" value="ACTUALIZAR SOLICITUD" class="btn btn-success" />
                     @Html.ActionLink("NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class = "btn btn-success" })
                     @Html.ActionLink("IR A LA LISTA", "listarSolicitudRepuesto", null, new { @class = "btn btn-warning" })
+
                 </div>
             </div>
         </div>
     }
 
-    <!--ARTEFACTO-->
 
-    <div class="row" >
+    <button class="btn btn-danger my-2" data-bs-toggle="modal" data-bs-target="#detalle">APARECER DETALLE</button>
 
-        <form action="registrarDetSolicitudRepuesto" method="post">
+</div>
+
+
+<!--ARTEFACTOS-->
+<div class="modal modal-fade position-absolute top-0 bg-light border border-dark boder-2 p-2 mt-4" id="detalle">
+    <div class="row" id="detalle">
+
+        <form action="editarDetSolicitudRepuesto" method="post">
 
             <h4>ARTEFACTO</h4>
 
@@ -88,6 +96,12 @@
                 <div class="text-danger">
                     @ViewBag.MENSAJE_DETALLE
                 </div>
+
+                @{
+                    var detSolicitudRepuesto = ViewBag.MODELO_DET_SOLREP;
+                }
+
+                @detSolicitudRepuesto
 
                 <div class="row ">
                     <div class="col-md-2">
@@ -105,18 +119,18 @@
 
                 <div class="col-md-6">
                     <label>ARTEFACTO</label>
-                    <input type="text" class="form-control" name="artefacto_det_solRep" />
+                    <input type="text" class="form-control" name="artefacto_det_solRep" value="@ViewBag.ARTEFACTO_DET_SOLREP" />
                 </div>
 
                 <div class="col-md-2">
                     <label>CANTIDAD</label>
-                    <input type="text" class="form-control" name="cant_det_solRep" />
+                    <input type="text" class="form-control" name="cant_det_solRep" value="@ViewBag.CANT_DET_SOLREP" />
 
                 </div>
 
                 <div class="col-md-2">
                     <label>UM</label>
-                    @Html.DropDownList("cod_uniMed",(SelectList)ViewBag.LISTA_UMD,"SELECCIONE",new { @class="form-control bg-secondary bg-opacity-25"})
+                    @Html.DropDownList("cod_uniMed", (SelectList)ViewBag.LISTA_UMD, "", new { @class = "form-control bg-secondary bg-opacity-25" })
 
                 </div>
 
@@ -128,61 +142,63 @@
         </form>
     </div>
 
-</div>
 
-<!--TABLA DE ARTEFACTOS-->
-<div class="">
+    <!--TABLA DE ARTEFACTOS-->
+    <div class="" id="detalle">
 
-    <hr />
+        <hr />
 
-    <table class="table table-bordered">
-        <thead class="table-dark text-center">
-            <tr>
-                <th>ID SOLREP</th>
-                <th>ID ITEM</th>
-                <th>ARTEFACTO</th>
-                <th>CANTIDAD</th>
-                <th>UM</th>
-                <th class="col-xxl-2">ACCIONES</th>
-            </tr>
-        </thead>
-        @{
-            if (ViewBag.LISTA_DETALLE == null)
-            {
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            }
-            else
-            {
 
-                foreach (var obj in ViewBag.LISTA_DETALLE)
+        <table class="table table-bordered">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>ID SOLREP</th>
+                    <th>ID ITEM</th>
+                    <th>ARTEFACTO</th>
+                    <th>CANTIDAD</th>
+                    <th>UM</th>
+                    <th class="col-xxl-2">ACCIONES</th>
+                </tr>
+            </thead>
+            @{
+                if (ViewBag.LISTA_DETALLE == null)
                 {
                     <tbody>
                         <tr>
-                            <td> @obj.id_solRep</td>
-                            <td> @obj.item_det_solRep </td>
-                            <td> @obj.artefacto_det_solRep </td>
-                            <td> @obj.cant_det_solRep </td>
-                            <td> @obj.cod_uniMed </td>
-                            <td>
-                                @Html.ActionLink("EDITAR", "#", null, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("ELIMINAR", "#", null, new { @class = "btn btn-danger" })
-                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                 }
-            }
+                else
+                {
 
-        }
-    </table>
+                    foreach (var obj in ViewBag.LISTA_DETALLE)
+                    {
+                        <tbody>
+                            <tr>
+                                <td> @obj.id_solRep</td>
+                                <td> @obj.item_det_solRep </td>
+                                <td> @obj.artefacto_det_solRep </td>
+                                <td> @obj.cant_det_solRep </td>
+                                <td> @obj.cod_uniMed </td>
+                                <td>
+                                    @Html.ActionLink("EDITAR", "editarDetSolicitudRepuesto", new { id_solRep = obj.id_solRep, item_det_solRep = obj.item_det_solRep }, new { @class = "btn btn-warning " })
+                                    @Html.ActionLink("ELIMINAR", "eliminarSolicitudRepuesto", new { id_solRep = obj.id_solRep, item_det_solRep = obj.item_det_solRep }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                }
+
+            }
+        </table>
+    </div>
+
 </div>
 
 

@@ -114,6 +114,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             ViewBag.CODIGO_TECNICO = codigo;
             ViewBag.MENSAJE = mensaje;
+
             return View(obj);
         }
         //EDITAR TECNICO

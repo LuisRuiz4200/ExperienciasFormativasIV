@@ -15,10 +15,10 @@
             COD PATRIMONIAL
         </th>
         <th>
-            COD DEL EQUIPO
+            EQUIPO
         </th>
         <th>
-            COD PROVEEDOR
+            PROVEEDOR
         </th>
         <th>
             FECHA DE INGRESO
@@ -37,10 +37,12 @@
             @Html.DisplayFor(modelItem => item.cod_patrimonial)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cod_equipo)
+            @{ var cod_equipo = new Estructura.SQL.DropdownDAO().listEquipo().Find(c => c.id_dropdown.Equals(item.cod_equipo.ToString())).des_dropdown; }
+            @cod_equipo
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cod_proveedor)
+            @{ var cod_proveedor = new Estructura.SQL.DropdownDAO().listProveedor().Find(c => c.id_dropdown.Equals(item.cod_proveedor.ToString())).des_dropdown; }
+            @cod_proveedor
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.fecha_ingreso)
