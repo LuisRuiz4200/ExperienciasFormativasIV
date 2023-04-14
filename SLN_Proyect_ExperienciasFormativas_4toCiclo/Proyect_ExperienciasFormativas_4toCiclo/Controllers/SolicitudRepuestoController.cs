@@ -37,11 +37,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarSolicitudRepuesto()
         {
 
-            DetEquipoBL detEquipoBL = new DetEquipoBL();
-
-            var listaEquipo = detEquipoBL.listarDetEquipo();
-
-            ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo,"cod_patrimonial","cod_patrimonial");
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(),"cod_patrimonial","cod_patrimonial");
             ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(),"id_dropdown","des_dropdown");
 
 
@@ -157,6 +153,77 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View("registrarSolicitudRepuesto",objSolRep);
         }
 
+        //EDITAR SOLICITUD
+
+        public ActionResult editarSolicitudRepuesto(string id_solRep="")
+        { 
+            var modelo = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Find(c=>c.id_solRep.Equals(id_solRep));
+
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
+
+            return View(modelo);
+        }
+        [HttpPost]
+        public ActionResult editarSolicitudRepuesto(SolicitudRepuestoModel obj)
+        {
+            string mensaje;
+            try 
+            {
+                mensaje = solRepBL.PA_EDITAR_SOLICITUDREPUESTO(obj);
+            }
+            catch (Exception ex) 
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.MENSAJE = mensaje;
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(obj.id_solRep);
+
+            return View(obj);
+        }
+
+        //EDITAR DETALLE SOLICITUD
+
+        public ActionResult editarDetSolicitudRepuesto(SolicitudRepuestoModel solicitudModel, string id_solRep,int item_det_solRep) 
+        {
+
+            var objDetalle = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep).Find(c => c.item_det_solRep==item_det_solRep);
+
+            ViewBag.MODELO_DET_SOLREP = objDetalle;
+
+            ViewBag.ID_SOLREP = objDetalle.id_solRep;
+            ViewBag.ITEM_DET_SOLREP = objDetalle.item_det_solRep;
+            ViewBag.ARTEFACTO_DET_SOLREP = objDetalle.artefacto_det_solRep;
+            ViewBag.CANT_DET_SOLREP = objDetalle.cant_det_solRep;
+            ViewBag.COD_UNIMED = objDetalle.cod_uniMed;
+
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
+
+            return View("editarSolicitudRepuesto",solicitudModel);
+        }
+        [HttpPost]
+        public ActionResult editarDetSolicitudRepuesto(string id_solRep, int item_det_solRep)
+        {
+
+            var objDetalle = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep).Find(c => c.item_det_solRep == item_det_solRep);
+
+            ViewBag.MODELO_DET_SOLREP = objDetalle;
+
+            ViewBag.ID_SOLREP = objDetalle.id_solRep;
+            ViewBag.ITEM_DET_SOLREP = objDetalle.item_det_solRep;
+            ViewBag.ARTEFACTO_DET_SOLREP = objDetalle.artefacto_det_solRep;
+            ViewBag.CANT_DET_SOLREP = objDetalle.cant_det_solRep;
+            ViewBag.COD_UNIMED = objDetalle.cod_uniMed;
+
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+
+            return View("editarSolicitudRepuesto");
+        }
 
 
 

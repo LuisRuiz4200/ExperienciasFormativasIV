@@ -34,7 +34,8 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.cod_usuario)
@@ -49,7 +50,8 @@
             @Html.DisplayFor(modelItem => item.pass_usuario)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tipo_usuario)
+            @{ var tipo_usuario = new Dominio.Negocio.DropdownBL().listTipoUsuario().Find(c => c.id_dropdown.Equals(item.tipo_usuario.ToString())).des_dropdown; }
+            @tipo_usuario
         </td>
         <td>
             @Html.ActionLink("Editar", "editarUsuario", new { cod_usuario=item.cod_usuario }, new { @class="btn btn-success"}) |

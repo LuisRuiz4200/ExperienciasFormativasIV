@@ -7,35 +7,44 @@
 <h2>listarSolicitudRepuesto</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("REGISTRAR NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class="btn btn-primary"})
 </p>
-<table class="table">
-    <tr>
+<table class="table table-bordered">
+    <tr class="table-dark">
         <th>
-            @Html.DisplayNameFor(model => model.id_solRep)
+            ID SOLICITUD
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cod_patrimonial)
+            COD PATRIMONIAL
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.motivo_solRep)
+            EQUIPO
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_solRep)
+            MOTIVO DE SOLICITUD
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estado_solRep)
+            FECHA DE SOLICITUD
+        </th>
+        <th>
+            ESTADO DE SOLICITUD
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.id_solRep)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cod_patrimonial)
+        </td>
+        <td>
+            @{ var detEquipo = new Dominio.Negocio.DetEquipoBL().listarDetEquipo().Find(c => c.cod_patrimonial.Equals(item.cod_patrimonial.ToString())); }
+            @{ var tipoEquipo = new Dominio.Negocio.DropdownBL().listEquipo().Find(c => c.id_dropdown.Equals(detEquipo.cod_equipo.ToString())).des_dropdown;}
+            @tipoEquipo
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.motivo_solRep)
@@ -47,7 +56,7 @@
             @Html.DisplayFor(modelItem => item.estado_solRep)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Editar", "editarSolicitudRepuesto", new { id_solRep = item.id_solRep},new { @class="btn btn-success"}) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>

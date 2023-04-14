@@ -12,9 +12,8 @@ namespace Dominio.Entidad
         public string cod_patrimonial { set; get; }
         public int cod_equipo { set; get; }
         public int cod_proveedor { set; get; }
-
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mmmm/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMMM-yyyy}")]
         public DateTime fecha_ingreso { set; get; }
         public string estado_equipo { set; get; }
     }
