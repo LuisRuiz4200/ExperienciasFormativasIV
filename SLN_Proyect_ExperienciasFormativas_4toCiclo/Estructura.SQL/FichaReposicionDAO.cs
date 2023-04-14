@@ -78,5 +78,23 @@ namespace Estructura.SQL
             return mensaje;
         }
 
+        public FichaReposicionModel PA_BUSCAR_SOLICITUDREPOSICION_POR_IDFICHAREPO(string id_fichaRepo)
+        {
+            FichaReposicionModel obj = null;
+
+            SqlDataReader dr = SqlHelper.ExecuteReader(CAD_CN, "PA_BUSCAR_SOLICITUDREPOSICION_POR_IDFICHAREPO", id_fichaRepo);
+            if (dr.Read())
+            {
+                obj = new FichaReposicionModel();
+
+                obj.id_fichaRepo = dr.GetString(0);
+                obj.cod_patrimonial = dr .GetString(1); 
+                obj.motivo_fichaRepo = dr.GetString (2);
+                obj.fecha_fichaRepo = dr.GetDateTime(3);
+                obj.estado_fichaRepo = dr.GetString(4);
+            }
+            return obj;
+        }
+
     }
 }

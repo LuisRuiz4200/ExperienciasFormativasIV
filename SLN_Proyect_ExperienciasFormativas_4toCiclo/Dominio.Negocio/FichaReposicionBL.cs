@@ -28,5 +28,9 @@ namespace Dominio.Negocio
         {
             return fichRepDao.PA_ELIMINAR_FICHAREPOSICION(obj);
         }
+        public FichaReposicionModel PA_BUSCAR_SOLICITUDREPOSICION_POR_IDFICHAREPO(string id_fichaRepo)
+        {
+            return fichRepDao.PA_BUSCAR_SOLICITUDREPOSICION_POR_IDFICHAREPO(id_fichaRepo);
+        }
     }
 }

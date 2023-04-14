@@ -159,6 +159,7 @@
     <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\FichaReposicion\listarFichaRepuesto.cshtml" />
+    <Content Include="Views\FichaReposicion\registrarFichaReposicion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
