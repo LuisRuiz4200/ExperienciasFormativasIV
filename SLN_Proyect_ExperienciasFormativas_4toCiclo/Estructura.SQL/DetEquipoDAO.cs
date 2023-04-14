@@ -58,5 +58,87 @@ namespace Estructura.SQL
             return res;
         }
 
+        public string editarDetEquipo(DetEquipoModel obj)
+        {
+            string mensaje;
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_EDITAR_DETEQUIPO", obj.cod_patrimonial, obj.cod_equipo, obj.cod_proveedor, obj.fecha_ingreso, obj.estado_equipo);
+
+            if (valor != 0)
+            {
+                mensaje = $"{obj.cod_patrimonial} ACTUALIZADO CORRECTAMENTE";
+            }
+            else
+            {
+                mensaje = "ERROR EN LA OPERACION SQL";
+            }
+            return mensaje;
+        }
+
+        public string eliminarDetEquipo(string cod_patrimonial)
+        { 
+            string mensaje;
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_DETEQUIPO", cod_patrimonial);
+            if (valor != 0)
+            {
+                mensaje = $"{cod_patrimonial} ELIMINADO CORRECTAMENTE";
+            }
+            else
+            {
+                mensaje = "ERROR EN LA OPERACION SQL";
+            }
+            return mensaje;
+                
+        }
+
+        public string PA_CAMBIAR_ESTADO(string cod_patrimonial)
+        {
+            string mensaje;
+            string cad_sql = "update tb_det_equipo set " +
+                "estado_equipo=@estado_equipo where cod_patrimonial=@cod_patrimonial";
+            try
+            {
+                SqlConnection con = new SqlConnection(CAD_CN);
+                con.Open();
+                SqlCommand cmd = new SqlCommand(cad_sql, con);
+                cmd.Parameters.AddWithValue("@estado_equipo", "INOPERATIVO");
+                cmd.Parameters.AddWithValue("cod_patrimonial", cod_patrimonial);
+                cmd.ExecuteNonQuery();
+
+                mensaje = $"{cod_patrimonial} DADO DE BAJA";
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            return mensaje;
+        }
+        public string PA_RESTAURAR_ESTADO(string cod_patrimonial)
+        {
+            string mensaje;
+            string cad_sql = "update tb_det_equipo set " +
+                "estado_equipo=@estado_equipo where cod_patrimonial=@cod_patrimonial";
+            try
+            {
+                SqlConnection con = new SqlConnection(CAD_CN);
+                con.Open();
+                SqlCommand cmd = new SqlCommand(cad_sql, con);
+                cmd.Parameters.AddWithValue("@estado_equipo", "OPERATIVO");
+                cmd.Parameters.AddWithValue("cod_patrimonial", cod_patrimonial);
+                cmd.ExecuteNonQuery();
+
+                mensaje = $"{cod_patrimonial} DADO DE BAJA";
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            return mensaje;
+
+        }
+       
+        
+
     }
 }

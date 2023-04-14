@@ -10,7 +10,7 @@
     @Html.ActionLink("REGISTRAR NUEVO EQUIPO", "registrarDetEquipo", null,new {@class ="btn btn-success" })
 </p>
 <table class="table table-bordered ">
-    <tr class="text-center table-dark">
+    <tr class="text-center table-dark" style="text-align:center">
         <th>
             COD PATRIMONIAL
         </th>
@@ -26,8 +26,11 @@
         <th>
             ESTADO DEL EQUIPO
         </th>
-        <th class="">
+        <th>
             ACCIONES
+        </th>
+        <th>
+            ESTADO
         </th>
     </tr>
 
@@ -51,9 +54,23 @@
             @Html.DisplayFor(modelItem => item.estado_equipo)
         </td>
         <td>
-            @Html.ActionLink("Editar", "editarDetEquipo", new { cod_patrimonial = item.cod_patrimonial }, new { @class="btn btn-success"}) |
-            @Html.ActionLink("Detalle", "detalleDetEquipo", new { cod_patrimonial=item.cod_patrimonial  }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("EDITAR", "editarDetEquipo", new { cod_patrimonial = item.cod_patrimonial }, new { @class="btn btn-success"}) |
+            @Html.ActionLink("DETALLES", "detalleDetEquipo", new { cod_patrimonial=item.cod_patrimonial  }, new { @class = "btn btn-warning" }) 
+            
+        </td>
+        <td>
+            @{
+                if (item.estado_equipo.Equals("OPERATIVO"))
+                {
+                    @Html.ActionLink(item.estado_equipo, "gestionEstadoEquipo", new { cod_patrimonial = item.cod_patrimonial, estado_equipo = item.estado_equipo }, new { @class = "btn btn-primary" })
+                }
+                else
+                {
+                    @Html.ActionLink(item.estado_equipo, "gestionEstadoEquipo", new { cod_patrimonial = item.cod_patrimonial, estado_equipo = item.estado_equipo }, new { @class = "btn btn-danger" })
+                }
+
+            }
+
         </td>
     </tr>
 }

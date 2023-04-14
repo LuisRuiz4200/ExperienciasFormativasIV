@@ -167,13 +167,13 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
                     }
                     catch (Exception ex)
-                    {
+                    {       
                         mensaje = (ex.Message);
                     }
 
-                    break;
+                    break;          
                 case "INACTIVO":
-
+                     
                     try
                     {
                         mensaje = tecBL.PA_RESTAURAR_TECNICO(cod_tecnico);
