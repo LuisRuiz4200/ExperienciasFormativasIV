@@ -35,9 +35,27 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             DetEquipoModel obj = new DetEquipoModel();
             obj.fecha_ingreso = DateTime.Now;
 
+            var lista = detEquipoBL.listarDetEquipo();
+            string codigo = "";
+
+            if (lista.Count() != 0)
+            {
+                foreach (var item in lista)
+                {
+                    codigo = item.cod_patrimonial;
+
+                    int correlativo = int.Parse(codigo.Substring(4)) + 1;
+                    codigo = "PAT" + correlativo.ToString("0000");
+                }
+            }
+            else {
+                codigo = "PAT0001";
+            }
+            ViewBag.CODIGO_PATRIMONIAL = codigo;
+
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
-
+            
             return View(obj);
 
         }
@@ -122,7 +140,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             var listadoDet = detEquipoBL.listarDetEquipo();
             switch (objDetEquipo.estado_equipo)
             {
-                case "OPERATIVO":
+                case "COMPRA":
                     try
                     {
                         mensaje = detEquipoBL.PA_CAMBIAR_ESTADO(cod_patrimonial);
@@ -136,7 +154,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                         mensaje = (ex.Message);
                     }
                     break;
-                case "INOPERATIVO":
+                case "DONADO":
                     try
                     {
                         mensaje = detEquipoBL.PA_RESTAURAR_ESTADO(cod_patrimonial);

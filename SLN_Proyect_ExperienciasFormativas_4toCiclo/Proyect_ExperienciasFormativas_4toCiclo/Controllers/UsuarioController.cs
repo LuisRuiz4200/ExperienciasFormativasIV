@@ -24,9 +24,6 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult ListarUsuario()
         {
             var listado = usuBL.Listar_Usuario();
-
-            ViewBag.USUARIO = "JEAN";
-
             return View(listado);
         }
 

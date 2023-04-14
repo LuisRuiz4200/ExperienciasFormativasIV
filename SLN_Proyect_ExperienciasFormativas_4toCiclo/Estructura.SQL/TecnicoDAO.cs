@@ -176,7 +176,6 @@ namespace Estructura.SQL
             return mensaje;
         }
 
-
         public string PA_RESTAURAR_TECNICO(string cod_Tecnico)
         {
             string mensaje;

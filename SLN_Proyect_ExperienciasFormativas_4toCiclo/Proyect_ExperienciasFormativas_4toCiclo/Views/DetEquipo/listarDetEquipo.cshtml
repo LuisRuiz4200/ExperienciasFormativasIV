@@ -60,7 +60,7 @@
         </td>
         <td>
             @{
-                if (item.estado_equipo.Equals("OPERATIVO"))
+                if (item.estado_equipo.Equals("COMPRA"))
                 {
                     @Html.ActionLink(item.estado_equipo, "gestionEstadoEquipo", new { cod_patrimonial = item.cod_patrimonial, estado_equipo = item.estado_equipo }, new { @class = "btn btn-primary" })
                 }
