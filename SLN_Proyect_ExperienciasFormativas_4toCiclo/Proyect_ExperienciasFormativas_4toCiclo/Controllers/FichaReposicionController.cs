@@ -29,7 +29,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             var listado = fichRepBL.PA_LISTAR_FICHAREPOSICION();
             FichaReposicionModel objFicha = listado.Find(c=> c.id_fichaRepo.Equals(id_fichaRepo));
-            return View();
+            return View(objFicha);
         }
 
         //REGISTRAR FICHA REPOSICION
@@ -125,10 +125,11 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.MENSAJE = mensaje;
             return View("listarFichaReposicion",listado);
         }
-
-
-
-
+        [HttpPost]
+        public ActionResult eliminarFicha()
+        { 
+            return View();
+        }
 
     }
 }
