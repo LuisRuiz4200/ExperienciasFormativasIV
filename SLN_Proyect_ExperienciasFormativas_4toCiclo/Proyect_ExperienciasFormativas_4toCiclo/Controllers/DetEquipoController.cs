@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Dominio.Negocio;
+using System.Data.SqlClient;
 
 namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 {
@@ -12,19 +13,19 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     {
 
         DetEquipoBL detEquipoBL = new DetEquipoBL();
-        DropdownBL dropdownBL = new DropdownBL();   
+        DropdownBL dropdownBL = new DropdownBL();
 
         // GET: DetEquipo
         public ActionResult listarDetEquipo()
         {
-            var listado =detEquipoBL.listarDetEquipo();
+            var listado = detEquipoBL.listarDetEquipo();
 
             return View(listado);
         }
         //DETALLE DEL DETALLE EQUIPO
         public ActionResult detalleDetEquipo(string cod_patrimonial)
         {
-            var modelo = detEquipoBL.listarDetEquipo().Find(c=>c.cod_patrimonial.Equals(cod_patrimonial));
+            var modelo = detEquipoBL.listarDetEquipo().Find(c => c.cod_patrimonial.Equals(cod_patrimonial));
 
             return View(modelo);
         }
@@ -49,7 +50,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             {
                 mensaje = detEquipoBL.registrarDetEquipo(obj);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 mensaje = ex.Message;
             }
@@ -77,28 +78,90 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             try
             {
-                mensaje = "";
+                mensaje = detEquipoBL.editarDetEquipo(obj);
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 mensaje = ex.Message;
             }
-
+            var listado = detEquipoBL.listarDetEquipo();
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
             ViewBag.MENSAJE = mensaje;
 
-            return View();
+            return View("listarDetEquipo", listado);
         }
         //ELIMINAR DETALLE EQUIPO
-        public ActionResult eliminarDetEquipo(string cod_patrimonial) 
+        /*
+        public ActionResult eliminarDetEquipo(string cod_patrimonial)
         {
-            return View();
+            string mensaje;
+            try
+            {
+                mensaje = detEquipoBL.eliminarDetEquipo(cod_patrimonial);
+            }
+            catch (SqlException ex)
+            {
+                mensaje = ex.Message;
+            }
+            var listado = detEquipoBL.listarDetEquipo();
+            ViewBag.MENSAJE = mensaje;
+
+            return View("listarDetEquipo", listado);
         }
         [HttpPost]
         public ActionResult eliminarDetEquipo()
         {
             return View();
+        } */
+
+        //GESTIONAR EL ESTADO DE TECNICO
+        public ActionResult gestionEstadoEquipo(string cod_patrimonial, string estado_equipo, string mensaje)
+        {
+            DetEquipoModel objDetEquipo = detEquipoBL.listarDetEquipo().Find(c => c.cod_patrimonial.Equals(cod_patrimonial));
+            var listadoDet = detEquipoBL.listarDetEquipo();
+            switch (objDetEquipo.estado_equipo)
+            {
+                case "OPERATIVO":
+                    try
+                    {
+                        mensaje = detEquipoBL.PA_CAMBIAR_ESTADO(cod_patrimonial);
+                        estado_equipo = "COMPRA";
+                        objDetEquipo = new DetEquipoModel();
+                        objDetEquipo.estado_equipo = estado_equipo;
+                        //return RedirectToAction("listarDetEquipo", objDetEquipo);
+                    }
+                    catch (Exception ex)
+                    {
+                        mensaje = (ex.Message);
+                    }
+                    break;
+                case "INOPERATIVO":
+                    try
+                    {
+                        mensaje = detEquipoBL.PA_RESTAURAR_ESTADO(cod_patrimonial);
+                        estado_equipo = "DONADO";
+                        objDetEquipo = new DetEquipoModel();
+                        objDetEquipo.estado_equipo = estado_equipo;
+                        //return RedirectToAction("listarDetEquipo", objDetEquipo);
+                    }
+                    catch (Exception ex)
+                    {
+                        mensaje = (ex.Message);
+                    }
+                    break;
+            }
+            listadoDet = detEquipoBL.listarDetEquipo();
+            ViewBag.MENSAJE = mensaje;
+
+            return View("listarDetEquipo", listadoDet);
+        }
+
+        [HttpPost]
+        public ActionResult gestionEstadoEquipo()
+        {
+            var listaEquipo = detEquipoBL.listarDetEquipo();
+            return View("listarDetEquipo", listaEquipo);
         }
     }
 }
