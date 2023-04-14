@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Dominio.Entidad.FichaReposicionModel>
+
+@{
+    ViewBag.Title = "listarFichaReposicion";
+}
+
+<h2>listarFichaReposicion</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" align="center">
+    <tr>
+        <th>
+            ID FICHA DE REPOSICION
+        </th>
+        <th>
+            CODIGO PATRIMONIAL
+        </th>
+        <th>
+            MOTIVO
+        </th>
+        <th>
+            FECHA DE REGISTRO
+        </th>
+        <th>
+            ESTADO
+        </th>
+        <th>
+            ACCIONES
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_fichaRepo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cod_patrimonial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.motivo_fichaRepo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_fichaRepo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado_fichaRepo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

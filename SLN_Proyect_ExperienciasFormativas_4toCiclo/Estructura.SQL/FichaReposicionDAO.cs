@@ -36,7 +36,7 @@ namespace Estructura.SQL
             string mensaje;
             int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_FICHAREPOS", obj.id_fichaRepo, obj.cod_patrimonial, obj.motivo_fichaRepo, obj.fecha_fichaRepo, obj.estado_fichaRepo);
 
-            if (valor == 0)
+            if (valor != 0)
             {
                 mensaje = $"{obj.id_fichaRepo} REGISTRADO CORRECTAMENTE";
             }
@@ -63,13 +63,13 @@ namespace Estructura.SQL
                 return mensaje;
         }
 
-        public string PA_ELIMINAR_FICHAREPOSICION(FichaReposicionModel obj)
+        public string PA_ELIMINAR_FICHAREPOSICION(string id_fichaRepo)
         {
             string mensaje;
-            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_FICHAREPOSICION", obj.id_fichaRepo);
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_FICHAREPOSICION", id_fichaRepo);
             if (valor != 0)
             {
-                mensaje = $"{obj.id_fichaRepo} ELIMINADO CORRECTAMENTE";
+                mensaje = $"{id_fichaRepo} ELIMINADO CORRECTAMENTE";
             }
             else
             {
