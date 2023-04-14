@@ -13,7 +13,7 @@ namespace Dominio.Entidad
         public string cod_patrimonial { set; get; }
         public string motivo_fichaRepo { set; get; }
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime fecha_fichaRepo { set; get; }
         public string estado_fichaRepo { set; get; }
     }

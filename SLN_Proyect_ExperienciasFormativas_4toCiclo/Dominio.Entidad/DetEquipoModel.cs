@@ -13,7 +13,7 @@ namespace Dominio.Entidad
         public int cod_equipo { set; get; }
         public int cod_proveedor { set; get; }
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMMM-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime fecha_ingreso { set; get; }
         public string estado_equipo { set; get; }
     }

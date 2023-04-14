@@ -13,64 +13,64 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal row g-2 ">
-            <h4>SOLICITUD DE REPUESTO</h4>
-            <hr />
+    <div class="form-horizontal row g-2 ">
+        <h4>SOLICITUD DE REPUESTO</h4>
+        <hr />
 
-            <div>@ViewBag.MENSAJE</div>
+        <div>@ViewBag.MENSAJE</div>
 
-            @Html.ValidationSummary(true, (String)@ViewBag.MENSAJE, new { @class = "text-danger" })
+        @Html.ValidationSummary(true, (String)@ViewBag.MENSAJE, new { @class = "text-danger" })
 
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.id_solRep, "ID SOLICITUD", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.id_solRep, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.id_solRep, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.cod_patrimonial, "COD. PATRIMONIAL", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.DropDownList("cod_patrimonial", (SelectList)ViewBag.LISTAR_DET_EQUIPO, "SELECCION EQUIPO", new { @class = "form-control bg-secondary bg-opacity-25" })
-                    @Html.ValidationMessageFor(model => model.cod_patrimonial, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.motivo_solRep, "MOTIVO DE LOS REPUESTOS", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.motivo_solRep, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.motivo_solRep, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.fecha_solRep, "FECHA DE SOLICITUD", htmlAttributes: new { @class = "control-label " })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.fecha_solRep, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.fecha_solRep, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group col-md-4">
-                @Html.LabelFor(model => model.estado_solRep, "ESTADO", htmlAttributes: new { @class = "control-label" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.estado_solRep, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.estado_solRep, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-
-            <div class="form-group d-flex gap-2 align-items-center my-4">
-                <div class="col-md-offset-2 ">
-                    <input type="submit" value="REGISTRAR SOLICITUD" class="btn btn-success" />
-                    @Html.ActionLink("NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class = "btn btn-success" })
-                    @Html.ActionLink("IR A LA LISTA", "listarSolicitudRepuesto", null, new { @class = "btn btn-warning" })
-                </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.id_solRep, "ID SOLICITUD", htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.id_solRep, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.id_solRep, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.cod_patrimonial, "COD. PATRIMONIAL", htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-10">
+                @Html.DropDownList("cod_patrimonial", (SelectList)ViewBag.LISTAR_DET_EQUIPO, "SELECCION EQUIPO", new { @class = "form-control bg-secondary bg-opacity-25" })
+                @Html.ValidationMessageFor(model => model.cod_patrimonial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.fecha_solRep, "FECHA DE SOLICITUD", htmlAttributes: new { @class = "control-label " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fecha_solRep, new { htmlAttributes = new { @class = "form-control" ,value=DateTime.Today} })
+                @Html.ValidationMessageFor(model => model.fecha_solRep, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.motivo_solRep, "MOTIVO DE LOS REPUESTOS", htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.motivo_solRep, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.motivo_solRep, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group col-md-4">
+            @Html.LabelFor(model => model.estado_solRep, "ESTADO", htmlAttributes: new { @class = "control-label" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.estado_solRep, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.estado_solRep, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group d-flex gap-2 align-items-center my-4">
+            <div class="col-md-offset-2 ">
+                <input type="submit" value="REGISTRAR SOLICITUD" class="btn btn-success" />
+                @Html.ActionLink("NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class = "btn btn-success" })
+                @Html.ActionLink("IR A LA LISTA", "listarSolicitudRepuesto", null, new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    </div>
     }
 
     <!--ARTEFACTO-->
