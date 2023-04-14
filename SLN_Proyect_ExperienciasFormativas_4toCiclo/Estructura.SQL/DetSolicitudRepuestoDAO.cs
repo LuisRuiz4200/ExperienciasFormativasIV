@@ -72,7 +72,7 @@ namespace Estructura.SQL
             string mensaje;
 
             int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_EDITAR_DETSOLREPUESTO", obj.id_solRep,obj.item_det_solRep, obj.artefacto_det_solRep, obj.cant_det_solRep, obj.cod_uniMed);
-            if (valor == 0)
+            if (valor != 0)
             {
 
                 mensaje = $"{obj.item_det_solRep} EDITADO CORRECTAMENTE EN LA SOLICITUD {obj.id_solRep}";
@@ -92,7 +92,7 @@ namespace Estructura.SQL
             string mensaje;
 
             int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_ELIMINAR_DETSOLREPUESTO", obj.id_solRep, obj.item_det_solRep);
-            if (valor == 0)
+            if (valor != 0)
             {
 
                 mensaje = $"{obj.item_det_solRep} EDITADO CORRECTAMENTE EN LA SOLICITUD {obj.id_solRep}";

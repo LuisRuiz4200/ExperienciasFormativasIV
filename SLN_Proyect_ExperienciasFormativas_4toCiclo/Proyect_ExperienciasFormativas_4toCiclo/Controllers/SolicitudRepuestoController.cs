@@ -186,9 +186,9 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
         //EDITAR DETALLE SOLICITUD
 
-        public ActionResult editarDetSolicitudRepuesto(SolicitudRepuestoModel solicitudModel, string id_solRep,int item_det_solRep) 
+        public ActionResult editarDetSolicitudRepuesto(string id_solRep,int item_det_solRep) 
         {
-
+            var solicitudModel = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
             var objDetalle = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep).Find(c => c.item_det_solRep==item_det_solRep);
 
             ViewBag.MODELO_DET_SOLREP = objDetalle;
@@ -206,23 +206,39 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View("editarSolicitudRepuesto",solicitudModel);
         }
         [HttpPost]
-        public ActionResult editarDetSolicitudRepuesto(string id_solRep, int item_det_solRep)
+        public ActionResult editarDetSolicitudRepuesto(SolicitudRepuestoModel solicitudModel, string id_solRep, int item_det_solRep)
         {
-
+            string mensaje;
+            solicitudModel = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
+            //id_solRep = Request.Form["id_solRep"];
+            //item_det_solRep = int.Parse(Request.Form["item_det_solRep"]);
             var objDetalle = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep).Find(c => c.item_det_solRep == item_det_solRep);
 
             ViewBag.MODELO_DET_SOLREP = objDetalle;
 
+            try 
+            {
+                objDetalle.artefacto_det_solRep = Request.Form["artefacto_det_solRep"];
+                objDetalle.cant_det_solRep = int.Parse(Request.Form["cant_det_solRep"]);
+                objDetalle.cod_uniMed = int.Parse(Request.Form["cod_uniMed"]);
+
+                mensaje = detSolRepBL.PA_EDITAR_DETSOLREPUESTO(objDetalle);
+            }
+            catch (Exception ex) 
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.MENSAJE_DETALLE = mensaje;
+
             ViewBag.ID_SOLREP = objDetalle.id_solRep;
             ViewBag.ITEM_DET_SOLREP = objDetalle.item_det_solRep;
-            ViewBag.ARTEFACTO_DET_SOLREP = objDetalle.artefacto_det_solRep;
-            ViewBag.CANT_DET_SOLREP = objDetalle.cant_det_solRep;
-            ViewBag.COD_UNIMED = objDetalle.cod_uniMed;
 
             ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
 
-            return View("editarSolicitudRepuesto");
+            return View("editarSolicitudRepuesto",solicitudModel);
         }
 
 

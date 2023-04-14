@@ -14,7 +14,7 @@ namespace Dominio.Entidad
         public String motivo_solRep { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode =true,DataFormatString ="{0:yyyy/MM/dd}" )]
         public DateTime fecha_solRep { get; set; }
         public String estado_solRep { get; set; }
     }

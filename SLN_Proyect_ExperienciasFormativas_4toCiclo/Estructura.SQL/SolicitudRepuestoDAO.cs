@@ -39,7 +39,7 @@ namespace Estructura.SQL
             
             string mensaje;
 
-            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_SOLICITUDREPUESTO", obj.id_solRep,obj.cod_patrimonial,obj.motivo_solRep,obj.fecha_solRep,obj.estado_solRep);
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_INSERTAR_SOLICITUDREPUESTO", obj.id_solRep,obj.cod_patrimonial,obj.motivo_solRep,obj.fecha_solRep,"REGISTRADO");
 
             if (valor != 0)
             {
