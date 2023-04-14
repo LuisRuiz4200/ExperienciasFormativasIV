@@ -21,7 +21,14 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             return View(listado);
         }
+        //DETALLE DEL DETALLE EQUIPO
+        public ActionResult detalleDetEquipo(string cod_patrimonial)
+        {
+            var modelo = detEquipoBL.listarDetEquipo().Find(c=>c.cod_patrimonial.Equals(cod_patrimonial));
 
+            return View(modelo);
+        }
+        //REGITRAR DETALLE EQUIPO
         public ActionResult registrarDetEquipo()
         {
             DetEquipoModel obj = new DetEquipoModel();
@@ -51,6 +58,45 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.MENSAJE = mensaje;
 
             return View(obj);
+        }
+        //EDITAR DETALLE EQUIPO
+        public ActionResult editarDetEquipo(string cod_patrimonial)
+        {
+            var modelo = detEquipoBL.listarDetEquipo().Find(c => c.cod_patrimonial.Equals(cod_patrimonial));
+
+            ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
+
+            return View(modelo);
+        }
+        [HttpPost]
+        public ActionResult editarDetEquipo(DetEquipoModel obj)
+        {
+            string mensaje;
+
+            try
+            {
+                mensaje = "";
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
+
+            return View();
+        }
+        //ELIMINAR DETALLE EQUIPO
+        public ActionResult eliminarDetEquipo(string cod_patrimonial) 
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult eliminarDetEquipo()
+        {
+            return View();
         }
     }
 }

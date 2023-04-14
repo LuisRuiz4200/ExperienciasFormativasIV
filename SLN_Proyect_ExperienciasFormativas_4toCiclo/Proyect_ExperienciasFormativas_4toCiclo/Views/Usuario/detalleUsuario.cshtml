@@ -4,14 +4,14 @@
     ViewBag.Title = "detalleUsuario";
 }
 
-<h2>detalleUsuario</h2>
+<h2>DETALLE DE USUARIO</h2>
 
 <div>
-    <h4>UsuarioModel</h4>
+    <h4>Usuario</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.cod_usuario)
+            COD USUARIO
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.nom_usuario)
+            NOMBRE DEL USUARIO
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ape_usuario)
+            APELLIDO DEL USUARIO
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.pass_usuario)
+            PASSWORD DEL USUARIO
         </dt>
 
         <dd>
@@ -43,16 +43,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.tipo_usuario)
+            TIPO DE USUARIO
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.tipo_usuario)
+            @{ 
+                var tipoUsuario = new Estructura.SQL.DropdownDAO().listTipoUsuario().Find(c => c.id_dropdown.Equals(Model.tipo_usuario.ToString())).des_dropdown;
+            }
+            @tipoUsuario
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("EDITAR USUARIO", "editarUsuario", new { cod_usuario = Model.cod_usuario }, new { @class="btn btn-warning"}) |
+    @Html.ActionLink("RETORNAR A LISTA", "ListarUsuario", null,new { @class="btn btn-primary"})
 </p>

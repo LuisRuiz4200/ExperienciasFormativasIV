@@ -154,11 +154,13 @@
     <Content Include="Views\Usuario\detalleUsuario.cshtml" />
     <Content Include="Views\Tecnico\editarTecnico.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarSolicitudRepuesto.cshtml" />
-    <Content Include="Views\Tecnico\listarTecnico2.cshtml" />
     <Content Include="Views\DetSolicitudRepuesto\registrarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\listarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\FichaReposicion\listarFichaRepuesto.cshtml" />
+    <Content Include="Views\DetEquipo\detalleDetEquipo.cshtml" />
+    <Content Include="Views\DetEquipo\editarDetEquipo.cshtml" />
+    <Content Include="Views\Tecnico\detalleTecnico.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
