@@ -15,12 +15,11 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
             <div class="form-horizontal row gap-2">
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.cod_usuario, "COD USUARIO",htmlAttributes: new { @class = "control-label" })
+                    @Html.LabelFor(model => model.cod_usuario, "COD USUARIO", htmlAttributes: new { @class = "control-label" })
                     <div class="col-lg-4">
                         @Html.EditorFor(model => model.cod_usuario, new { htmlAttributes = new { @class = "form-control bg-secondary bg-opacity-25 ", placeholder = ViewBag.CODIGO_USUARIO, @readonly = "readonly" } })
                         @Html.ValidationMessageFor(model => model.cod_usuario, "", new { @class = "text-danger" })
@@ -28,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.nom_usuario,"NOMBRE DE USUARIO", htmlAttributes: new { @class = "control-label c" })
+                    @Html.LabelFor(model => model.nom_usuario, "NOMBRE DE USUARIO", htmlAttributes: new { @class = "control-label c" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.nom_usuario, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.nom_usuario, "", new { @class = "text-danger" })
@@ -36,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ape_usuario,"APELLIDO DE USUARIO", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.ape_usuario, "APELLIDO DE USUARIO", htmlAttributes: new { @class = "control-label " })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ape_usuario, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ape_usuario, "", new { @class = "text-danger" })
@@ -44,7 +43,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.pass_usuario,"PASSWORD", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.pass_usuario, "PASSWORD", htmlAttributes: new { @class = "control-label " })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.pass_usuario, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.pass_usuario, "", new { @class = "text-danger" })
@@ -52,7 +51,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.tipo_usuario,"TIPO DE USUARIO", htmlAttributes: new { @class = "control-label " })
+                    @Html.LabelFor(model => model.tipo_usuario, "TIPO DE USUARIO", htmlAttributes: new { @class = "control-label " })
                     <div class="col-md-6">
                         @Html.DropDownList("tipo_usuario", (SelectList)ViewBag.LISTA_TIPOUSUARIO, "SELECCIONE TIPO", new { @class = "form-control bg-secondary bg-opacity-25" })
                         @Html.ValidationMessageFor(model => model.tipo_usuario, "", new { @class = "text-danger" })
@@ -65,22 +64,27 @@
                         @Html.ActionLink("IR A LA LISTA", "ListarUsuario", "", new { @class = "btn btn-warning" })
                     </div>
                 </div>
+
+                @if (ViewBag.MENSAJE != null)
+                {
+                    <div class="alert alert-warning">
+
+                        @ViewBag.MENSAJE
+
+                    </div>
+                }
+
             </div>
+
+
         }
 
-        @if (ViewBag.MENSAJE != null)
-        {
-            <div class="alert alert-warning">
 
-                @ViewBag.MENSAJE
-
-            </div>
-        }
     </div>
 
     <div class="col">
         <div class="text-center">
-            <img src="~/Content/UsuarioImg/usuario.png" />
+            <img src="~/Content/UsuarioImg/klismanUsuario.jpg" />
         </div>
     </div>
 </div>

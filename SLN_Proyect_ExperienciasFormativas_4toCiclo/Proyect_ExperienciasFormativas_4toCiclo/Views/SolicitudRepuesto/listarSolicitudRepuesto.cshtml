@@ -4,13 +4,30 @@
     ViewBag.Title = "listarSolicitudRepuesto";
 }
 
-<h2>listarSolicitudRepuesto</h2>
+<h2>LISTA DE SOLICITUDES DE REPUESTO</h2>
 
-<p>
-    @Html.ActionLink("REGISTRAR NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class="btn btn-primary"})
-</p>
+<div class="my-4">
+    @using (Html.BeginForm()) 
+    {
+        <div class="row">
+            <div class="col-md-4">
+                @Html.DropDownList("estado_solRep", new SelectList(new String[] { "TODOS", "REGISTRADO", "ANULADO", "ATENDIDO" }), new { @class = "form-control" })
+            </div>
+            <div class="col">
+                <button class="btn btn-primary">LISTAR</button>
+                @Html.ActionLink("REGISTRAR NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+        
+    }
+</div>
+
 <table class="table table-bordered">
-    <tr class="table-dark">
+    <p class="text-danger">
+        @ViewBag.MENSAJE
+    </p>
+
+    <tr class="table-dark text-center">
         <th>
             ID SOLICITUD
         </th>
@@ -29,7 +46,9 @@
         <th>
             ESTADO DE SOLICITUD
         </th>
-        <th></th>
+        <th>
+            ACCIONES
+        </th>
     </tr>
 
 @foreach (var item in Model)
@@ -58,7 +77,7 @@
         <td>
             @Html.ActionLink("Editar", "editarSolicitudRepuesto", new { id_solRep = item.id_solRep},new { @class="btn btn-success"}) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Eliminar", "eliminarSolicitudRepuesto", new { id_solRep = item.id_solRep, estado_solRep = item.estado_solRep }, new { @class="btn btn-danger"})
         </td>
     </tr>
 }
