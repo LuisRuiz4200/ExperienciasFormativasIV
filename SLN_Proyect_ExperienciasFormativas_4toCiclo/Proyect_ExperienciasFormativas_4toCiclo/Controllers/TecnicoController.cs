@@ -1,6 +1,5 @@
 ﻿using Dominio.Entidad;
 using Dominio.Negocio;
-using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -202,26 +201,6 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             var listaTecnico = tecBL.PA_LISTAR_TECNICO();
             return View("listarTecnico",listaTecnico);
-        }
-
-        // REPORTE
-        public ActionResult listarTecnicosReporte()
-        {
-            var listado = tecBL.PA_LISTAR_TECNICO();
-
-            ViewBag.CONTADOR = listado.Count;
-
-            // Reporte
-            ReportViewer rp = new ReportViewer();
-            rp.ProcessingMode = ProcessingMode.Local;
-            rp.SizeToReportContent = true;
-
-            rp.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\Reporte_ListarTecnicos.rdlc";
-            rp.LocalReport.DataSources.Add(new ReportDataSource("DataSet_ListarTecnicos", listado));
-
-            ViewBag.REPORTE = rp;
-
-            return View();
         }
     }
 }

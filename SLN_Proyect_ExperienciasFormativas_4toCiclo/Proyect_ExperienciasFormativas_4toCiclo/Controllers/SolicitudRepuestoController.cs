@@ -181,7 +181,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
 
         /*===========================DETALLE DE SOLICITUD DE REPUESTO============================*/
-        
+
         //REGITRAR DETALLE SOLICITUD DE REPUESTO
         public ActionResult registrarDetSolicitudRepuesto(SolicitudRepuestoModel obj)
         {
@@ -191,15 +191,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(listaEquipo, "cod_patrimonial", "cod_patrimonial");
             ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
-            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(obj.id_solRep);
-
-            int itemDetalle = 1;
-
-            foreach (var item in detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(obj.id_solRep))
-            {
-                itemDetalle = item.item_det_solRep + 1;
-            }
-            ViewBag.ITEM_DET_SOLREP = itemDetalle;
+            ViewBag.ITEM_DET_SOLREP = 1;
 
             return View("registrarSolicitudRepuesto", obj);
 
@@ -290,6 +282,20 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             ViewBag.MODELO_DET_SOLREP = objDetalle;
 
+            try
+            {
+                objDetalle.artefacto_det_solRep = Request.Form["artefacto_det_solRep"];
+                objDetalle.cant_det_solRep = int.Parse(Request.Form["cant_det_solRep"]);
+                objDetalle.cod_uniMed = int.Parse(Request.Form["cod_uniMed"]);
+
+                mensaje = detSolRepBL.PA_EDITAR_DETSOLREPUESTO(objDetalle);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.MENSAJE_DETALLE = mensaje;
 
             ViewBag.ID_SOLREP = objDetalle.id_solRep;
             ViewBag.ITEM_DET_SOLREP = objDetalle.item_det_solRep;
@@ -298,36 +304,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
             ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
 
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    objDetalle.artefacto_det_solRep = Request.Form["artefacto_det_solRep"];
-                    objDetalle.cant_det_solRep = int.Parse(Request.Form["cant_det_solRep"]);
-                    objDetalle.cod_uniMed = int.Parse(Request.Form["cod_uniMed"]);
-
-                    mensaje = detSolRepBL.PA_EDITAR_DETSOLREPUESTO(objDetalle);
-                    ViewBag.MENSAJE_DETALLE = mensaje;
-                    return View("editarSolicitudRepuesto", solicitudModel);
-                }
-                else {
-                    mensaje = "CAMPOS REQUERIDOS INCOMPLETOS";
-                }
-                
-            }
-            catch (SqlException ex)
-            {
-                mensaje = ex.Message;
-            }catch(Exception ex)
-            { 
-                mensaje = ex.Message;
-            }
-
-
-
-            ViewBag.MENSAJE_DETALLE = mensaje;
-
-            return View("registrarSolicitudRepuesto", solicitudModel);
+            return View("editarSolicitudRepuesto", solicitudModel);
         }
 
         //ELIMINAR DETALLE DE SOLICITUD (QUITAR LOS ULTIMOS ARTEFACTOS DE LA LISTA)

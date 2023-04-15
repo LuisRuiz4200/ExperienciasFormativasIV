@@ -28,21 +28,17 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             var lista = mantBL.PA_LISTAR_MANTENIMIENTO();
 
-            string codigo = "MAN000001";
+            string codigo="";
 
-            if (lista.Count() != 0)
+            foreach (var item in lista)
             {
-                foreach (var item in lista)
-                {
-                    codigo = "MAN" + (int.Parse(item.id_mante.Substring(6)) + 1).ToString("000000");
-                }
+                codigo = "MAN" + (int.Parse(item.id_mante.Substring(6)) + 1).ToString("000000");
             }
 
-            model.id_mante = codigo;
+            ViewBag.CODIGO_MANTENIMIENTO = codigo;
 
-            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
-            ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
-            ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_TIPOMANTE = new SelectList( dropdownBL.listTipoMante(),"id_dropdown","des_dropdown");
+            ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(),"id_dropdown","des_dropdown");
             return View(model);
         }
 
@@ -73,18 +69,12 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             }
 
 
-            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+
             ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");
             ViewBag.MENSAJE = men;
 
             return View(obj);
-        }
-
-        public ActionResult detalleMantenimiento(string id_mante)
-        {
-            var modelo = mantBL.PA_LISTAR_MANTENIMIENTO().Find(c => c.id_mante.Equals(id_mante));
-            return View(modelo);
         }
     }
 }
