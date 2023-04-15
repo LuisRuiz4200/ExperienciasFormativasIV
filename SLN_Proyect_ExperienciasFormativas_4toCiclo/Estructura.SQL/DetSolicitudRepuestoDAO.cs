@@ -95,7 +95,7 @@ namespace Estructura.SQL
             if (valor != 0)
             {
 
-                mensaje = $"{obj.item_det_solRep} EDITADO CORRECTAMENTE EN LA SOLICITUD {obj.id_solRep}";
+                mensaje = $"{obj.item_det_solRep} ELIMINADO CORRECTAMENTE EN LA SOLICITUD {obj.id_solRep}";
             }
             else
             {
