@@ -22,6 +22,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             return View(listado);
         }
+
         //DETALLE DEL DETALLE EQUIPO
         public ActionResult detalleDetEquipo(string cod_patrimonial)
         {
@@ -29,41 +30,44 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             return View(modelo);
         }
+
         //REGITRAR DETALLE EQUIPO
         public ActionResult registrarDetEquipo()
         {
             DetEquipoModel obj = new DetEquipoModel();
             obj.fecha_ingreso = DateTime.Now;
+            obj.estado_equipo = "ACTIVO";
 
             var lista = detEquipoBL.listarDetEquipo();
             string codigo = "";
 
-            if (lista.Count() != 0)
+            if (lista.Count() > 0)
             {
                 foreach (var item in lista)
                 {
                     codigo = item.cod_patrimonial;
 
-                    int correlativo = int.Parse(codigo.Substring(4)) + 1;
+                    int correlativo = int.Parse(codigo.Substring(3)) + 1;
                     codigo = "PAT" + correlativo.ToString("0000");
                 }
             }
             else {
                 codigo = "PAT0001";
             }
-            ViewBag.CODIGO_PATRIMONIAL = codigo;
-            obj.cod_patrimonial = codigo;
-
+            //ESCRIBIMOS LOS DATOS DE ENTRADA
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
-            
+            obj.cod_patrimonial = codigo;
+
             return View(obj);
 
         }
+
         [HttpPost]
         public ActionResult registrarDetEquipo(DetEquipoModel obj)
         {
             string mensaje;
+            string codigo = "";
 
             try
             {
@@ -73,13 +77,31 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             {
                 mensaje = ex.Message;
             }
+            var lista = detEquipoBL.listarDetEquipo();
 
+            if (lista.Count() > 0)
+            {
+                foreach (var item in lista)
+                {
+                    codigo = item.cod_patrimonial;
+
+                    int correlativo = int.Parse(codigo.Substring(3)) + 1;
+                    codigo = "PAT" + correlativo.ToString("0000");
+                }
+            }
+            else
+            {
+                codigo = "PAT0001";
+            }
+            
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
+            ViewBag.CODIGO_PATRIMONIAL = codigo;
             ViewBag.MENSAJE = mensaje;
 
             return View(obj);
         }
+
         //EDITAR DETALLE EQUIPO
         public ActionResult editarDetEquipo(string cod_patrimonial)
         {

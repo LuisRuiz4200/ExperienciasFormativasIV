@@ -47,6 +47,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             return View(modelo);
         }
+
         //REGISTRAR TECNICO
         public ActionResult registrarTecnico()
         { 
