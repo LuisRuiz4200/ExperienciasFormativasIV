@@ -15,6 +15,22 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         DetEquipoBL detEquipoBL = new DetEquipoBL();
         DropdownBL dropdownBL = new DropdownBL();
 
+        //CORRELATIVO DE CODIGO PATRIMONIAL DE EQUIPO
+        private string correlativo()
+        {
+            string correlativo = "PAT0001";
+            if (detEquipoBL.listarDetEquipo().Count != 0)
+            {
+                foreach (var obj in detEquipoBL.listarDetEquipo())
+                {
+                    int n = int.Parse(obj.cod_patrimonial.Substring(3)) + 1;
+                    correlativo = "PAT" + n.ToString("0000");
+                }
+            }
+            return correlativo;
+        }
+
+
         // GET: DetEquipo
         public ActionResult listarDetEquipo()
         {
@@ -37,10 +53,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             DetEquipoModel obj = new DetEquipoModel();
             obj.fecha_ingreso = DateTime.Now;
             obj.estado_equipo = "ACTIVO";
-
-            var lista = detEquipoBL.listarDetEquipo();
-            string codigo = "";
-
+            /*
             if (lista.Count() > 0)
             {
                 foreach (var item in lista)
@@ -53,22 +66,39 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             }
             else {
                 codigo = "PAT0001";
-            }
+            } */
+
             //ESCRIBIMOS LOS DATOS DE ENTRADA
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
-            obj.cod_patrimonial = codigo;
+            obj.cod_patrimonial = correlativo();
 
             return View(obj);
-
         }
 
         [HttpPost]
         public ActionResult registrarDetEquipo(DetEquipoModel obj)
         {
             string mensaje;
-            string codigo = "";
+            obj.fecha_ingreso = DateTime.Now;
+            obj.estado_equipo = "ACTIVO";
+            try
+            {
+                mensaje = detEquipoBL.registrarDetEquipo(obj);
 
+                ViewBag.MENSAJE = mensaje;
+                return RedirectToAction("registrarDetEquipo", obj);
+            }
+            catch (SqlException ex)
+            {
+                mensaje = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+            /*
+            string codigo = "";
             try
             {
                 mensaje = detEquipoBL.registrarDetEquipo(obj);
@@ -92,13 +122,14 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             else
             {
                 codigo = "PAT0001";
-            }
-            
+            }*/
+            var listaDetEquipo = new DetEquipoBL().listarDetEquipo();
+
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_PROVEEDOR = new SelectList(dropdownBL.listProveedor(), "id_dropdown", "des_dropdown");
-            ViewBag.CODIGO_PATRIMONIAL = codigo;
             ViewBag.MENSAJE = mensaje;
 
+            obj.cod_patrimonial = correlativo();
             return View(obj);
         }
 

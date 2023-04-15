@@ -2,6 +2,7 @@
 using Dominio.Negocio;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +14,24 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     public class FichaReposicionController : Controller
     {
         FichaReposicionBL fichRepBL = new FichaReposicionBL();
+
+        //CORRELATIVO DE FICHA DE REPOSICION
+        private string correlativo() 
+        {
+            string correlativo = "FICH0001";
+            if (fichRepBL.PA_LISTAR_FICHAREPOSICION().Count != 0)
+            {
+                foreach (var obj in fichRepBL.PA_LISTAR_FICHAREPOSICION())
+                {
+                    int n = int.Parse(obj.id_fichaRepo.Substring(4)) + 1;
+                    correlativo = "FICH" + n.ToString("0000");
+                }
+            }
+
+            return correlativo;
+        }
+
+
 
         // GET: FichaReposicion
         public ActionResult listarFichaReposicion()
@@ -37,6 +56,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             FichaReposicionModel model = new FichaReposicionModel();
             model.fecha_fichaRepo = DateTime.Now;
+            /*
             var lista = fichRepBL.PA_LISTAR_FICHAREPOSICION();
 
             string codigo = "";
@@ -52,14 +72,34 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             }
             else {
                 codigo = "FICH0001";
-            }
-            model.id_fichaRepo = codigo;
+            } */
+
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            model.id_fichaRepo = correlativo();
 
             return View(model);
         }
         [HttpPost]
         public ActionResult registrarFichaReposicion(FichaReposicionModel obj)
         {
+            string mensaje;
+            obj.fecha_fichaRepo = DateTime.Now;
+
+            try
+            {
+                mensaje = fichRepBL.PA_INSERTAR_FICHAREPOSICION(obj);
+
+                ViewBag.MENSAJE = mensaje;
+                return RedirectToAction("registrarFichaReposicion", obj);
+            }
+            catch (SqlException ex)
+            {
+                mensaje = ex.Message;
+            } catch(Exception ex) 
+            {
+                mensaje = ex.Message;
+            }
+            /*
             var mensaje = fichRepBL.PA_INSERTAR_FICHAREPOSICION(obj);
             var lista = fichRepBL.PA_LISTAR_FICHAREPOSICION();
             string codigo = "";
@@ -77,12 +117,14 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             else
             {
                 codigo = "FICH0001";
-            }
-                       
+            }*/
+            var listadoFicha = new FichaReposicionBL().PA_LISTAR_FICHAREPOSICION();
+
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
             ViewBag.MENSAJE = mensaje;
-            var newObj = new FichaReposicionModel();
-            newObj.id_fichaRepo = codigo;
-            return View(newObj);
+            
+            obj.id_fichaRepo = correlativo();
+            return View(obj);
         }
 
         //EDITAR FICHA REPOSICION
