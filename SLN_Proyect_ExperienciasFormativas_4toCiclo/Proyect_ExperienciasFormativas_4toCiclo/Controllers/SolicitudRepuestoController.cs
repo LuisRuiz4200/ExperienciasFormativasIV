@@ -59,8 +59,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             return View();
         }
-
         // GET: SolicitudRepuesto/Create
+        //REGISTRAR SOLICITUD REPUESTO
         public ActionResult registrarSolicitudRepuesto()
         {
             SolicitudRepuestoModel modelo = new SolicitudRepuestoModel();
@@ -110,8 +110,80 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
         }
 
+        //EDITAR SOLICITUD
+
+        public ActionResult editarSolicitudRepuesto(string id_solRep = "")
+        {
+            var modelo = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Find(c => c.id_solRep.Equals(id_solRep));
+
+            switch (modelo.estado_solRep) 
+            {
+                case "ANULADO":
+                    ViewBag.MENSAJE = "ESTE DOCUMENTO ESTÁ ANULADO";
+                    var lista = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().FindAll(c=>c.estado_solRep.Equals(modelo.estado_solRep));
+                    return View("listarSolicitudRepuesto",lista);
+                default:
+                    ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+                    ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
+                    ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
+                    return View(modelo);
+            }
+
+           
+
+            
+        }
+        [HttpPost]
+        public ActionResult editarSolicitudRepuesto(SolicitudRepuestoModel obj)
+        {
+            string mensaje;
+            try
+            {
+                mensaje = solRepBL.PA_EDITAR_SOLICITUDREPUESTO(obj);
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.MENSAJE = mensaje;
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(obj.id_solRep);
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
+
+            return View(obj);
+        }
+        //ELIMINAR SOLICITUD (CAMBIAR DE ESTADO REGISTRADO A ANULADO)
+
+        public ActionResult eliminarSolicitudRepuesto(string id_solRep, string estado_solRep)
+        {
+            string mensaje;
+            var modelo = new SolicitudRepuestoModel();
+            try
+            {
+                modelo = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
+                modelo.estado_solRep = "ANULADO";
+
+                solRepBL.PA_EDITAR_SOLICITUDREPUESTO(modelo);
+
+                mensaje = $"{id_solRep} ANULADO CORRECTAMENTE";
+            }
+            catch (Exception ex)
+            {
+                mensaje = ex.Message;
+            }
+
+            ViewBag.MENSAJE = mensaje;
+
+            var lista = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().FindAll(c => c.estado_solRep.Equals(estado_solRep));
+
+            return View("listarSolicitudRepuesto", lista);
+        }
 
 
+        /*===========================DETALLE DE SOLICITUD DE REPUESTO============================*/
+
+        //REGITRAR DETALLE SOLICITUD DE REPUESTO
         public ActionResult registrarDetSolicitudRepuesto(SolicitudRepuestoModel obj)
         {
             ViewBag.ID_SOLREP = obj.id_solRep;
@@ -182,39 +254,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View("registrarSolicitudRepuesto", objSolRep);
         }
 
-        //EDITAR SOLICITUD
-
-        public ActionResult editarSolicitudRepuesto(string id_solRep = "")
-        {
-            var modelo = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Find(c => c.id_solRep.Equals(id_solRep));
-
-            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
-            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
-            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
-
-            return View(modelo);
-        }
-        [HttpPost]
-        public ActionResult editarSolicitudRepuesto(SolicitudRepuestoModel obj)
-        {
-            string mensaje;
-            try
-            {
-                mensaje = solRepBL.PA_EDITAR_SOLICITUDREPUESTO(obj);
-            }
-            catch (Exception ex)
-            {
-                mensaje = ex.Message;
-            }
-
-            ViewBag.MENSAJE = mensaje;
-            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(obj.id_solRep);
-
-            return View(obj);
-        }
-
         //EDITAR DETALLE SOLICITUD
-
         public ActionResult editarDetSolicitudRepuesto(string id_solRep, int item_det_solRep)
         {
             var solicitudModel = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
@@ -268,43 +308,14 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             return View("editarSolicitudRepuesto", solicitudModel);
         }
 
-        //ELIMINAR SOLICITUD (CAMBIAR DE ESTADO REGISTRADO A ANULADO)
-
-        public ActionResult eliminarSolicitudRepuesto(string id_solRep, string estado_solRep)
-        {
-            string mensaje;
-            var modelo = new SolicitudRepuestoModel();
-            try
-            {
-                modelo = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
-                modelo.estado_solRep = "ANULADO";
-
-                solRepBL.PA_EDITAR_SOLICITUDREPUESTO(modelo);
-
-                mensaje = $"{id_solRep} ANULADO CORRECTAMENTE";
-            }
-            catch (Exception ex)
-            {
-                mensaje = ex.Message;
-            }
-
-            ViewBag.MENSAJE = mensaje;
-
-            var lista = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().FindAll(c => c.estado_solRep.Equals(estado_solRep));
-
-            return View("listarSolicitudRepuesto", lista);
-        }
-
         //ELIMINAR DETALLE DE SOLICITUD (QUITAR LOS ULTIMOS ARTEFACTOS DE LA LISTA)
 
-        public ActionResult eliminarDetSolicitudRepuesto(string id_solRep) 
+        public ActionResult eliminarDetSolicitudRepuesto(string id_solRep)
         {
             var modeloSolicitud = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
 
             return View(modeloSolicitud);
         }
-
-
 
     }
 }

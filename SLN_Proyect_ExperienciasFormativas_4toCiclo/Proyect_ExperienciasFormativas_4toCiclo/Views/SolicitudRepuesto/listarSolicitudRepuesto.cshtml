@@ -7,8 +7,7 @@
 <h2>LISTA DE SOLICITUDES DE REPUESTO</h2>
 
 <div class="my-4">
-    @using (Html.BeginForm()) 
-    {
+    <form action="listarSolicitudRepuesto" method="POST">
         <div class="row">
             <div class="col-md-4">
                 @Html.DropDownList("estado_solRep", new SelectList(new String[] { "TODOS", "REGISTRADO", "ANULADO", "ATENDIDO" }), new { @class = "form-control" })
@@ -18,8 +17,7 @@
                 @Html.ActionLink("REGISTRAR NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class = "btn btn-primary" })
             </div>
         </div>
-        
-    }
+    </form>
 </div>
 
 <table class="table table-bordered">

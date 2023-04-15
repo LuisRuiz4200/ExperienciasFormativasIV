@@ -70,14 +70,8 @@
                 <div class="col-md-offset-2 ">
                     <input type="submit" value="ACTUALIZAR SOLICITUD" class="btn btn-success" />
                     @Html.ActionLink("NUEVA SOLICITUD", "registrarSolicitudRepuesto", null, new { @class = "btn btn-success" })
-                    @Html.ActionLink("IR A LA LISTA", "listarSolicitudRepuesto", null, new { @class = "btn btn-warning" })
-
                 </div>
             </div>
-        </div>
-
-        <div>
-            @Html.ActionLink("AGREGAR ARTEFACTOS", "registrarDetSolicitudRepuesto", new { id_solRep = Model.id_solRep }, new { @class = "btn btn-success" })
         </div>
     }
 
@@ -131,13 +125,14 @@
 
                 <div class="col-md-2">
                     <label>UM</label>
-                    @Html.DropDownList("cod_uniMed", (SelectList)ViewBag.LISTA_UMD, "", new { @class = "form-control bg-secondary bg-opacity-25" })
+                    @Html.DropDownList("cod_uniMed", (SelectList)ViewBag.LISTA_UMD, "SELECCIONE UM", new { @class = "form-control bg-secondary bg-opacity-25" })
 
                 </div>
 
                 <div>
                     <button type="submit" class="btn btn-primary">ACTUALIZAR ARTEFACTO</button>
                     @Html.ActionLink("QUITAR ARTEFACTOS", "eliminarDetSolicitudRepuesto", new { id_solRep = Request.Form["id_solRep"] }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("IR A LA LISTA", "listarSolicitudRepuesto", null, new { @class = "btn btn-warning" })
                 </div>
 
             </div>
@@ -187,7 +182,10 @@
                                 <td> @obj.item_det_solRep </td>
                                 <td> @obj.artefacto_det_solRep </td>
                                 <td> @obj.cant_det_solRep </td>
-                                <td> @obj.cod_uniMed </td>
+                                <td>
+                                    @{var des_uniMed = new Dominio.Negocio.DropdownBL().listUnidadMedida().Find(c => int.Parse(c.id_dropdown)==(obj.cod_uniMed)).des_dropdown; }
+                                    @des_uniMed
+                                </td>
                                 <td>
                                     @Html.ActionLink("EDITAR", "editarDetSolicitudRepuesto", new { id_solRep = obj.id_solRep, item_det_solRep = obj.item_det_solRep }, new { @class = "btn btn-warning " })
                                 </td>
