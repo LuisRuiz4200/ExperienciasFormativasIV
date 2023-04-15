@@ -12,28 +12,28 @@
 <table class="table table-bordered">
     <tr class="table-dark text-center">
         <th>
-            @Html.DisplayNameFor(model => model.id_mante)
+            ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cod_patrimonial)
+            Cod Patrimonial
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cod_tecnico)
+            Cod Técnico
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cod_tipoMante)
+            Tipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.obs_tipoMante)
+            Obs Mantenimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estado_equipo)
+            Estado Equipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_mante)
+            Fecha Mantenimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estado_mante)
+            Estado
         </th>
         <th></th>
     </tr>
@@ -65,7 +65,7 @@
             @Html.DisplayFor(modelItem => item.estado_mante)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Editar", "editarMantenimiento", new { id_mante=item.id_mante }, new { @class = "btn btn-success" }) |
             @Html.ActionLink("Detalles", "detalleMantenimiento", new { id_mante = item.id_mante }, new { @class = "btn btn-warning" }) |
         </td>
     </tr>

@@ -407,7 +407,7 @@
         <Top>2.431cm</Top>
         <Left>2.2987cm</Left>
         <Height>1.2cm</Height>
-        <Width>16.20417cm</Width>
+        <Width>16.20416cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -471,20 +471,6 @@
             </Border>
           </Style>
         </Image>
-        <Image Name="Image2">
-          <Source>Embedded</Source>
-          <Value>HISTORYMEDIC</Value>
-          <Sizing>FitProportional</Sizing>
-          <Left>19.37563cm</Left>
-          <Height>1.57938cm</Height>
-          <Width>1.63229cm</Width>
-          <ZIndex>1</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
         <Textbox Name="Textbox4">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -506,7 +492,7 @@
           <Left>8.91266cm</Left>
           <Height>0.6cm</Height>
           <Width>2.97625cm</Width>
-          <ZIndex>2</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
