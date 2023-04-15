@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "listarMantenimientos";
 }
-
-<h2>listarMantenimientos</h2>
-
+<hr/>
+<h2>LISTA DE MANTENIMIENTOS</h2>
+<hr />
 <p>
-    @Html.ActionLink("Create New", "registrarMantenimiento")
+    @Html.ActionLink("Registrar nuevo Mantenimiento", "registrarMantenimiento", null, new { @class = "btn btn-success" })
 </p>
-<table class="table">
-    <tr>
+<table class="table table-bordered">
+    <tr class="table-dark text-center">
         <th>
             @Html.DisplayNameFor(model => model.id_mante)
         </th>
@@ -65,9 +65,8 @@
             @Html.DisplayFor(modelItem => item.estado_mante)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Detalles", "detalleMantenimiento", new { id_mante = item.id_mante }, new { @class = "btn btn-warning" }) |
         </td>
     </tr>
 }

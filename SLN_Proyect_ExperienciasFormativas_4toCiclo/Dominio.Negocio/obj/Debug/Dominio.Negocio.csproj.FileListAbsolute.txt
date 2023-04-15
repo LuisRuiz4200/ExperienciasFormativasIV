@@ -1,0 +1,11 @@
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\bin\Debug\Dominio.Negocio.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\bin\Debug\Dominio.Negocio.pdb
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\bin\Debug\Dominio.Entidad.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\bin\Debug\Estructura.SQL.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\bin\Debug\Dominio.Entidad.pdb
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\bin\Debug\Estructura.SQL.pdb
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\obj\Debug\Dominio.Negocio.csproj.AssemblyReference.cache
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\obj\Debug\Dominio.Negocio.csproj.CoreCompileInputs.cache
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\obj\Debug\Dominio.Negocio.csproj.CopyComplete
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\obj\Debug\Dominio.Negocio.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Dominio.Negocio\obj\Debug\Dominio.Negocio.pdb

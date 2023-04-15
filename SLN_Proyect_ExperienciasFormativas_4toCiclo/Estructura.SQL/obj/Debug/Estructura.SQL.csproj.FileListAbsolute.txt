@@ -1,0 +1,9 @@
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\bin\Debug\Estructura.SQL.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\bin\Debug\Estructura.SQL.pdb
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\bin\Debug\Dominio.Entidad.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\bin\Debug\Dominio.Entidad.pdb
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\obj\Debug\Estructura.SQL.csproj.AssemblyReference.cache
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\obj\Debug\Estructura.SQL.csproj.CoreCompileInputs.cache
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\obj\Debug\Estructura.SQL.csproj.CopyComplete
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\obj\Debug\Estructura.SQL.dll
+C:\EF\ExperienciasFormativasIV\SLN_Proyect_ExperienciasFormativas_4toCiclo\Estructura.SQL\obj\Debug\Estructura.SQL.pdb
