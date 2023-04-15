@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Dominio.Negocio;
 using System.Data.SqlClient;
+using Microsoft.Reporting.WebForms;
 
 namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 {
@@ -234,6 +235,26 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             var listaEquipo = detEquipoBL.listarDetEquipo();
             return View("listarDetEquipo", listaEquipo);
+        }
+
+        // REPORTE
+        public ActionResult listarEquiposReporte()
+        {
+            var listado = detEquipoBL.listarDetEquipo();
+
+            ViewBag.CONTADOR = listado.Count;
+
+            // Reporte
+            ReportViewer rp = new ReportViewer();
+            rp.ProcessingMode = ProcessingMode.Local;
+            rp.SizeToReportContent= true;
+
+            rp.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\Reporte_ListarEquipos.rdlc";
+            rp.LocalReport.DataSources.Add(new ReportDataSource("DataSet_ListarEquipos", listado));
+
+            ViewBag.REPORTE = rp;
+
+            return View();
         }
     }
 }
