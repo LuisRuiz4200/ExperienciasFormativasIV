@@ -131,7 +131,7 @@
 
                 <div>
                     <button type="submit" class="btn btn-primary">ACTUALIZAR ARTEFACTO</button>
-                    @Html.ActionLink("QUITAR ARTEFACTOS", "eliminarDetSolicitudRepuesto", new { id_solRep = Request.Form["id_solRep"] }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("QUITAR ARTEFACTOS", "eliminarDetSolicitudRepuesto", new { id_solRep = Model.id_solRep }, new { @class = "btn btn-danger" })
                     @Html.ActionLink("IR A LA LISTA", "listarSolicitudRepuesto", null, new { @class = "btn btn-warning" })
                 </div>
 

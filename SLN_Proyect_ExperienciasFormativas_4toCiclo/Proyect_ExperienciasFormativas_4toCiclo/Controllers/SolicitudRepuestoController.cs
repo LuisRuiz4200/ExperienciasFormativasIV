@@ -329,7 +329,12 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 mensaje =ex.Message; 
             }
 
-            return View("registrarSolicitudRepuesto",modeloSolicitud);
+            ViewBag.MENSAJE_DETALLE = mensaje;
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
+            ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
+
+            return View("editarSolicitudRepuesto",modeloSolicitud);
         }
 
     }
