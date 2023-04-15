@@ -3,9 +3,12 @@
 @{
     ViewBag.Title = "listarDetEquipo";
 }
-
-<h2>LISTA DE EQUIPO REGISTRADOS</h2>
-
+<hr />
+<h2 style="text-align:center">LISTA DE EQUIPO REGISTRADOS</h2>
+<p class="text-center">
+    <hr />
+    @ViewBag.MENSAJE
+</p>
 <p>
     @Html.ActionLink("REGISTRAR NUEVO EQUIPO", "registrarDetEquipo", null,new {@class ="btn btn-success" })
 </p>

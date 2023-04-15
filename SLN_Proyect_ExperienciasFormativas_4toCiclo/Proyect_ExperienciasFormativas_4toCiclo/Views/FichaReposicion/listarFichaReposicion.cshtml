@@ -4,7 +4,7 @@
     ViewBag.Title = "listarFichaReposicion";
 }
 <hr />
-<h2>LISTA DE FICHAS DE REPOSICION</h2>
+<h2 style="text-align:center">LISTA DE FICHAS DE REPOSICION</h2>
 
 <p class="text-center">
     <hr/>
@@ -13,8 +13,8 @@
 <p>
     @Html.ActionLink("NUEVA FICHA", "registrarFichaReposicion", null, new {@class = "btn btn-primary" })
 </p>
-<table class="table" align="center">
-    <tr>
+<table class="table table-bordered">
+    <tr class="text-center table-success" style="text-align:center">
         <th>
             ID FICHA DE REPOSICION
         </th>
@@ -36,7 +36,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr style="text-align:center">
         <td>
             @Html.DisplayFor(modelItem => item.id_fichaRepo)
         </td>
