@@ -36,6 +36,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarFichaReposicion()
         {
             FichaReposicionModel model = new FichaReposicionModel();
+            model.fecha_fichaRepo = DateTime.Now;
             var lista = fichRepBL.PA_LISTAR_FICHAREPOSICION();
 
             string codigo = "";
