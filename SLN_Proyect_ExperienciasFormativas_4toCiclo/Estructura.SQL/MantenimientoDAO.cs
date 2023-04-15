@@ -71,7 +71,7 @@ namespace Estructura.SQL
 
             if (res != 0)
             {
-                mensaje = $"Mantenimiento {correlativo} registrado";
+                mensaje = $"Mantenimiento {codigo} registrado";
             }
             else
             {
