@@ -133,7 +133,7 @@
                 <th>ARTEFACTO</th>
                 <th>CANTIDAD</th>
                 <th>UM</th>
-                <th class="col-xxl-2">ACCIONES</th>
+                <th class="col-xxl-1">ACCIONES</th>
             </tr>
         </thead>
         @{
@@ -161,10 +161,12 @@
                             <td> @obj.item_det_solRep </td>
                             <td> @obj.artefacto_det_solRep </td>
                             <td> @obj.cant_det_solRep </td>
-                            <td> @obj.cod_uniMed </td>
+                            <td>
+                                @{var des_uniMed = new Dominio.Negocio.DropdownBL().listUnidadMedida().Find(c => int.Parse(c.id_dropdown) == (obj.cod_uniMed)).des_dropdown; }
+                                @des_uniMed
+                            </td>
                             <td>
                                 @Html.ActionLink("EDITAR", "editarDetSolicitudRepuesto", new {id_solRep = obj.id_solRep, item_det_solRep = obj.item_det_solRep }, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("ELIMINAR", "#", null, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     </tbody>
