@@ -133,7 +133,7 @@
                 <th>ARTEFACTO</th>
                 <th>CANTIDAD</th>
                 <th>UM</th>
-                <th class="col-xxl-2">ACCIONES</th>
+                <th class="col-xxl-1">ACCIONES</th>
             </tr>
         </thead>
         @{
@@ -167,7 +167,6 @@
                             </td>
                             <td>
                                 @Html.ActionLink("EDITAR", "editarDetSolicitudRepuesto", new {id_solRep = obj.id_solRep, item_det_solRep = obj.item_det_solRep }, new { @class = "btn btn-warning" })
-                                @Html.ActionLink("ELIMINAR", "#", null, new { @class = "btn btn-danger" })
                             </td>
                         </tr>
                     </tbody>

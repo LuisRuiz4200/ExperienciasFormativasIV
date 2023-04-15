@@ -88,7 +88,6 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 mensaje = solRepBL.PA_INSERTAR_SOLICITUDREPUESTO(obj);
 
                 ViewBag.MENSAJE = mensaje;
-                obj.fecha_solRep = DateTime.Now;
                 return RedirectToAction("registrarDetSolicitudRepuesto", obj);
             }
             catch (SqlException ex)
