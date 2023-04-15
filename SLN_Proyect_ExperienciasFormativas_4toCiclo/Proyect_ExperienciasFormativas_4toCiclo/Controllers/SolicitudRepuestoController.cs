@@ -311,9 +311,25 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
         public ActionResult eliminarDetSolicitudRepuesto(string id_solRep)
         {
+            string mensaje;
             var modeloSolicitud = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
+            DetSolicitudRepuestoModel detalle= new DetSolicitudRepuestoModel();
 
-            return View(modeloSolicitud);
+            foreach (var item in detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep))
+            {
+                detalle = item;
+            }
+
+            try
+            {
+                mensaje = detSolRepBL.PA_ELIMINAR_DETSOLREPUESTO(detalle);
+            }
+            catch (Exception ex)
+            { 
+                mensaje =ex.Message; 
+            }
+
+            return View("registrarSolicitudRepuesto",modeloSolicitud);
         }
 
     }

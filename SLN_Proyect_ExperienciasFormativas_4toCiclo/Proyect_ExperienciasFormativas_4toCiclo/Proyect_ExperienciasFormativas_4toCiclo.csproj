@@ -124,8 +124,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DetEquipoController.cs" />
-    <Compile Include="Controllers\DetSolicitudRepuestoController.cs" />
-    <Compile Include="Controllers\DetSolicitudRepuestoController2.cs" />
     <Compile Include="Controllers\FichaReposicionController.cs" />
     <Compile Include="Controllers\MantenimientoController.cs" />
     <Compile Include="Controllers\SolicitudRepuestoController.cs" />
@@ -158,7 +156,6 @@
     <Content Include="Views\SolicitudRepuesto\listarSolicitudRepuesto.cshtml" />
     <Content Include="Views\DetSolicitudRepuesto\registrarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\SolicitudRepuesto\registrarSolicitudRepuesto.cshtml" />
-    <Content Include="Views\SolicitudRepuesto\listarDetSolicitudRepuesto.cshtml" />
     <Content Include="Views\DetEquipo\detalleDetEquipo.cshtml" />
     <Content Include="Views\DetEquipo\editarDetEquipo.cshtml" />
     <Content Include="Views\Tecnico\detalleTecnico.cshtml" />
