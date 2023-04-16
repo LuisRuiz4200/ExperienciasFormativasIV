@@ -54,20 +54,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             DetEquipoModel obj = new DetEquipoModel();
             obj.fecha_ingreso = DateTime.Now;
             obj.estado_equipo = "ACTIVO";
-            /*
-            if (lista.Count() > 0)
-            {
-                foreach (var item in lista)
-                {
-                    codigo = item.cod_patrimonial;
-
-                    int correlativo = int.Parse(codigo.Substring(3)) + 1;
-                    codigo = "PAT" + correlativo.ToString("0000");
-                }
-            }
-            else {
-                codigo = "PAT0001";
-            } */
+            
 
             //ESCRIBIMOS LOS DATOS DE ENTRADA
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
@@ -98,32 +85,6 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             {
                 mensaje = ex.Message;
             }
-            /*
-            string codigo = "";
-            try
-            {
-                mensaje = detEquipoBL.registrarDetEquipo(obj);
-            }
-            catch (Exception ex)
-            {
-                mensaje = ex.Message;
-            }
-            var lista = detEquipoBL.listarDetEquipo();
-
-            if (lista.Count() > 0)
-            {
-                foreach (var item in lista)
-                {
-                    codigo = item.cod_patrimonial;
-
-                    int correlativo = int.Parse(codigo.Substring(3)) + 1;
-                    codigo = "PAT" + correlativo.ToString("0000");
-                }
-            }
-            else
-            {
-                codigo = "PAT0001";
-            }*/
             var listaDetEquipo = new DetEquipoBL().listarDetEquipo();
 
             ViewBag.LISTA_EQUIPO = new SelectList(dropdownBL.listEquipo(), "id_dropdown", "des_dropdown");
