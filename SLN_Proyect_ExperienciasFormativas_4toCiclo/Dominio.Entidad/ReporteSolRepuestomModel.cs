@@ -10,6 +10,7 @@ namespace Dominio.Entidad
     public class ReporteSolRepuestomModel
     {
         public string id_solRep { get; set; }
+        public int item_det_solRep { get; set; }
         public string artefacto_det_solRep { get; set; }
         public int cant_det_solRep { get; set; }
         public string des_uniMed { get; set; }

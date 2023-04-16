@@ -1325,6 +1325,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models {
             
             private global::System.Data.DataColumn columnid_solRep;
             
+            private global::System.Data.DataColumn columnitem_det_solRep;
+            
             private global::System.Data.DataColumn columnartefacto_det_solRep;
             
             private global::System.Data.DataColumn columncant_det_solRep;
@@ -1369,6 +1371,14 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models {
             public global::System.Data.DataColumn id_solRepColumn {
                 get {
                     return this.columnid_solRep;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn item_det_solRepColumn {
+                get {
+                    return this.columnitem_det_solRep;
                 }
             }
             
@@ -1433,16 +1443,25 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PA_REPORTE_SOLREPUESTOSRow AddPA_REPORTE_SOLREPUESTOSRow(string id_solRep, string artefacto_det_solRep, int cant_det_solRep, string des_uniMed) {
+            public PA_REPORTE_SOLREPUESTOSRow AddPA_REPORTE_SOLREPUESTOSRow(string id_solRep, int item_det_solRep, string artefacto_det_solRep, int cant_det_solRep, string des_uniMed) {
                 PA_REPORTE_SOLREPUESTOSRow rowPA_REPORTE_SOLREPUESTOSRow = ((PA_REPORTE_SOLREPUESTOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id_solRep,
+                        item_det_solRep,
                         artefacto_det_solRep,
                         cant_det_solRep,
                         des_uniMed};
                 rowPA_REPORTE_SOLREPUESTOSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPA_REPORTE_SOLREPUESTOSRow);
                 return rowPA_REPORTE_SOLREPUESTOSRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public PA_REPORTE_SOLREPUESTOSRow FindByid_solRepitem_det_solRep(string id_solRep, int item_det_solRep) {
+                return ((PA_REPORTE_SOLREPUESTOSRow)(this.Rows.Find(new object[] {
+                            id_solRep,
+                            item_det_solRep})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1463,6 +1482,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnid_solRep = base.Columns["id_solRep"];
+                this.columnitem_det_solRep = base.Columns["item_det_solRep"];
                 this.columnartefacto_det_solRep = base.Columns["artefacto_det_solRep"];
                 this.columncant_det_solRep = base.Columns["cant_det_solRep"];
                 this.columndes_uniMed = base.Columns["des_uniMed"];
@@ -1473,14 +1493,20 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models {
             private void InitClass() {
                 this.columnid_solRep = new global::System.Data.DataColumn("id_solRep", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid_solRep);
+                this.columnitem_det_solRep = new global::System.Data.DataColumn("item_det_solRep", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnitem_det_solRep);
                 this.columnartefacto_det_solRep = new global::System.Data.DataColumn("artefacto_det_solRep", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnartefacto_det_solRep);
                 this.columncant_det_solRep = new global::System.Data.DataColumn("cant_det_solRep", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncant_det_solRep);
                 this.columndes_uniMed = new global::System.Data.DataColumn("des_uniMed", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndes_uniMed);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid_solRep,
+                                this.columnitem_det_solRep}, true));
                 this.columnid_solRep.AllowDBNull = false;
                 this.columnid_solRep.MaxLength = 10;
+                this.columnitem_det_solRep.AllowDBNull = false;
                 this.columnartefacto_det_solRep.MaxLength = 25;
                 this.columndes_uniMed.MaxLength = 25;
             }
@@ -2000,6 +2026,17 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models {
                 }
                 set {
                     this[this.tablePA_REPORTE_SOLREPUESTOS.id_solRepColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int item_det_solRep {
+                get {
+                    return ((int)(this[this.tablePA_REPORTE_SOLREPUESTOS.item_det_solRepColumn]));
+                }
+                set {
+                    this[this.tablePA_REPORTE_SOLREPUESTOS.item_det_solRepColumn] = value;
                 }
             }
             
@@ -2867,6 +2904,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Models.DataReportesTableAdapte
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PA_REPORTE_SOLREPUESTOS";
             tableMapping.ColumnMappings.Add("id_solRep", "id_solRep");
+            tableMapping.ColumnMappings.Add("item_det_solRep", "item_det_solRep");
             tableMapping.ColumnMappings.Add("artefacto_det_solRep", "artefacto_det_solRep");
             tableMapping.ColumnMappings.Add("cant_det_solRep", "cant_det_solRep");
             tableMapping.ColumnMappings.Add("des_uniMed", "des_uniMed");

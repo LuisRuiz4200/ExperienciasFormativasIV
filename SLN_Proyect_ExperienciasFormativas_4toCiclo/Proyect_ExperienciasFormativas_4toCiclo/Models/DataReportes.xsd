@@ -88,6 +88,7 @@
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="id_solRep" DataSetColumn="id_solRep" />
+              <Mapping SourceColumn="item_det_solRep" DataSetColumn="item_det_solRep" />
               <Mapping SourceColumn="artefacto_det_solRep" DataSetColumn="artefacto_det_solRep" />
               <Mapping SourceColumn="cant_det_solRep" DataSetColumn="cant_det_solRep" />
               <Mapping SourceColumn="des_uniMed" DataSetColumn="des_uniMed" />
@@ -204,6 +205,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="item_det_solRep" msprop:Generator_ColumnPropNameInRow="item_det_solRep" msprop:Generator_ColumnPropNameInTable="item_det_solRepColumn" msprop:Generator_ColumnVarNameInTable="columnitem_det_solRep" msprop:Generator_UserColumnName="item_det_solRep" type="xs:int" />
               <xs:element name="artefacto_det_solRep" msprop:Generator_ColumnPropNameInRow="artefacto_det_solRep" msprop:Generator_ColumnPropNameInTable="artefacto_det_solRepColumn" msprop:Generator_ColumnVarNameInTable="columnartefacto_det_solRep" msprop:Generator_UserColumnName="artefacto_det_solRep" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -235,6 +237,11 @@
     <xs:unique name="PA_REPORTE_EQUIPOS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:PA_REPORTE_EQUIPOS" />
       <xs:field xpath="mstns:cod_patrimonial" />
+    </xs:unique>
+    <xs:unique name="PA_REPORTE_SOLREPUESTOS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PA_REPORTE_SOLREPUESTOS" />
+      <xs:field xpath="mstns:id_solRep" />
+      <xs:field xpath="mstns:item_det_solRep" />
     </xs:unique>
   </xs:element>
 </xs:schema>

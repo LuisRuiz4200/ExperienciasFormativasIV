@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:PA_LISTAR_TECNICO" ZOrder="4" X="641" Y="390" Height="153" Width="264" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:PA_LISTAR_DETEQUIPO" ZOrder="3" X="724" Y="141" Height="172" Width="281" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
     <Shape ID="DesignTable:PA_REPORTE_EQUIPOS" ZOrder="2" X="1302" Y="169" Height="172" Width="277" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:PA_REPORTE_SOLREPUESTOS" ZOrder="1" X="1014" Y="395" Height="153" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
+    <Shape ID="DesignTable:PA_REPORTE_SOLREPUESTOS" ZOrder="1" X="1058" Y="412" Height="172" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

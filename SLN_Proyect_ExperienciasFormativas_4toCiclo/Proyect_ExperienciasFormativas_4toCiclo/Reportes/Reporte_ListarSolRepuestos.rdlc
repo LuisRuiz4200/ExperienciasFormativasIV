@@ -21,6 +21,10 @@
           <DataField>id_solRep</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="item_det_solRep">
+          <DataField>item_det_solRep</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="artefacto_det_solRep">
           <DataField>artefacto_det_solRep</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -110,7 +114,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Id</Value>
+                                  <Value>Item</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
@@ -256,14 +260,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="id_solRep">
+                        <Textbox Name="item_det_solRep">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!id_solRep.Value</Value>
+                                  <Value>=Fields!item_det_solRep.Value</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -272,7 +276,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>id_solRep</rd:DefaultName>
+                          <rd:DefaultName>item_det_solRep</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
