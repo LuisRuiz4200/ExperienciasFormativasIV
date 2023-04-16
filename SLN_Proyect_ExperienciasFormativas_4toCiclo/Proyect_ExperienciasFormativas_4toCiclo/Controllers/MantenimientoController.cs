@@ -41,6 +41,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             }
 
             model.id_mante = codigo;
+            model.fecha_mante = DateTime.Now;
 
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
             ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
@@ -52,21 +53,15 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult registrarMantenimiento(MantenimientoModel obj)
         {
             string men;
+            MantenimientoModel model = new MantenimientoModel();
 
-            var lista = mantBL.PA_LISTAR_MANTENIMIENTO();
-
-            string codigo = "";
-
-            foreach (var item in lista)
-            {
-                codigo = "MAN" + (int.Parse(item.id_mante.Substring(6)) + 1).ToString("000000");
-            }
-
-            ViewBag.CODIGO_MANTENIMIENTO = codigo;
-
+            
+            // Inserta el objeto nuevo
             try
             {
                 men = mantBL.PA_INSERTAR_MANTENIMIENTO(obj);
+                return RedirectToAction("registrarMantenimiento");
+
             }
             catch (SqlException ex)
             {
@@ -74,13 +69,13 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 men = ex.Message;
             }
 
-
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
             ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
             ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");
             ViewBag.MENSAJE = men;
 
-            return View(obj);
+            return View(model);
+            
         }
 
         public ActionResult detalleMantenimiento(string id_mante)

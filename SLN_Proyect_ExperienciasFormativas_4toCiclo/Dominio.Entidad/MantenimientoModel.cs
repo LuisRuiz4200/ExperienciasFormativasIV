@@ -16,7 +16,7 @@ namespace Dominio.Entidad
         public string obs_tipoMante { set; get; }
         public string estado_equipo { set; get; }
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true,DataFormatString ="{0:yyy/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime fecha_mante { set; get; }
         public string estado_mante { set; get; } 
         //fin del modelo

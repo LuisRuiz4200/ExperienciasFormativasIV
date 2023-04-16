@@ -21,9 +21,19 @@
 }
 <br />
 
-<div class="alert alert-success">
-    Cantidad de Registros: @ViewBag.CONTADOR <br />
-</div>
+
+
+@if (!string.IsNullOrEmpty(ViewBag.ID))
+{
+    <div class="alert alert-success">
+        Solicitud: @ViewBag.ID <br />
+        Cantidad de Registros: @ViewBag.CONTADOR
+    </div>
+}
+
+<br />
+
+
 <div class="text-center">
     @Html.ReportViewer(ViewBag.REPORTE as ReportViewer, new { @style = "height:600px;width:800px;" })
 </div>
