@@ -1,0 +1,29 @@
+﻿@using Microsoft.Reporting.WebForms;
+@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "Reporte de Solicitud de Repuestos";
+}
+<hr />
+<h2>Reporte de Solicitud de Repuestos</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div class="row gap-2">
+        <div class="col-xl-4">
+            <label>Selecciona el id de solicitud:</label>
+            @Html.DropDownList("id_solRep", (SelectList)ViewBag.IDSOL, "Seleccionar", new { @class = "form-control" })
+        </div>
+        <div class="col d-flex mt-auto gap-2">
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </div>
+    </div>
+}
+<br />
+
+<div class="alert alert-success">
+    Cantidad de Registros: @ViewBag.CONTADOR <br />
+</div>
+<div class="text-center">
+    @Html.ReportViewer(ViewBag.REPORTE as ReportViewer, new { @style = "height:600px;width:800px;" })
+</div>

@@ -49,6 +49,7 @@
     <Compile Include="FichaReposicionDAO.cs" />
     <Compile Include="MantenimientoDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportesDAO.cs" />
     <Compile Include="SolicitudRepuestoDAO.cs" />
     <Compile Include="SQLHelper.cs" />
     <Compile Include="TecnicoDAO.cs" />
