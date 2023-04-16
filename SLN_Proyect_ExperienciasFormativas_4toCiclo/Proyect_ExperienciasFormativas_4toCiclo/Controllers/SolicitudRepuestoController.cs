@@ -371,6 +371,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         public ActionResult reporteSolicitudRepuesto(string id_solRep = "")
         {
             var listado = reportesBL.PA_REPORTE_SOLREPUESTOS(id_solRep);
+            var solicitud = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Find(c => c.id_solRep == id_solRep);
+
             ViewBag.CONTADOR = listado.Count;
 
             ReportViewer rp = new ReportViewer();
@@ -379,6 +381,20 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             rp.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\Reporte_ListarSolRepuestos.rdlc";
             rp.LocalReport.DataSources.Add(new ReportDataSource("DataSet_ListarSolRepuestos", listado));
+
+            if (id_solRep != "")
+            {
+                ReportParameter prm1 = new ReportParameter("ID_SOL", id_solRep);
+                ReportParameter prm2 = new ReportParameter("COD_PATRIMONIAL", solicitud.cod_patrimonial);
+                ReportParameter prm3 = new ReportParameter("MOTIVO_SOL", solicitud.motivo_solRep);
+                ReportParameter prm4 = new ReportParameter("FECHA_SOL", solicitud.fecha_solRep.ToShortDateString());
+                ReportParameter prm5 = new ReportParameter("ESTADO_SOL", solicitud.estado_solRep);
+                rp.LocalReport.SetParameters(prm1);
+                rp.LocalReport.SetParameters(prm2);
+                rp.LocalReport.SetParameters(prm3);
+                rp.LocalReport.SetParameters(prm4);
+                rp.LocalReport.SetParameters(prm5);
+            }
 
             ViewBag.REPORTE = rp;
             ViewBag.IDSOL = new SelectList(solRepBL.PA_LISTAR_SOLICITUDREPUESTO(), "id_solRep", "id_solRep");
