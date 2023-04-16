@@ -25,5 +25,11 @@ namespace Dominio.Negocio
             var mensaje = dao.PA_INSERTAR_MANTENIMIENTO(obj);
             return mensaje;
         }
+
+        public string PA_EDITAR_MANTENIMIENTO(MantenimientoModel obj)
+        {
+            var mensaje = dao.PA_EDITAR_MANTENIMIENTO(obj);
+            return mensaje;
+        }
     }
 }

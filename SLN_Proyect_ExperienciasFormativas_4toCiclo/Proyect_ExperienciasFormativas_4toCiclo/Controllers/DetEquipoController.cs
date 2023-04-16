@@ -15,6 +15,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
         DetEquipoBL detEquipoBL = new DetEquipoBL();
         DropdownBL dropdownBL = new DropdownBL();
+        ReportesBL reportesBL = new ReportesBL();
 
         //CORRELATIVO DE CODIGO PATRIMONIAL DE EQUIPO
         private string correlativo()
@@ -240,7 +241,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         // REPORTE
         public ActionResult listarEquiposReporte()
         {
-            var listado = detEquipoBL.listarDetEquipo();
+            var listado = reportesBL.PA_REPORTE_EQUIPOS();
 
             ViewBag.CONTADOR = listado.Count;
 

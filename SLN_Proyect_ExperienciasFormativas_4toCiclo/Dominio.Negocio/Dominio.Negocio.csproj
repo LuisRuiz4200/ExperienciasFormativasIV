@@ -46,7 +46,7 @@
     <Compile Include="FichaReposicionBL.cs" />
     <Compile Include="MantenimientoBL.cs" />
     <Compile Include="DetEquipoBL.cs" />
-    <Compile Include="MantenimientoBL.cs" />
+    <Compile Include="ReportesBL.cs" />
     <Compile Include="SolicitudRepuestoBL.cs" />
     <Compile Include="TecnicoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

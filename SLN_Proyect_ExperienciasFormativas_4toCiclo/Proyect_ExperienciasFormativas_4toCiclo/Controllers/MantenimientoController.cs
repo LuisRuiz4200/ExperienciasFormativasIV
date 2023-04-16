@@ -1,5 +1,6 @@
 ﻿using Dominio.Entidad;
 using Dominio.Negocio;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,6 +14,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     {
         MantenimientoBL mantBL = new MantenimientoBL();
         DropdownBL dropdownBL = new DropdownBL();
+        ReportesBL reportesBL = new ReportesBL();
 
         // GET: Mantenimiento
         public ActionResult listarMantenimientos()
@@ -85,6 +87,57 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             var modelo = mantBL.PA_LISTAR_MANTENIMIENTO().Find(c => c.id_mante.Equals(id_mante));
             return View(modelo);
+        }
+
+        public ActionResult editarMantenimiento(string id_mante)
+        {
+            var modelo = mantBL.PA_LISTAR_MANTENIMIENTO().Find(c => c.id_mante.Equals(id_mante));
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");
+
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public ActionResult editarMantenimiento(MantenimientoModel obj)
+        {
+            string mensaje;
+            try
+            {
+                mensaje = mantBL.PA_EDITAR_MANTENIMIENTO(obj);
+            }
+            catch (SqlException ex)
+            {
+
+                mensaje = ex.Message;
+            }
+
+            var listado = mantBL.PA_LISTAR_MANTENIMIENTO();
+            ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
+            ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
+            ViewBag.LISTA_TECNICO = new SelectList(dropdownBL.listTecnico(), "id_dropdown", "des_dropdown");
+            ViewBag.MENSAJE = mensaje;
+
+            return View("listarMantenimientos", listado);
+        }
+
+        // REPORTE
+        public ActionResult reporteMantenimiento()
+        {
+            var listado = reportesBL.PA_REPORTE_MANTENIMIENTO();
+            ViewBag.CONTADOR = listado.Count;
+
+            ReportViewer rp = new ReportViewer();
+            rp.ProcessingMode = ProcessingMode.Local;
+            rp.SizeToReportContent = true;
+
+            rp.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\Reporte_ListarMantenimientos.rdlc";
+            rp.LocalReport.DataSources.Add(new ReportDataSource("DataSet_ListarMantenimientos", listado));
+
+            ViewBag.REPORTE = rp;
+
+            return View();
         }
     }
 }

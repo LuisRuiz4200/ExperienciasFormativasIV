@@ -49,6 +49,9 @@
     <Compile Include="EquipoModel.cs" />
     <Compile Include="FichaReposicionModel.cs" />
     <Compile Include="MantenimientoModel.cs" />
+    <Compile Include="ReporteEquiposModel.cs" />
+    <Compile Include="ReporteMantenimientoModel.cs" />
+    <Compile Include="ReporteSolRepuestomModel.cs" />
     <Compile Include="SolicitudRepuestoModelGeneral.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PruebaGit.cs" />

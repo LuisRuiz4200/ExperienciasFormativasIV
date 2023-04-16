@@ -1,5 +1,6 @@
 ﻿using Dominio.Entidad;
 using Dominio.Negocio;
+using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,15 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
     {
         SolicitudRepuestoBL solRepBL = new SolicitudRepuestoBL();
         DetSolicitudRepuestoBL detSolRepBL = new DetSolicitudRepuestoBL();
+        ReportesBL reportesBL = new ReportesBL();
 
-        private string correlativo() {
+        private string correlativo()
+        {
 
-            string correlativo="SOL000001";
+            string correlativo = "SOL000001";
 
-            if (solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Count != 0) {
+            if (solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Count != 0)
+            {
 
                 foreach (var obj in solRepBL.PA_LISTAR_SOLICITUDREPUESTO())
                 {
@@ -31,7 +35,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                     correlativo = "SOL" + n.ToString("000000");
                 }
             }
-            
+
 
             return correlativo;
         }
@@ -94,7 +98,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             {
                 mensaje = ex.Message;
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 mensaje = ex.Message;
             }
@@ -115,12 +120,12 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             var modelo = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().Find(c => c.id_solRep.Equals(id_solRep));
 
-            switch (modelo.estado_solRep) 
+            switch (modelo.estado_solRep)
             {
                 case "ANULADO":
                     ViewBag.MENSAJE = "ESTE DOCUMENTO ESTÁ ANULADO";
-                    var lista = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().FindAll(c=>c.estado_solRep.Equals(modelo.estado_solRep));
-                    return View("listarSolicitudRepuesto",lista);
+                    var lista = solRepBL.PA_LISTAR_SOLICITUDREPUESTO().FindAll(c => c.estado_solRep.Equals(modelo.estado_solRep));
+                    return View("listarSolicitudRepuesto", lista);
                 default:
                     ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
                     ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
@@ -128,9 +133,9 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                     return View(modelo);
             }
 
-           
 
-            
+
+
         }
         [HttpPost]
         public ActionResult editarSolicitudRepuesto(SolicitudRepuestoModel obj)
@@ -181,7 +186,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
 
         /*===========================DETALLE DE SOLICITUD DE REPUESTO============================*/
-        
+
         //REGITRAR DETALLE SOLICITUD DE REPUESTO
         public ActionResult registrarDetSolicitudRepuesto(SolicitudRepuestoModel obj)
         {
@@ -310,16 +315,18 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                     ViewBag.MENSAJE_DETALLE = mensaje;
                     return View("editarSolicitudRepuesto", solicitudModel);
                 }
-                else {
+                else
+                {
                     mensaje = "CAMPOS REQUERIDOS INCOMPLETOS";
                 }
-                
+
             }
             catch (SqlException ex)
             {
                 mensaje = ex.Message;
-            }catch(Exception ex)
-            { 
+            }
+            catch (Exception ex)
+            {
                 mensaje = ex.Message;
             }
 
@@ -336,7 +343,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
         {
             string mensaje;
             var modeloSolicitud = solRepBL.PA_BUSCAR_SOLICTUDREPUESTO_POR_IDSOLREP(id_solRep);
-            DetSolicitudRepuestoModel detalle= new DetSolicitudRepuestoModel();
+            DetSolicitudRepuestoModel detalle = new DetSolicitudRepuestoModel();
 
             foreach (var item in detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep))
             {
@@ -348,8 +355,8 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
                 mensaje = detSolRepBL.PA_ELIMINAR_DETSOLREPUESTO(detalle);
             }
             catch (Exception ex)
-            { 
-                mensaje =ex.Message; 
+            {
+                mensaje = ex.Message;
             }
 
             ViewBag.MENSAJE_DETALLE = mensaje;
@@ -357,7 +364,26 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
             ViewBag.LISTA_DETALLE = detSolRepBL.PA_LISTAR_DETSOLREPUESTO_POR_IDSOLREP(id_solRep);
             ViewBag.LISTA_UMD = new SelectList(new DropdownBL().listUnidadMedida(), "id_dropdown", "des_dropdown");
 
-            return View("editarSolicitudRepuesto",modeloSolicitud);
+            return View("editarSolicitudRepuesto", modeloSolicitud);
+        }
+
+        // REPORTE
+        public ActionResult reporteSolicitudRepuesto(string id_solRep = "")
+        {
+            var listado = reportesBL.PA_REPORTE_SOLREPUESTOS(id_solRep);
+            ViewBag.CONTADOR = listado.Count;
+
+            ReportViewer rp = new ReportViewer();
+            rp.ProcessingMode = ProcessingMode.Local;
+            rp.SizeToReportContent = true;
+
+            rp.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reportes\Reporte_ListarSolRepuestos.rdlc";
+            rp.LocalReport.DataSources.Add(new ReportDataSource("DataSet_ListarSolRepuestos", listado));
+
+            ViewBag.REPORTE = rp;
+            ViewBag.IDSOL = new SelectList(solRepBL.PA_LISTAR_SOLICITUDREPUESTO(), "id_solRep", "id_solRep");
+
+            return View();
         }
 
     }

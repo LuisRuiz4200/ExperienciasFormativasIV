@@ -80,5 +80,21 @@ namespace Estructura.SQL
 
             return mensaje;
         }
+
+        public string PA_EDITAR_MANTENIMIENTO(MantenimientoModel obj)
+        {
+            string mensaje;
+            int valor = SqlHelper.ExecuteNonQuery(CAD_CN, "PA_EDITAR_MANTENIMIENTO",obj.id_mante ,obj.cod_patrimonial, obj.cod_tecnico, obj.cod_tipoMante, obj.obs_tipoMante, obj.estado_equipo, obj.fecha_mante, obj.estado_mante);
+
+            if (valor != 0)
+            {
+                mensaje = $"{obj.id_mante} Actualizado correctamente";
+            }
+            else
+            {
+                mensaje = "Error en la transacción";
+            }
+            return mensaje;
+        }
     }
 }

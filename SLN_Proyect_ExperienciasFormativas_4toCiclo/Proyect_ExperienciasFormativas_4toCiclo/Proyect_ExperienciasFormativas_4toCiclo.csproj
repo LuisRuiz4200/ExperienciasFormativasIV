@@ -225,6 +225,9 @@
     <Content Include="Views\DetEquipo\listarEquiposReporte.cshtml" />
     <Content Include="Views\Tecnico\listarTecnicosReporte.cshtml" />
     <Content Include="Views\Mantenimiento\detalleMantenimiento.cshtml" />
+    <Content Include="Views\Mantenimiento\editarMantenimiento.cshtml" />
+    <Content Include="Views\Mantenimiento\reporteMantenimiento.cshtml" />
+    <Content Include="Views\SolicitudRepuesto\reporteSolicitudRepuesto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -248,6 +251,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reportes\Reporte_ListarEquipos.rdlc" />
+    <EmbeddedResource Include="Reportes\Reporte_ListarMantenimientos.rdlc" />
+    <EmbeddedResource Include="Reportes\Reporte_ListarSolRepuestos.rdlc" />
     <EmbeddedResource Include="Reportes\Reporte_ListarTecnicos.rdlc" />
   </ItemGroup>
   <PropertyGroup>
