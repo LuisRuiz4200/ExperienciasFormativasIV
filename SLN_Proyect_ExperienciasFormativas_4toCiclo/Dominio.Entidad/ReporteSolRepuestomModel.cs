@@ -11,10 +11,7 @@ namespace Dominio.Entidad
     {
         public string id_solRep { get; set; }
         public string artefacto_det_solRep { get; set; }
-        public string motivo_solRep { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateTime fecha_solRep { get; set; }
-        public string estado_solRep { get; set; }
+        public int cant_det_solRep { get; set; }
+        public string des_uniMed { get; set; }
     }
 }
