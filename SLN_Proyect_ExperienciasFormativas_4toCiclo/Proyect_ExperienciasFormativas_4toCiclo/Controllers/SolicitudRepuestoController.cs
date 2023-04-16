@@ -382,6 +382,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             ViewBag.REPORTE = rp;
             ViewBag.IDSOL = new SelectList(solRepBL.PA_LISTAR_SOLICITUDREPUESTO(), "id_solRep", "id_solRep");
+            ViewBag.ID = id_solRep;
 
             return View();
         }
