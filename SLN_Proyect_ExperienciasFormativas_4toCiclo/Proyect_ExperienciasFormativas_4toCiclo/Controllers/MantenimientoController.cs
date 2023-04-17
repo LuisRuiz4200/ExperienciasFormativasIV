@@ -42,6 +42,7 @@ namespace Proyect_ExperienciasFormativas_4toCiclo.Controllers
 
             model.id_mante = codigo;
             model.fecha_mante = DateTime.Now;
+            model.estado_mante = "REALIZADO";
 
             ViewBag.LISTAR_DET_EQUIPO = new SelectList(new DetEquipoBL().listarDetEquipo(), "cod_patrimonial", "cod_patrimonial");
             ViewBag.LISTA_TIPOMANTE = new SelectList(dropdownBL.listTipoMante(), "id_dropdown", "des_dropdown");
