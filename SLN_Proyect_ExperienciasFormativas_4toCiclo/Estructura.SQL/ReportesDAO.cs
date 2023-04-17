@@ -49,10 +49,10 @@ namespace Estructura.SQL
                 ReporteSolRepuestomModel obj = new ReporteSolRepuestomModel();
 
                 obj.id_solRep = dr.GetString(0);
-                obj.artefacto_det_solRep = dr.GetString(1);
-                obj.motivo_solRep = dr.GetString(2);
-                obj.fecha_solRep = dr.GetDateTime(3);
-                obj.estado_solRep = dr.GetString(4);
+                obj.item_det_solRep = dr.GetInt32(1);
+                obj.artefacto_det_solRep = dr.GetString(2);
+                obj.cant_det_solRep = dr.GetInt32(3);
+                obj.des_uniMed = dr.GetString(4);
 
                 listado.Add(obj);
             }
